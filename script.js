@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initStatCounters();
   initProjectCardTilt();
   initContactForm();
+  initCosmicCanvas();
+  initCardGlow();
+  initProjectModal();
 });
 
 /* ============================================================
@@ -48,12 +51,14 @@ function initMobileMenu() {
   const openMenu = () => {
     mobileOverlay.classList.add('active');
     hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   };
 
   const closeMenuFn = () => {
     mobileOverlay.classList.remove('active');
     hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   };
 
@@ -351,3 +356,277 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+/* ============================================================
+   UPGRADE: COSMIC CANVAS BACKGROUND
+   ============================================================ */
+function initCosmicCanvas() {
+  const canvas = document.getElementById('cosmic-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  let stars = [];
+  let mouseX = 0;
+  let mouseY = 0;
+  let targetMouseX = 0;
+  let targetMouseY = 0;
+  
+  const resize = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initStars();
+  };
+  
+  const initStars = () => {
+    stars = [];
+    const count = Math.floor((canvas.width * canvas.height) / 11000);
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.6 + 0.4,
+        alpha: Math.random() * 0.7 + 0.3,
+        speed: Math.random() * 0.08 + 0.02,
+        parallaxSpeed: Math.random() * 12 + 6,
+        color: Math.random() > 0.45 ? '#00d4ff' : '#9b5cff'
+      });
+    }
+  };
+  
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('mousemove', (e) => {
+    targetMouseX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+    targetMouseY = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+  }, { passive: true });
+  
+  const animate = () => {
+    mouseX += (targetMouseX - mouseX) * 0.07;
+    mouseY += (targetMouseY - mouseY) * 0.07;
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    stars.forEach(star => {
+      star.y -= star.speed;
+      if (star.y < 0) {
+        star.y = canvas.height;
+        star.x = Math.random() * canvas.width;
+      }
+      
+      const px = star.x - mouseX * star.parallaxSpeed;
+      const py = star.y - mouseY * star.parallaxSpeed;
+      
+      ctx.save();
+      ctx.globalAlpha = star.alpha;
+      ctx.fillStyle = star.color;
+      ctx.beginPath();
+      ctx.arc(px, py, star.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+    
+    requestAnimationFrame(animate);
+  };
+  
+  resize();
+  animate();
+}
+
+/* ============================================================
+   UPGRADE: CARD GLOW DYNAMIC POSITIONING
+   ============================================================ */
+function initCardGlow() {
+  const cards = document.querySelectorAll('.project-card, .cert-card, .achieve-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    }, { passive: true });
+  });
+}
+
+/* ============================================================
+   UPGRADE: INTERACTIVE PROJECT DETAIL MODALS
+   ============================================================ */
+function initProjectModal() {
+  const modal = document.getElementById('projectModal');
+  const closeBtn = document.getElementById('modalClose');
+  const closeFooterBtn = document.getElementById('modalCloseBtn');
+  const detailButtons = document.querySelectorAll('.view-details-btn');
+  
+  if (!modal) return;
+  
+  const projectData = {
+    "face-recognition": {
+      title: "Multiple Face Recognition Attendance System",
+      icon: "👥",
+      tags: ["Python", "OpenCV", "Haar Cascade", "LBPH", "SQL"],
+      summary: "An automated attendance system that detects and recognizes multiple human faces in real-time, matching them against a registration database to log entries automatically.",
+      features: [
+        "Real-time simultaneous detection of multiple faces in a single video input stream",
+        "Haar Cascade Classifiers utilized for fast and lightweight face bounding-box detection",
+        "Local Binary Patterns Histograms (LBPH) algorithm used for facial feature extraction and match scoring",
+        "Integrated SQL database to maintain profiles, registration states, and logs with exportable formats",
+        "Automated attendance sheets generated instantly upon system operation session closure"
+      ],
+      architecture: "Engineered as an end-to-end Python pipeline using OpenCV for real-time video grab and preprocessing, an LBPH model for face prediction, and MySQL Connector for log transactions. Features a desktop interface built in Tkinter.",
+      github: "https://github.com/uk0976"
+    },
+    "task-scheduler": {
+      title: "Smart Task Scheduler with AI Integration",
+      icon: "📅",
+      tags: ["Python", "NLP", "Machine Learning"],
+      summary: "An intelligent productivity scheduler that parses task details from natural language, predicts task priorities using machine learning, and structures optimal daily schedules.",
+      features: [
+        "Natural Language Processing (NLP) parses details from raw messages like 'remind me to prepare presentation tomorrow'",
+        "Advanced text classifier automatically tags task categories based on keywords and embeddings",
+        "Machine learning model predicts importance scores based on deadlines, descriptions, and user categories",
+        "Intelligent scheduling algorithm dynamic ranks daily task order to optimize user focus and output"
+      ],
+      architecture: "Constructed with a Python core using NLTK/SpaCy for linguistic analysis, scikit-learn models for priority prediction, and a light Web UI for tasks listing.",
+      github: "https://github.com/uk0976"
+    },
+    "stock-prediction": {
+      title: "Stock Prediction System with Integrated Chatbot",
+      icon: "📈",
+      tags: ["Python", "Machine Learning", "Data Analysis"],
+      summary: "A robust analytics platform that predicts financial trends using historical market datasets, paired with a smart chatbot for answering quantitative financial queries.",
+      features: [
+        "Real-time historical stock market data retrieval via yfinance APIs",
+        "Time-series prediction models forecast upcoming price directions and trend confidence",
+        "Interactive chatbot provides immediate answers about predictions, general stock performance, and company profiles",
+        "Beautiful Matplotlib dashboards visualize historical stock prices overlaid with prediction projections"
+      ],
+      architecture: "Built in Python using Pandas and NumPy for complex data handling, Scikit-Learn/TensorFlow for prediction modeling, and NLTK for the rules-based financial query chatbot.",
+      github: "https://github.com/uk0976"
+    },
+    "medical-summarizer": {
+      title: "Medical Report Summarizer",
+      icon: "🏥",
+      tags: ["Python", "NLP", "Machine Learning", "AI"],
+      summary: "An AI-powered document helper that converts scanned clinical sheets to digital text, highlights critical medical entities, and constructs concise layman-friendly summaries.",
+      features: [
+        "Optical Character Recognition (OCR) converts paper clinical reports into digital data streams",
+        "Named Entity Recognition (NER) extracts key medical entities (symptoms, drugs, dosages, diagnostics)",
+        "Advanced Summarizer compresses complex medical records into structured 1-page summaries",
+        "Built-in visual dictionary helps patients click on complex medical terms to view clear definitions"
+      ],
+      architecture: "Uses Python with PyTesseract for PDF OCR, SpaCy NER models for clinical terms extraction, and Hugging Face transformer models (like BART/T5) for summary generation.",
+      github: "https://github.com/uk0976"
+    },
+    "library-management": {
+      title: "Library Management System",
+      icon: "📚",
+      tags: ["Python", "Tkinter", "SQL", "MySQL Workbench"],
+      summary: "A production-ready desktop utility to automate library cataloging, rentals, borrower directories, and database auditing via an intuitive interface.",
+      features: [
+        "Comprehensive database catalog search supporting title, author, category, or ISBN tags",
+        "Transactions tracker manages active rentals, return dates, late-fines computations, and status reports",
+        "Optimized relational schema featuring custom constraints, views, and index parameters",
+        "Clean administrative dashboards showcase inventory metrics and quick actions panels"
+      ],
+      architecture: "A desktop Python desktop app using Tkinter for GUI layout and MySQL Workbench for database modeling, utilizing raw SQL connectors for optimized queries.",
+      github: "https://github.com/uk0976"
+    },
+    "sentiment-analysis": {
+      title: "Sentiment Analysis Project",
+      icon: "💬",
+      tags: ["Python", "NLP", "ML", "Matplotlib", "Jupyter"],
+      summary: "A text classification pipeline that identifies positive, negative, or neutral sentiment in textual datasets, with detailed graphical summaries.",
+      features: [
+        "Feature engineering pipeline applying TF-IDF vectorization, lemmatization, and stop-words filters",
+        "Multi-model comparisons analyzing Naive Bayes, Logistic Regression, and SVM performance metrics",
+        "Data visualization plots showcasing sentiments distributions, accuracy metrics, and word-clouds",
+        "Structured Jupyter pipeline documenting steps from raw data ingest to evaluation reports"
+      ],
+      architecture: "Built on top of Python's scientific libraries (Pandas, NumPy, Scikit-Learn, Matplotlib) and visualized in Jupyter Notebook for quick experimentation.",
+      github: "https://github.com/uk0976"
+    },
+    "snake-ladder": {
+      title: "Snake and Ladder GUI Game",
+      icon: "🎲",
+      tags: ["Python", "Tkinter", "GUI Development"],
+      summary: "A polished interactive desktop recreation of the classic board game, featuring custom canvas animations and dynamic player turn management.",
+      features: [
+        "Custom coordinates grid mapping automatically calculates movement paths across the board",
+        "Animated tokens transition smoothly step-by-step to emulate dice rolls rather than jumping",
+        "Supports both human-versus-human play and computer-driven AI opponents",
+        "Interactive dice component features clean frame animations showing face rolls"
+      ],
+      architecture: "Engineered in Python using the Tkinter library, focusing on canvas grid drawings and asynchronous animation loops.",
+      github: "https://github.com/uk0976"
+    },
+    "secure-identity": {
+      title: "Secure Identity Verification Using Face Biometrics",
+      icon: "🔒",
+      tags: ["Python", "OpenCV", "LBPH", "Haar Cascade", "SQL"],
+      summary: "A biometric access control portal that verifies identity signatures using facial matching and cross-references active directories.",
+      features: [
+        "Secure webcam authentication system matching active user frames with registered profiles",
+        "Facial landmark analysis flags photo or screen attacks to ensure liveness",
+        "Security logs directory tracks successful auths, failure alerts, match scores, and timestamp metrics",
+        "Admin user control panels manage user enrollment, role privileges, and faceprint updates"
+      ],
+      architecture: "Constructed with Python, leveraging OpenCV for image parsing, LBPH for mapping facial profiles, and MySQL for logs.",
+      github: "https://github.com/uk0976"
+    }
+  };
+  
+  const openModal = (id) => {
+    const data = projectData[id];
+    if (!data) return;
+    
+    document.getElementById('modalIcon').textContent = data.icon;
+    document.getElementById('modalName').textContent = data.title;
+    
+    const tagsContainer = document.getElementById('modalTags');
+    tagsContainer.innerHTML = '';
+    data.tags.forEach(tag => {
+      const span = document.createElement('span');
+      span.textContent = tag;
+      tagsContainer.appendChild(span);
+    });
+    
+    const featuresHtml = data.features.map(f => `<li>${f}</li>`).join('');
+    document.getElementById('modalBody').innerHTML = `
+      <p><strong>Overview:</strong> ${data.summary}</p>
+      <h4>Key Features</h4>
+      <ul>${featuresHtml}</ul>
+      <h4>Technical Architecture</h4>
+      <p>${data.architecture}</p>
+    `;
+    
+    const ghLink = document.getElementById('modalGithub');
+    if (ghLink) ghLink.href = data.github || "https://github.com/uk0976";
+    
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  
+  const closeModal = () => {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  
+  detailButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-project-id');
+      openModal(id);
+    });
+  });
+  
+  closeBtn.addEventListener('click', closeModal);
+  if (closeFooterBtn) closeFooterBtn.addEventListener('click', closeModal);
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  });
+}

@@ -7,16 +7,36 @@
   <meta name="description" content="Doctor Umerkhan Junaidkhan – AI & Data Science Student, Python Developer, AI/ML Enthusiast. Portfolio showcasing projects, skills, certifications, and publications." />
   <meta name="keywords" content="Umerkhan Junaidkhan, AI, Data Science, Python Developer, Machine Learning, Portfolio, Terna Engineering College" />
   <meta name="author" content="Doctor Umerkhan Junaidkhan" />
-  <meta property="og:title" content="Doctor Umerkhan Junaidkhan | AI & Data Science Portfolio" />
-  <meta property="og:description" content="Python Developer | AI/ML Enthusiast | Data Science Student" />
+  
+  <!-- SEO & Robots -->
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://umerkhan-portfolio.vercel.app/" />
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://umerkhan-portfolio.vercel.app/" />
+  <meta property="og:title" content="Doctor Umerkhan Junaidkhan | AI & Data Science Portfolio" />
+  <meta property="og:description" content="Python Developer | AI/ML Enthusiast | Data Science Student. Explore my projects, publications, and skills." />
+  <meta property="og:image" content="https://umerkhan-portfolio.vercel.app/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://umerkhan-portfolio.vercel.app/" />
+  <meta property="twitter:title" content="Doctor Umerkhan Junaidkhan | AI & Data Science Portfolio" />
+  <meta property="twitter:description" content="Python Developer | AI/ML Enthusiast | Data Science Student. Explore my projects, publications, and skills." />
+  <meta property="twitter:image" content="https://umerkhan-portfolio.vercel.app/og-image.jpg" />
+
   <title>Doctor Umerkhan Junaidkhan | Portfolio</title>
+  
+  <!-- Fonts Preconnect & Preload -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<canvas id="cosmic-canvas"></canvas>
 
 <!-- ============================================================
      NAVBAR
@@ -36,9 +56,9 @@
       <li><a href="#certifications" class="nav-link">Certs</a></li>
       <li><a href="#achievements" class="nav-link">Awards</a></li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
-      <li><a href="C:\Users\Umer Khan\OneDrive\Desktop\College Work\US Docs\Resume_UmerKhan_AICTE.pdf" download class="nav-cta">Resume ↓</a></li>
+      <li><a href="UmerKhan_Resume.pdf" download class="nav-cta">Resume ↓</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileOverlay">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -57,7 +77,7 @@
     <li><a href="#certifications">Certifications</a></li>
     <li><a href="#achievements">Achievements</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="C:\Users\Umer Khan\OneDrive\Desktop\College Work\US Docs\Resume_UmerKhan_AICTE.pdf" download class="mobile-cta">Download Resume</a></li>
+    <li><a href="UmerKhan_Resume.pdf" download class="mobile-cta">Download Resume</a></li>
   </ul>
 </div>
 
@@ -88,7 +108,7 @@
     </p>
     <div class="hero-buttons reveal delay-4">
       <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="C:\Users\Umer Khan\OneDrive\Desktop\College Work\US Docs\Resume_UmerKhan_AICTE.pdf" download class="btn btn-outline">Download Resume ↓</a>
+      <a href="UmerKhan_Resume.pdf" download class="btn btn-outline">Download Resume ↓</a>
       <a href="#contact" class="btn btn-ghost">Connect With Me</a>
     </div>
     <div class="hero-stats reveal delay-5">
@@ -396,7 +416,7 @@
           <span>Python</span><span>OpenCV</span><span>Haar Cascade</span><span>LBPH</span><span>SQL</span>
         </div>
         <div class="project-links">
-          <a href="#" class="proj-btn">View Details</a>
+          <button type="button" class="proj-btn view-details-btn" data-project-id="face-recognition">View Details</button>
           <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
         </div>
       </div>
@@ -412,7 +432,7 @@
           <span>Python</span><span>NLP</span><span>Machine Learning</span>
         </div>
         <div class="project-links">
-          <a href="#" class="proj-btn">View Details</a>
+          <button type="button" class="proj-btn view-details-btn" data-project-id="task-scheduler">View Details</button>
           <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
         </div>
       </div>
@@ -428,7 +448,7 @@
           <span>Python</span><span>Machine Learning</span><span>Data Analysis</span>
         </div>
         <div class="project-links">
-          <a href="#" class="proj-btn">View Details</a>
+          <button type="button" class="proj-btn view-details-btn" data-project-id="stock-prediction">View Details</button>
           <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
         </div>
       </div>
@@ -444,7 +464,7 @@
           <span>Python</span><span>NLP</span><span>Machine Learning</span><span>AI</span>
         </div>
         <div class="project-links">
-          <a href="#" class="proj-btn">View Details</a>
+          <button type="button" class="proj-btn view-details-btn" data-project-id="medical-summarizer">View Details</button>
           <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
         </div>
       </div>
@@ -460,7 +480,7 @@
           <span>Python</span><span>Tkinter</span><span>SQL</span><span>MySQL Workbench</span>
         </div>
         <div class="project-links">
-          <a href="#" class="proj-btn">View Details</a>
+          <button type="button" class="proj-btn view-details-btn" data-project-id="library-management">View Details</button>
           <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
         </div>
       </div>
@@ -476,7 +496,7 @@
           <span>Python</span><span>NLP</span><span>ML</span><span>Matplotlib</span><span>Jupyter</span>
         </div>
         <div class="project-links">
-          <a href="#" class="proj-btn">View Details</a>
+          <button type="button" class="proj-btn view-details-btn" data-project-id="sentiment-analysis">View Details</button>
           <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
         </div>
       </div>
@@ -492,7 +512,7 @@
           <span>Python</span><span>Tkinter</span><span>GUI Development</span>
         </div>
         <div class="project-links">
-          <a href="#" class="proj-btn">View Details</a>
+          <button type="button" class="proj-btn view-details-btn" data-project-id="snake-ladder">View Details</button>
           <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
         </div>
       </div>
@@ -508,7 +528,7 @@
           <span>Python</span><span>OpenCV</span><span>LBPH</span><span>Haar Cascade</span><span>SQL</span>
         </div>
         <div class="project-links">
-          <a href="#" class="proj-btn">View Details</a>
+          <button type="button" class="proj-btn view-details-btn" data-project-id="secure-identity">View Details</button>
           <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
         </div>
       </div>
@@ -541,7 +561,7 @@
         </div>
       </div>
       <div class="resume-right">
-        <a href="C:\Users\Umer Khan\OneDrive\Desktop\College Work\US Docs\Resume_UmerKhan_AICTE.pdf" download class="btn btn-primary btn-large">
+        <a href="UmerKhan_Resume.pdf" download class="btn btn-primary btn-large">
           ↓ Download Resume
         </a>
         <p class="resume-note">PDF format · Updated 2026</p>
@@ -732,7 +752,7 @@
             <a href="mailto:umerkhandoctor04@gmail.com" class="qbtn">📧 Email Me</a>
             <a href="https://www.linkedin.com/in/umer-khan-57a458288/" target="_blank" class="qbtn">💼 LinkedIn</a>
             <a href="https://github.com/uk0976" target="_blank" class="qbtn">💻 GitHub</a>
-            <a href="C:\Users\Umer Khan\OneDrive\Desktop\College Work\US Docs\Resume_UmerKhan_AICTE.pdf" download class="qbtn">📄 Resume</a>
+            <a href="UmerKhan_Resume.pdf" download class="qbtn">📄 Resume</a>
           </div>
         </div>
       </div>
@@ -792,11 +812,32 @@
 <!-- Back to Top -->
 <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
-<link rel="stylesheet" href="style.css" />
+<!-- Project Details Modal Overlay -->
+<div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+  <div class="modal-container">
+    <button class="modal-close" id="modalClose" aria-label="Close details">✕</button>
+    <div class="modal-header">
+      <h3 class="modal-title" id="modalTitle">
+        <span class="modal-title-icon" id="modalIcon">👥</span>
+        <span id="modalName">Project Title</span>
+      </h3>
+      <div class="modal-tags" id="modalTags">
+        <!-- Tags populated by JS -->
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Body populated by JS -->
+    </div>
+    <div class="modal-footer">
+      <a href="https://github.com/uk0976" id="modalGithub" target="_blank" class="btn btn-outline">GitHub Link ↗</a>
+      <button type="button" class="btn btn-primary" id="modalCloseBtn">Close</button>
+    </div>
+  </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
-
 
 
 
