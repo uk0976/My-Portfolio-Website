@@ -435,7 +435,7 @@ function initCosmicCanvas() {
    UPGRADE: CARD GLOW DYNAMIC POSITIONING
    ============================================================ */
 function initCardGlow() {
-  const cards = document.querySelectorAll('.project-card, .cert-card, .achieve-card');
+  const cards = document.querySelectorAll('.project-card, .cert-card, .achieve-card, .build-item, .tool-item, .beyond-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
