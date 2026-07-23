@@ -104,34 +104,24 @@ function initScrollReveal() {
    ACTIVE NAV LINKS — highlight current section link
    ============================================================ */
 function initActiveNavLinks() {
-  const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
-  if (!sections.length || !navLinks.length) return;
+  if (!navLinks.length) return;
 
-  const navHeight = parseInt(
-    getComputedStyle(document.documentElement).getPropertyValue('--nav-h') || '72'
-  );
+  const currentPath = window.location.pathname;
+  let currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1);
 
-  const onScroll = () => {
-    let current = '';
+  // default page handling
+  if (currentPage === "") {
+    currentPage = "index.html";
+  }
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - navHeight - 20;
-      if (window.scrollY >= sectionTop) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    const href = link.getAttribute('href');
+    if (currentPage === href || (currentPage === "index.html" && href === "index.html")) {
+      link.classList.add('active');
+    }
+  });
 }
 
 /* ============================================================

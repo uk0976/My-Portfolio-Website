@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Doctor Umerkhan Junaidkhan – Software Engineering Projects, AI/ML Publications, and Academic Certifications." />
+  <meta name="keywords" content="Umerkhan Junaidkhan, Projects, Computer Vision, Research Paper, Publications, Blockchain, Certifications" />
+  <meta name="author" content="Doctor Umerkhan Junaidkhan" />
+  
+  <!-- SEO & Robots -->
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://umerkhan-portfolio.vercel.app/projects.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://umerkhan-portfolio.vercel.app/projects.html" />
+  <meta property="og:title" content="Projects & Publications | Doctor Umerkhan Junaidkhan" />
+  <meta property="og:description" content="Explore my portfolio of AI, ML, computer vision, and Python projects along with peer-reviewed publications." />
+  <meta property="og:image" content="https://umerkhan-portfolio.vercel.app/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://umerkhan-portfolio.vercel.app/projects.html" />
+  <meta property="twitter:title" content="Projects & Publications | Doctor Umerkhan Junaidkhan" />
+  <meta property="twitter:description" content="Explore my portfolio of AI, ML, computer vision, and Python projects along with peer-reviewed publications." />
+  <meta property="twitter:image" content="https://umerkhan-portfolio.vercel.app/og-image.jpg" />
+
+  <title>Projects &amp; Research | Doctor Umerkhan Junaidkhan</title>
+  
+  <!-- Fonts Preconnect & Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<canvas id="cosmic-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-bracket">&lt;</span>UK<span class="logo-bracket">/&gt;</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="skills.html" class="nav-link">Skills</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+      <li><a href="UmerKhan_Resume.pdf" download class="nav-cta">Resume ↓</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileOverlay">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-overlay" id="mobileOverlay">
+  <button class="close-menu" id="closeMenu">✕</button>
+  <ul class="mobile-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="UmerKhan_Resume.pdf" download class="mobile-cta">Download Resume</a></li>
+  </ul>
+</div>
+
+<!-- ============================================================
+     PROJECTS
+     ============================================================ -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-tag">What I've Built</div>
+    <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+    <p class="section-sub">A selection of AI, ML, and Python projects built to solve real-world problems.</p>
+    
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-accent"></div>
+        <div class="project-number">01</div>
+        <div class="project-icon">👥</div>
+        <h3>Multiple Face Recognition Attendance System</h3>
+        <p>An automated attendance system that recognizes and logs multiple faces in real-time using Local Binary Pattern Histograms and Haar Cascade detection, storing records in SQL database.</p>
+        <div class="project-tech">
+          <span>Python</span><span>OpenCV</span><span>Haar Cascade</span><span>LBPH</span><span>SQL</span>
+        </div>
+        <div class="project-links">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="face-recognition">View Details</button>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-accent"></div>
+        <div class="project-number">02</div>
+        <div class="project-icon">📅</div>
+        <h3>Smart Task Scheduler with AI Integration</h3>
+        <p>An intelligent task management system powered by NLP and machine learning that understands natural language inputs to automatically schedule, prioritize, and manage tasks.</p>
+        <div class="project-tech">
+          <span>Python</span><span>NLP</span><span>Machine Learning</span>
+        </div>
+        <div class="project-links">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="task-scheduler">View Details</button>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-accent"></div>
+        <div class="project-number">03</div>
+        <div class="project-icon">📈</div>
+        <h3>Stock Prediction System with Integrated Chatbot</h3>
+        <p>A dual-function application combining ML-based stock price prediction with an integrated chatbot that answers user queries about market trends and forecasting results.</p>
+        <div class="project-tech">
+          <span>Python</span><span>Machine Learning</span><span>Data Analysis</span>
+        </div>
+        <div class="project-links">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="stock-prediction">View Details</button>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="project-accent"></div>
+        <div class="project-number">04</div>
+        <div class="project-icon">🏥</div>
+        <h3>Medical Report Summarizer</h3>
+        <p>An AI-powered tool that processes complex medical reports and generates concise, structured summaries using NLP techniques, helping patients and professionals understand key findings quickly.</p>
+        <div class="project-tech">
+          <span>Python</span><span>NLP</span><span>Machine Learning</span><span>AI</span>
+        </div>
+        <div class="project-links">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="medical-summarizer">View Details</button>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card">
+        <div class="project-accent"></div>
+        <div class="project-number">05</div>
+        <div class="project-icon">📚</div>
+        <h3>Library Management System</h3>
+        <p>A full-featured desktop library management application with a GUI, enabling book cataloging, member management, borrowing records, and database-backed operations through a clean Tkinter interface.</p>
+        <div class="project-tech">
+          <span>Python</span><span>Tkinter</span><span>SQL</span><span>MySQL Workbench</span>
+        </div>
+        <div class="project-links">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="library-management">View Details</button>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-card">
+        <div class="project-accent"></div>
+        <div class="project-number">06</div>
+        <div class="project-icon">💬</div>
+        <h3>Sentiment Analysis Project</h3>
+        <p>A machine learning pipeline that classifies text sentiment (positive, negative, neutral) from datasets, with rich visual insights using Matplotlib for data storytelling and pattern exploration.</p>
+        <div class="project-tech">
+          <span>Python</span><span>NLP</span><span>ML</span><span>Matplotlib</span><span>Jupyter</span>
+        </div>
+        <div class="project-links">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="sentiment-analysis">View Details</button>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- Project 7 -->
+      <div class="project-card">
+        <div class="project-accent"></div>
+        <div class="project-number">07</div>
+        <div class="project-icon">🎲</div>
+        <h3>Snake and Ladder GUI Game</h3>
+        <p>A fully interactive Snake and Ladder game built with Python's Tkinter framework, featuring a graphical board, animated gameplay, multi-player support, and a polished desktop UI experience.</p>
+        <div class="project-tech">
+          <span>Python</span><span>Tkinter</span><span>GUI Development</span>
+        </div>
+        <div class="project-links">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="snake-ladder">View Details</button>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- Project 8 -->
+      <div class="project-card">
+        <div class="project-accent"></div>
+        <div class="project-number">08</div>
+        <div class="project-icon">🔒</div>
+        <h3>Secure Identity Verification Using Face Biometrics</h3>
+        <p>A biometric security system that authenticates individuals through facial recognition using LBPH and Haar Cascade algorithms, with SQL-backed identity management for secure and scalable verification.</p>
+        <div class="project-tech">
+          <span>Python</span><span>OpenCV</span><span>LBPH</span><span>Haar Cascade</span><span>SQL</span>
+        </div>
+        <div class="project-links">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="secure-identity">View Details</button>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PUBLICATIONS
+     ============================================================ -->
+<section class="section section-alt" id="publications">
+  <div class="container">
+    <div class="section-tag">Research Work</div>
+    <h2 class="section-title">Publication <span class="gradient-text">&amp; Research</span></h2>
+    <div class="pub-card">
+      <div class="pub-badge">Peer Reviewed</div>
+      <div class="pub-icon">📰</div>
+      <div class="pub-content">
+        <h3>Multiple Face Recognition Attendance System</h3>
+        <div class="pub-meta">
+          <span class="pub-journal">International Journal of Research and Analytical Reviews (IJRAR)</span>
+          <span class="pub-date">📅 March 14, 2024</span>
+        </div>
+        <p class="pub-abstract">
+          This research paper presents an automated attendance management system leveraging face recognition technology. The system employs OpenCV with Haar Cascade classifiers for face detection and the LBPH algorithm for recognition, integrated with an SQL database for attendance logging. The paper demonstrates the system's accuracy, real-time performance, and practical utility in educational and corporate environments.
+        </p>
+        <div class="pub-tags">
+          <span>Face Recognition</span>
+          <span>OpenCV</span>
+          <span>LBPH Algorithm</span>
+          <span>Attendance Management</span>
+          <span>Computer Vision</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CERTIFICATIONS
+     ============================================================ -->
+<section class="section" id="certifications">
+  <div class="container">
+    <div class="section-tag">Credentials</div>
+    <h2 class="section-title">Certifications <span class="gradient-text">&amp; Workshops</span></h2>
+    <div class="cert-grid">
+
+      <div class="cert-card">
+        <div class="cert-logo">⛓</div>
+        <div class="cert-content">
+          <h3>Blockchain Technology Workshop</h3>
+          <p class="cert-issuer">Terna Engineering College</p>
+          <p class="cert-year">2024</p>
+          <p class="cert-desc">Hands-on workshop covering blockchain fundamentals, distributed ledger concepts, smart contracts, and decentralized application architecture.</p>
+        </div>
+        <div class="cert-glow"></div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-logo">🎮</div>
+        <div class="cert-content">
+          <h3>Google Arcade Program</h3>
+          <p class="cert-issuer">Google Cloud Skills Boost</p>
+          <p class="cert-year">2024</p>
+          <p class="cert-desc">Completed Google Cloud skills and challenges across various cloud technologies, earning badges for hands-on labs in Google Cloud Platform.</p>
+        </div>
+        <div class="cert-glow"></div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-logo">✨</div>
+        <div class="cert-content">
+          <h3>Google Gen AI Exchange Program</h3>
+          <p class="cert-issuer">Google</p>
+          <p class="cert-year">2024</p>
+          <p class="cert-desc">Participated in Google's Generative AI exchange program covering foundational and advanced concepts in large language models, prompt engineering, and AI application development.</p>
+        </div>
+        <div class="cert-glow"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo-wrap">
+      <div class="footer-logo">
+        <span class="logo-bracket">&lt;</span>UK<span class="logo-bracket">/&gt;</span>
+      </div>
+      <p class="footer-tagline" style="font-size: 0.8rem; letter-spacing: 0.05em; color: var(--cyan); margin-top: 0.5rem; font-weight: 700; text-transform: uppercase;">
+        BUILDING SOLUTIONS. IMPACTING LIVES.
+      </p>
+    </div>
+    <div class="footer-middle" style="text-align: center; margin: 1rem 0;">
+      <p class="footer-motto" style="font-family: var(--font-display); font-weight: 700; color: var(--text-primary); font-size: 1rem; font-style: italic;">
+        Keep Building. Keep Growing.
+      </p>
+      <p class="footer-text" style="margin-top: 0.5rem;">© 2026 Doctor Umerkhan Junaidkhan. All Rights Reserved.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/umer-khan-57a458288/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/uk0976" target="_blank">GitHub</a>
+      <a href="mailto:umerkhandoctor04@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+<!-- Project Details Modal Overlay -->
+<div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+  <div class="modal-container">
+    <button class="modal-close" id="modalClose" aria-label="Close details">✕</button>
+    <div class="modal-header">
+      <h3 class="modal-title" id="modalTitle">
+        <span class="modal-title-icon" id="modalIcon">👥</span>
+        <span id="modalName">Project Title</span>
+      </h3>
+      <div class="modal-tags" id="modalTags">
+        <!-- Tags populated by JS -->
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Body populated by JS -->
+    </div>
+    <div class="modal-footer">
+      <a href="https://github.com/uk0976" id="modalGithub" target="_blank" class="btn btn-outline">GitHub Link ↗</a>
+      <button type="button" class="btn btn-primary" id="modalCloseBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
