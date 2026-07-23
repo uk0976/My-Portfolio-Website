@@ -1778,3 +1778,42 @@ a.contact-item:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================================
+   UPGRADE: CERTIFICATE ACTIONS BUTTONS
+   ============================================================ */
+.cert-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.cert-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: var(--transition);
+  background: var(--grad-main);
+  color: #fff;
+  border: 1px solid transparent;
+}
+.cert-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+}
+.cert-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.cert-btn-ghost:hover {
+  border-color: var(--border-glow);
+  color: var(--cyan);
+  background: rgba(0, 212, 255, 0.04);
+}
