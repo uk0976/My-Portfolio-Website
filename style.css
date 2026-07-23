@@ -1817,3 +1817,11 @@ a.contact-item:hover {
   color: var(--cyan);
   background: rgba(0, 212, 255, 0.04);
 }
+
+.mobile-links a.active {
+  color: var(--cyan);
+  background: var(--grad-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

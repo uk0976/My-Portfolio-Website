@@ -104,7 +104,7 @@ function initScrollReveal() {
    ACTIVE NAV LINKS — highlight current section link
    ============================================================ */
 function initActiveNavLinks() {
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('.nav-link, .mobile-links a');
   if (!navLinks.length) return;
 
   const currentPath = window.location.pathname;
