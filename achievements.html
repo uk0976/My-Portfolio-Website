@@ -27,11 +27,10 @@
 
   <title>Achievements &amp; Certificates | Doctor Umerkhan Junaidkhan</title>
   
-  <!-- Fonts Preconnect & Preload -->
+  <!-- Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -41,7 +40,19 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <span class="logo-bracket">&lt;</span>UK<span class="logo-bracket">/&gt;</span>
+      <svg class="nav-logo-svg" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 6px;">
+        <path d="M10 22L4 16L10 10" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22 10L28 16L22 22" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18 6L14 26" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="logo-grad" x1="4" y1="6" x2="28" y2="26" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00f5ff"/>
+            <stop offset="0.5" stop-color="#5d54ff"/>
+            <stop offset="1" stop-color="#d946ef"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span>UK<span style="color: var(--cyan);">/</span>Portfolio</span>
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html" class="nav-link">Home</a></li>
@@ -50,7 +61,7 @@
       <li><a href="projects.html" class="nav-link">Projects</a></li>
       <li><a href="achievements.html" class="nav-link">Achievements</a></li>
       <li><a href="contact.html" class="nav-link">Contact</a></li>
-      <li><a href="UmerKhan_Resume.pdf" download class="nav-cta">Resume ↓</a></li>
+      <li><a href="UmerKhan_Resume.pdf" download class="nav-cta">Resume &darr;</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileOverlay">
       <span></span><span></span><span></span>
@@ -72,9 +83,7 @@
   </ul>
 </div>
 
-<!-- ============================================================
-     ACHIEVEMENTS & AWARDS
-     ============================================================ -->
+<!-- ACHIEVEMENTS & AWARDS -->
 <section class="section" id="achievements">
   <div class="container">
     <div class="section-tag">Recognition</div>
@@ -84,18 +93,19 @@
     <div class="achieve-grid">
 
       <div class="achieve-card">
-        <div class="achieve-trophy">🥉</div>
+        <!-- Medal SVG -->
+        <svg class="achieve-trophy" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--cyan); margin: 0 auto 1rem auto; display: block;"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
         <h3>3rd Prize – Technical Paper Presentation</h3>
         <p>Secured 3rd place in Technical Paper Presentation competition at F. R. Agnel College of Engineering &amp; Technology, Vashi, competing among participants from multiple institutions.</p>
         <div class="achieve-tag">Academic Competition</div>
         <div class="cert-actions" style="margin-top: 1rem; justify-content: center;">
-          <!-- Link to your certificate or image/pdf here -->
           <a href="#" target="_blank" class="cert-btn">📄 View Award</a>
         </div>
       </div>
 
       <div class="achieve-card">
-        <div class="achieve-trophy">🏆</div>
+        <!-- Trophy SVG -->
+        <svg class="achieve-trophy" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue); margin: 0 auto 1rem auto; display: block;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34M12 2a7 7 0 0 1 7 7c0 2.58-1.56 4.87-4 5.75V2H9v12.75C6.56 13.87 5 11.58 5 9a7 7 0 0 1 7-7Z"/></svg>
         <h3>Class Rank #1 &amp; 90.33% Score</h3>
         <p>Ranked 1st in class in 1st Sem, and consistently from 3rd Sem through the final 6th Sem. Graduated with an outstanding aggregate of 90.33% in Diploma AI &amp; ML.</p>
         <div class="achieve-tag">Academic Excellence</div>
@@ -105,7 +115,8 @@
       </div>
 
       <div class="achieve-card">
-        <div class="achieve-trophy">⭐</div>
+        <!-- Star SVG -->
+        <svg class="achieve-trophy" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--purple); margin: 0 auto 1rem auto; display: block;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <h3>Best Student Award (×2)</h3>
         <p>Honored with the prestigious Best Student Award on two separate occasions, recognizing outstanding contribution, leadership, and overall performance in the academic environment.</p>
         <div class="achieve-tag">Leadership &amp; Excellence</div>
@@ -115,7 +126,8 @@
       </div>
 
       <div class="achieve-card">
-        <div class="achieve-trophy">🎤</div>
+        <!-- Mic SVG -->
+        <svg class="achieve-trophy" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--pink); margin: 0 auto 1rem auto; display: block;"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
         <h3>Best Orator Award</h3>
         <p>Received the Best Orator Award for exceptional communication, public speaking, and presentation skills, demonstrating the ability to articulate complex technical concepts clearly and compellingly.</p>
         <div class="achieve-tag">Communication</div>
@@ -128,63 +140,64 @@
 
     <!-- Extracurricular Activities -->
     <div class="activities-section" style="margin-top: 4rem;">
-      <h3>Extracurricular <span class="gradient-text">Activities</span></h3>
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem;">Extracurricular <span class="gradient-text">Activities</span></h3>
       <div class="activities-grid">
-        <div class="activity-item"><span>⚡</span> Hackathon Participant</div>
-        <div class="activity-item"><span>🧩</span> Quiz Competitions</div>
-        <div class="activity-item"><span>📄</span> Paper Presentations</div>
-        <div class="activity-item"><span>🖥</span> Project Exhibitions</div>
-        <div class="activity-item"><span>🔧</span> Technical Committee Member</div>
-        <div class="activity-item"><span>🤝</span> Social Committee Member</div>
+        <div class="activity-item">
+          <!-- Lightning Bolt Vector -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--cyan);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>Hackathon Participant</span>
+        </div>
+        <div class="activity-item">
+          <!-- Quiz/Puzzle Vector -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue);"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-width="3"/></svg>
+          <span>Quiz Competitions</span>
+        </div>
+        <div class="activity-item">
+          <!-- Document Vector -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--purple);"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span>Paper Presentations</span>
+        </div>
+        <div class="activity-item">
+          <!-- Screen Vector -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--pink);"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Project Exhibitions</span>
+        </div>
+        <div class="activity-item">
+          <!-- Wrench Vector -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--cyan);"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <span>Technical Committee Member</span>
+        </div>
+        <div class="activity-item">
+          <!-- Hands Vector -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Social Committee Member</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     CERTIFICATIONS & CREDENTIALS
-     ============================================================ -->
+<!-- CERTIFICATIONS & CREDENTIALS -->
 <section class="section section-alt" id="certifications">
   <div class="container">
     <div class="section-tag">Credentials</div>
     <h2 class="section-title">My <span class="gradient-text">Certifications</span></h2>
     <p class="section-sub">Industry credentials and technical workshops completed to expand engineering mastery.</p>
 
-    <!-- 
-      ============================================================
-      HOW TO ADD A NEW CERTIFICATE:
-      Copy the template block below, paste it inside the cert-grid, 
-      and update the texts, file links (images/PDFs) and verification URLs.
-      ============================================================
-      
-      <div class="cert-card">
-        <div class="cert-logo">🎓</div>
-        <div class="cert-content">
-          <h3>Your Certificate Title</h3>
-          <p class="cert-issuer">Credential Issuer Name</p>
-          <p class="cert-year">2026</p>
-          <p class="cert-desc">Brief details of what skills were evaluated or taught.</p>
-          <div class="cert-actions">
-            <a href="certificates/YOUR_FILE.pdf" target="_blank" class="cert-btn">📄 View Certificate</a>
-            <a href="https://verify.url" target="_blank" class="cert-btn cert-btn-ghost">🔗 Verify Online</a>
-          </div>
-        </div>
-        <div class="cert-glow"></div>
-      </div>
-    -->
-
     <div class="cert-grid">
 
       <!-- Certificate 1 -->
       <div class="cert-card">
-        <div class="cert-logo">⛓</div>
+        <div class="cert-logo">
+          <!-- Network Node Link SVG -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--cyan);"><rect width="8" height="8" x="2" y="2" rx="1"/><rect width="8" height="8" x="14" y="2" rx="1"/><rect width="8" height="8" x="8" y="14" rx="1"/><path d="M6 10v4h2M18 10v4h-2"/></svg>
+        </div>
         <div class="cert-content">
           <h3>Blockchain Technology Workshop</h3>
           <p class="cert-issuer">Terna Engineering College</p>
           <p class="cert-year">2024</p>
           <p class="cert-desc">Hands-on workshop covering blockchain fundamentals, distributed ledger concepts, smart contracts, and decentralized application architecture.</p>
           <div class="cert-actions">
-            <!-- Add link to your local PDF/Image file here in href -->
             <a href="#" target="_blank" class="cert-btn">📄 View Certificate</a>
             <a href="#" target="_blank" class="cert-btn cert-btn-ghost">🔗 Verify Online</a>
           </div>
@@ -194,14 +207,16 @@
 
       <!-- Certificate 2 -->
       <div class="cert-card">
-        <div class="cert-logo">🎮</div>
+        <div class="cert-logo">
+          <!-- Cloud SVG -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue);"><path d="M17.5 19A3.5 3.5 0 0 0 21 15.5c0-2.79-2.54-4.5-5-4.5-.42-1.79-1.92-3.5-4-3.5a5.05 5.05 0 0 0-4.93 4.09C4.6 11.75 3 13.5 3 15.5A3.5 3.5 0 0 0 6.5 19h11z"/></svg>
+        </div>
         <div class="cert-content">
           <h3>Google Arcade Program</h3>
           <p class="cert-issuer">Google Cloud Skills Boost</p>
           <p class="cert-year">2024</p>
           <p class="cert-desc">Completed Google Cloud skills and challenges across various cloud technologies, earning badges for hands-on labs in Google Cloud Platform.</p>
           <div class="cert-actions">
-            <!-- Add link to your local PDF/Image file here in href -->
             <a href="#" target="_blank" class="cert-btn">📄 View Certificate</a>
             <a href="#" target="_blank" class="cert-btn cert-btn-ghost">🔗 Verify Online</a>
           </div>
@@ -211,14 +226,16 @@
 
       <!-- Certificate 3 -->
       <div class="cert-card">
-        <div class="cert-logo">✨</div>
+        <div class="cert-logo">
+          <!-- Gen AI Sparkle SVG -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--purple);"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"/></svg>
+        </div>
         <div class="cert-content">
           <h3>Google Gen AI Exchange Program</h3>
           <p class="cert-issuer">Google</p>
           <p class="cert-year">2024</p>
           <p class="cert-desc">Participated in Google's Generative AI exchange program covering foundational and advanced concepts in large language models, prompt engineering, and AI application development.</p>
           <div class="cert-actions">
-            <!-- Add link to your local PDF/Image file here in href -->
             <a href="#" target="_blank" class="cert-btn">📄 View Certificate</a>
             <a href="#" target="_blank" class="cert-btn cert-btn-ghost">🔗 Verify Online</a>
           </div>
@@ -230,14 +247,12 @@
   </div>
 </section>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-logo-wrap">
       <div class="footer-logo">
-        <span class="logo-bracket">&lt;</span>UK<span class="logo-bracket">/&gt;</span>
+        <span style="color: var(--text-primary); font-weight: 500;">&lt;</span>UK<span style="color: var(--cyan); font-weight: 700;">/&gt;</span>
       </div>
       <p class="footer-tagline" style="font-size: 0.8rem; letter-spacing: 0.05em; color: var(--cyan); margin-top: 0.5rem; font-weight: 700; text-transform: uppercase;">
         BUILDING SOLUTIONS. IMPACTING LIVES.
@@ -247,7 +262,7 @@
       <p class="footer-motto" style="font-family: var(--font-display); font-weight: 700; color: var(--text-primary); font-size: 1rem; font-style: italic;">
         Keep Building. Keep Growing.
       </p>
-      <p class="footer-text" style="margin-top: 0.5rem;">© 2026 Doctor Umerkhan Junaidkhan. All Rights Reserved.</p>
+      <p class="footer-text" style="margin-top: 0.5rem;">&copy; 2026 Doctor Umerkhan Junaidkhan. All Rights Reserved.</p>
     </div>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/umer-khan-57a458288/" target="_blank">LinkedIn</a>
@@ -258,7 +273,7 @@
 </footer>
 
 <!-- Back to Top -->
-<button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">&uarr;</button>
 
 <script src="script.js"></script>
 </body>

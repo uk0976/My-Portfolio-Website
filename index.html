@@ -27,11 +27,10 @@
 
   <title>Doctor Umerkhan Junaidkhan | Portfolio</title>
   
-  <!-- Fonts Preconnect & Preload -->
+  <!-- Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -41,7 +40,19 @@
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <span class="logo-bracket">&lt;</span>UK<span class="logo-bracket">/&gt;</span>
+      <svg class="nav-logo-svg" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 6px;">
+        <path d="M10 22L4 16L10 10" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22 10L28 16L22 22" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18 6L14 26" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="logo-grad" x1="4" y1="6" x2="28" y2="26" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00f5ff"/>
+            <stop offset="0.5" stop-color="#5d54ff"/>
+            <stop offset="1" stop-color="#d946ef"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span>UK<span style="color: var(--cyan);">/</span>Portfolio</span>
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html" class="nav-link">Home</a></li>
@@ -50,7 +61,7 @@
       <li><a href="projects.html" class="nav-link">Projects</a></li>
       <li><a href="achievements.html" class="nav-link">Achievements</a></li>
       <li><a href="contact.html" class="nav-link">Contact</a></li>
-      <li><a href="UmerKhan_Resume.pdf" download class="nav-cta">Resume ↓</a></li>
+      <li><a href="UmerKhan_Resume.pdf" download class="nav-cta">Resume &darr;</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileOverlay">
       <span></span><span></span><span></span>
@@ -72,11 +83,8 @@
   </ul>
 </div>
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
+<!-- HERO -->
 <section class="hero" id="hero">
-  <!-- Animated mesh background -->
   <div class="hero-mesh"></div>
   <div class="hero-orb orb-1"></div>
   <div class="hero-orb orb-2"></div>
@@ -87,10 +95,10 @@
       <span class="badge-dot"></span> Open to Opportunities
     </div>
     <h1 class="hero-name reveal delay-1">
-      <span class="gradient-text">Umer</span> Khan
+      Hi, I'm <span class="gradient-text">Umer</span> Khan
     </h1>
-    <p class="hero-title reveal delay-2" style="font-family: var(--font-display); font-weight: 700; letter-spacing: 0.05em; color: var(--cyan); text-transform: uppercase; margin-bottom: 1rem;">
-      CODE · SOLVE · DESIGN · AUTOMATE · INNOVATE
+    <p class="hero-title reveal delay-2">
+      CODE &middot; SOLVE &middot; DESIGN &middot; AUTOMATE &middot; INNOVATE
     </p>
     <div class="profile-badges reveal delay-3">
       <span class="prof-badge">🎯 Problem Solver</span>
@@ -99,14 +107,52 @@
       <span class="prof-badge">💡 Creative Thinker</span>
       <span class="prof-badge">📈 Impact Driven</span>
     </div>
-    <p class="hero-sub reveal delay-3" style="margin-top: 1.5rem;">
+    <p class="hero-sub reveal delay-3">
       Building intelligent systems at the intersection of data, machine learning, and real-world impact.
     </p>
     <div class="hero-buttons reveal delay-4">
-      <a href="projects.html" class="btn btn-primary">View Projects</a>
-      <a href="UmerKhan_Resume.pdf" download class="btn btn-outline">Download Resume ↓</a>
+      <a href="projects.html" class="btn btn-primary">
+        <span>View Projects</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+      <a href="UmerKhan_Resume.pdf" download class="btn btn-outline">Download Resume &darr;</a>
       <a href="contact.html" class="btn btn-ghost">Connect With Me</a>
     </div>
+    
+    <!-- Hero Node Network Animation Visual -->
+    <div class="hero-graphic reveal delay-5" style="margin: 2rem auto 0 auto; display: flex; justify-content: center; max-width: 320px;">
+      <svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="40" x2="80" y2="20" stroke="url(#hero-g1)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <line x1="20" y1="40" x2="80" y2="60" stroke="url(#hero-g2)" stroke-width="1.5"/>
+        <line x1="80" y1="20" x2="160" y2="20" stroke="url(#hero-g1)" stroke-width="2"/>
+        <line x1="80" y1="60" x2="160" y2="60" stroke="url(#hero-g2)" stroke-width="2"/>
+        <line x1="80" y1="20" x2="160" y2="60" stroke="url(#hero-g3)" stroke-width="1"/>
+        <line x1="80" y1="60" x2="160" y2="20" stroke="url(#hero-g3)" stroke-width="1"/>
+        <line x1="160" y1="20" x2="220" y2="40" stroke="url(#hero-g1)" stroke-width="1.5"/>
+        <line x1="160" y1="60" x2="220" y2="40" stroke="url(#hero-g2)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <circle cx="20" cy="40" r="6" fill="#030712" stroke="#00f5ff" stroke-width="2.5"/>
+        <circle cx="80" cy="20" r="8" fill="#030712" stroke="#5d54ff" stroke-width="2.5"/>
+        <circle cx="80" cy="60" r="8" fill="#030712" stroke="#d946ef" stroke-width="2.5"/>
+        <circle cx="160" cy="20" r="8" fill="#030712" stroke="#00f5ff" stroke-width="2.5"/>
+        <circle cx="160" cy="60" r="8" fill="#030712" stroke="#d946ef" stroke-width="2.5"/>
+        <circle cx="220" cy="40" r="6" fill="#030712" stroke="#5d54ff" stroke-width="2.5"/>
+        <defs>
+          <linearGradient id="hero-g1" x1="20" y1="20" x2="220" y2="60" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00f5ff" stop-opacity="0.8"/>
+            <stop offset="1" stop-color="#5d54ff" stop-opacity="0.2"/>
+          </linearGradient>
+          <linearGradient id="hero-g2" x1="20" y1="20" x2="220" y2="60" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#5d54ff" stop-opacity="0.2"/>
+            <stop offset="1" stop-color="#d946ef" stop-opacity="0.8"/>
+          </linearGradient>
+          <linearGradient id="hero-g3" x1="20" y1="20" x2="220" y2="60" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00f5ff" stop-opacity="0.4"/>
+            <stop offset="1" stop-color="#d946ef" stop-opacity="0.4"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
     <div class="hero-stats reveal delay-5">
       <div class="stat">
         <span class="stat-number">8+</span>
@@ -120,7 +166,7 @@
       <div class="stat-divider"></div>
       <div class="stat">
         <span class="stat-number">2+</span>
-        <span class="stat-label">Years Experience</span>
+        <span class="stat-label">Years Exp</span>
       </div>
     </div>
   </div>
@@ -131,9 +177,7 @@
   </div>
 </section>
 
-<!-- ============================================================
-     ABOUT TEASER
-     ============================================================ -->
+<!-- ABOUT TEASER -->
 <section class="section" id="about">
   <div class="container">
     <div class="section-tag">Who I Am</div>
@@ -146,7 +190,8 @@
           <div class="avatar-ring ring-2"></div>
         </div>
         <div class="about-location-badge">
-          <span>📍</span> Kalyan, Maharashtra, India
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--cyan); vertical-align: middle; margin-right: 4px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Kalyan, Maharashtra, India
         </div>
       </div>
       <div class="about-text">
@@ -157,16 +202,17 @@
           With a Diploma in AI &amp; ML (90.33%) and hands-on experience in machine learning models, computer vision pipelines, and full-stack automation, I build solutions that bridge ideas with real-world impact.
         </p>
         <div style="margin-top: 1.8rem;">
-          <a href="about.html" class="btn btn-primary">Read Full Story →</a>
+          <a href="about.html" class="btn btn-primary">
+            <span>Read Full Story</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     EXPERIENCE TEASER
-     ============================================================ -->
+<!-- EXPERIENCE TEASER -->
 <section class="section section-alt" id="experience-teaser">
   <div class="container">
     <div class="section-tag">Career Preview</div>
@@ -179,21 +225,22 @@
       </div>
       <div class="intern-right">
         <h3>Freelance AI &amp; Python Developer</h3>
-        <p class="intern-company">Self-Employed · Remote · 2023 - Present</p>
+        <p class="intern-company">Self-Employed &bull; Remote &bull; 2023 - Present</p>
         <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">
           Delivered end-to-end Python automation scripts, customized machine learning prototype models (sentiment classifiers, forecasting tools), and web scrapers for 10+ clients remotely.
         </p>
         <div style="margin-top: 1.5rem;">
-          <a href="about.html#internship" class="btn btn-outline">Explore Experience Timeline →</a>
+          <a href="about.html#internship" class="btn btn-outline">
+            <span>Explore Experience Timeline</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     SKILLS TEASER
-     ============================================================ -->
+<!-- SKILLS TEASER -->
 <section class="section" id="skills-teaser">
   <div class="container">
     <div class="section-tag">Core Capabilities</div>
@@ -202,7 +249,18 @@
     
     <div class="skills-grid" style="margin-top: 2rem;">
       <div class="skill-category">
-        <div class="skill-cat-icon">🧠</div>
+        <!-- Neural Network SVG -->
+        <svg class="cat-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--cyan); margin-bottom: 1rem;">
+          <circle cx="12" cy="5" r="3" stroke="currentColor" stroke-width="2" />
+          <circle cx="5" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+          <circle cx="19" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+          <circle cx="12" cy="19" r="3" stroke="currentColor" stroke-width="2" />
+          <line x1="8" y1="10" x2="10.5" y2="6.5" stroke="currentColor" stroke-width="2" />
+          <line x1="16" y1="10" x2="13.5" y2="6.5" stroke="currentColor" stroke-width="2" />
+          <line x1="8" y1="14" x2="10.5" y2="17.5" stroke="currentColor" stroke-width="2" />
+          <line x1="16" y1="14" x2="13.5" y2="17.5" stroke="currentColor" stroke-width="2" />
+          <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" />
+        </svg>
         <h3>AI / ML &amp; GenAI</h3>
         <div class="skill-pills">
           <span class="skill-pill level-high">Machine Learning</span>
@@ -212,7 +270,11 @@
         </div>
       </div>
       <div class="skill-category">
-        <div class="skill-cat-icon">🧩</div>
+        <!-- Stack Layer SVG -->
+        <svg class="cat-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--blue); margin-bottom: 1rem;">
+          <path d="M12 3L4 9L12 15L20 9L12 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 14L12 20L20 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         <h3>DSA &amp; Programming</h3>
         <div class="skill-pills">
           <span class="skill-pill level-high">Python</span>
@@ -224,14 +286,15 @@
     </div>
     
     <div style="margin-top: 2.5rem; text-align: center;">
-      <a href="skills.html" class="btn btn-primary">View Full Skills &amp; Tools →</a>
+      <a href="skills.html" class="btn btn-primary">
+        <span>View Full Skills &amp; Tools</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     FEATURED PROJECTS TEASER
-     ============================================================ -->
+<!-- FEATURED PROJECTS TEASER -->
 <section class="section section-alt" id="projects-teaser">
   <div class="container">
     <div class="section-tag">Featured Work</div>
@@ -243,7 +306,15 @@
       <div class="project-card">
         <div class="project-accent"></div>
         <div class="project-number">01</div>
-        <div class="project-icon">👥</div>
+        <!-- Face Recognition SVG -->
+        <svg class="project-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--cyan); margin-bottom: 0.25rem;">
+          <path d="M4 8V6C4 4.89543 4.89543 4 6 4H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path d="M20 8V6C20 4.89543 19.1046 4 18 4H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path d="M4 16V18C4 19.1046 4.89543 20 6 20H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path d="M20 16V18C20 19.1046 19.1046 20 18 20H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+          <line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" />
+        </svg>
         <h3>Multiple Face Recognition Attendance System</h3>
         <p>An automated attendance system that recognizes and logs multiple faces in real-time using Local Binary Pattern Histograms and Haar Cascade detection, storing records in SQL database.</p>
         <div class="project-tech">
@@ -251,7 +322,10 @@
         </div>
         <div class="project-links">
           <a href="projects.html" class="proj-btn">View All Projects</a>
-          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">
+            <span>GitHub</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
         </div>
       </div>
       
@@ -259,7 +333,14 @@
       <div class="project-card">
         <div class="project-accent"></div>
         <div class="project-number">02</div>
-        <div class="project-icon">📅</div>
+        <!-- Smart Task Scheduler SVG -->
+        <svg class="project-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--blue); margin-bottom: 0.25rem;">
+          <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2" />
+          <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <line x1="7" y1="11" x2="12" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <line x1="7" y1="15" x2="17" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
         <h3>Smart Task Scheduler with AI Integration</h3>
         <p>An intelligent task management system powered by NLP and machine learning that understands natural language inputs to automatically schedule, prioritize, and manage tasks.</p>
         <div class="project-tech">
@@ -267,7 +348,10 @@
         </div>
         <div class="project-links">
           <a href="projects.html" class="proj-btn">View All Projects</a>
-          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">
+            <span>GitHub</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
         </div>
       </div>
 
@@ -275,7 +359,15 @@
       <div class="project-card">
         <div class="project-accent"></div>
         <div class="project-number">03</div>
-        <div class="project-icon">📈</div>
+        <!-- Stock Market SVG -->
+        <svg class="project-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--purple); margin-bottom: 0.25rem;">
+          <line x1="6" y1="4" x2="6" y2="20" stroke="currentColor" stroke-width="1.5" />
+          <line x1="12" y1="2" x2="12" y2="22" stroke="currentColor" stroke-width="1.5" />
+          <line x1="18" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" />
+          <rect x="4" y="8" width="4" height="6" fill="#030712" stroke="currentColor" stroke-width="2" />
+          <rect x="10" y="6" width="4" height="10" fill="#030712" stroke="currentColor" stroke-width="2" />
+          <rect x="16" y="10" width="4" height="5" fill="#030712" stroke="currentColor" stroke-width="2" />
+        </svg>
         <h3>Stock Prediction System with Integrated Chatbot</h3>
         <p>A dual-function application combining ML-based stock price prediction with an integrated chatbot that answers user queries about market trends and forecasting results.</p>
         <div class="project-tech">
@@ -283,50 +375,54 @@
         </div>
         <div class="project-links">
           <a href="projects.html" class="proj-btn">View All Projects</a>
-          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">GitHub ↗</a>
+          <a href="https://github.com/uk0976" target="_blank" class="proj-btn proj-btn-ghost">
+            <span>GitHub</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
         </div>
       </div>
     </div>
     
     <div style="margin-top: 3rem; text-align: center;">
-      <a href="projects.html" class="btn btn-primary">Browse All 8 Projects →</a>
+      <a href="projects.html" class="btn btn-primary">
+        <span>Browse All 8 Projects</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     CONNECT TEASER
-     ============================================================ -->
+<!-- CONNECT TEASER -->
 <section class="section" id="connect-teaser">
   <div class="container">
     <div class="resume-card">
       <div class="resume-left">
         <div class="resume-icon-wrap">
-          <span class="resume-icon">✉️</span>
+          <!-- Connect Envelope SVG -->
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--cyan);"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         </div>
         <div>
           <div class="section-tag" style="margin-bottom:0.5rem;">Collaboration</div>
           <h2 class="section-title" style="margin-bottom:0.75rem;">Let's <span class="gradient-text">Connect</span></h2>
-          <p>Open to internships, entry-level developer roles, freelancing, and research collaborations.</p>
+          <p style="margin-bottom:0;">Open to internships, entry-level developer roles, freelancing, and research collaborations.</p>
         </div>
       </div>
       <div class="resume-right">
         <a href="contact.html" class="btn btn-primary btn-large">
-          Get In Touch →
+          <span>Get In Touch</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-logo-wrap">
       <div class="footer-logo">
-        <span class="logo-bracket">&lt;</span>UK<span class="logo-bracket">/&gt;</span>
+        <span style="color: var(--text-primary); font-weight: 500;">&lt;</span>UK<span style="color: var(--cyan); font-weight: 700;">/&gt;</span>
       </div>
       <p class="footer-tagline" style="font-size: 0.8rem; letter-spacing: 0.05em; color: var(--cyan); margin-top: 0.5rem; font-weight: 700; text-transform: uppercase;">
         BUILDING SOLUTIONS. IMPACTING LIVES.
@@ -336,7 +432,7 @@
       <p class="footer-motto" style="font-family: var(--font-display); font-weight: 700; color: var(--text-primary); font-size: 1rem; font-style: italic;">
         Keep Building. Keep Growing.
       </p>
-      <p class="footer-text" style="margin-top: 0.5rem;">© 2026 Doctor Umerkhan Junaidkhan. All Rights Reserved.</p>
+      <p class="footer-text" style="margin-top: 0.5rem;">&copy; 2026 Doctor Umerkhan Junaidkhan. All Rights Reserved.</p>
     </div>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/umer-khan-57a458288/" target="_blank">LinkedIn</a>
@@ -347,7 +443,7 @@
 </footer>
 
 <!-- Back to Top -->
-<button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">&uarr;</button>
 
 <script src="script.js"></script>
 </body>
