@@ -1,39 +1,39 @@
 /* ============================================================
    DOCTOR UMERKHAN JUNAIDKHAN — PORTFOLIO STYLES
-   Theme: Dark Cosmic · Blue/Cyan/Purple Gradients
+   Theme: Obsidian Gold · Amber/Bronze/Metallic Gold Gradients
    ============================================================ */
 
 /* ── CSS VARIABLES ── */
 :root {
-  --bg-base:       #030712;
-  --bg-surface:    rgba(9, 13, 26, 0.8);
-  --bg-card:       rgba(15, 23, 42, 0.45);
-  --bg-card-hover: rgba(22, 34, 61, 0.6);
-  --bg-alt:        #050811;
+  --bg-base:       #08090c;
+  --bg-surface:    rgba(13, 15, 20, 0.85);
+  --bg-card:       rgba(20, 22, 28, 0.45);
+  --bg-card-hover: rgba(28, 30, 38, 0.6);
+  --bg-alt:        #0b0d12;
 
-  --cyan:          #00f5ff;
-  --blue:          #5d54ff;
-  --purple:        #d946ef;
-  --pink:          #ff4d8b;
+  --cyan:          #f59e0b;
+  --blue:          #eab308;
+  --purple:        #ea580c;
+  --pink:          #f97316;
 
-  --grad-main:     linear-gradient(135deg, #00f5ff 0%, #5d54ff 50%, #d946ef 100%);
-  --grad-subtle:   linear-gradient(135deg, rgba(0, 245, 255, 0.08) 0%, rgba(217, 70, 239, 0.08) 100%);
-  --grad-glow:     linear-gradient(135deg, rgba(0, 245, 255, 0.35) 0%, rgba(217, 70, 239, 0.35) 100%);
+  --grad-main:     linear-gradient(135deg, #f59e0b 0%, #eab308 50%, #ea580c 100%);
+  --grad-subtle:   linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(234, 88, 12, 0.08) 100%);
+  --grad-glow:     linear-gradient(135deg, rgba(245, 158, 11, 0.3) 0%, rgba(234, 88, 12, 0.3) 100%);
 
   --text-primary:  #f8fafc;
   --text-secondary:#94a3b8;
   --text-muted:    #64748b;
 
   --border:        rgba(255, 255, 255, 0.06);
-  --border-glow:   rgba(0, 245, 255, 0.25);
+  --border-glow:   rgba(245, 158, 11, 0.25);
 
   --radius:        20px;
   --radius-sm:     12px;
   --radius-lg:     28px;
 
   --shadow:        0 12px 50px rgba(0, 0, 0, 0.7);
-  --shadow-cyan:   0 0 35px rgba(0, 245, 255, 0.15);
-  --shadow-purple: 0 0 35px rgba(217, 70, 239, 0.15);
+  --shadow-cyan:   0 0 35px rgba(245, 158, 11, 0.12);
+  --shadow-purple: 0 0 35px rgba(234, 88, 12, 0.12);
 
   --font-display:  'Outfit', sans-serif;
   --font-body:     'Plus Jakarta Sans', sans-serif;

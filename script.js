@@ -378,7 +378,7 @@ function initCosmicCanvas() {
         alpha: Math.random() * 0.7 + 0.3,
         speed: Math.random() * 0.08 + 0.02,
         parallaxSpeed: Math.random() * 12 + 6,
-        color: Math.random() > 0.45 ? '#00d4ff' : '#9b5cff'
+        color: Math.random() > 0.45 ? '#f59e0b' : '#ea580c'
       });
     }
   };
