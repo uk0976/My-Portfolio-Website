@@ -561,6 +561,76 @@ function initProjectModal() {
       ],
       architecture: "Constructed with Python, leveraging OpenCV for image parsing, LBPH for mapping facial profiles, and MySQL for logs.",
       github: "https://github.com/uk0976"
+    },
+    "codemedic-ai": {
+      title: "CodeMedic AI",
+      icon: "💻",
+      tags: ["TypeScript", "NodeJS", "AI Agents", "Codex"],
+      summary: "An autonomous multi-agent AI assistant that revolutionizes software engineering by combining real-time bug detection, security scanning, performance optimization, and automated test & doc generation into a unified workflow.",
+      features: [
+        "Real-time bug detection and diagnostic suggestions",
+        "Security vulnerability scanning against OWASP Top 10 standards",
+        "Automated unit test generation and comprehensive docstring documentation",
+        "Performance profiling and refactoring suggestions powered by OpenAI Codex models"
+      ],
+      architecture: "Designed as a multi-agent TypeScript workspace coordinating specialized agents for checking syntax, scanning security, profiling performance, and checking test coverages.",
+      github: "https://github.com/uk0976/CodeMedic-AI"
+    },
+    "nirman": {
+      title: "Nirman AI Software Company",
+      icon: "🏗️",
+      tags: ["TypeScript", "AI Agents", "Software Development"],
+      summary: "An autonomous AI software development system powered by a collaborative team of specialized AI agents that design, develop, test, secure, document, and deploy software from a single prompt.",
+      features: [
+        "Collaborative agent teams representing PM, Architect, Coder, Tester, and DevOps roles",
+        "Asynchronous task queues and event-driven communication logs between agents",
+        "Automated workspace build steps, compilation checks, and sandbox code execution",
+        "Self-correction loop where tester agents submit bug logs back to coder agents"
+      ],
+      architecture: "Built with TypeScript, using advanced agent runtimes to schedule tasks, manage workspace file systems, and run sandbox tests.",
+      github: "https://github.com/uk0976/Nirman"
+    },
+    "nsers": {
+      title: "NSERS – National Smart Emergency Response System",
+      icon: "🚨",
+      tags: ["Google Cloud", "Incident Dispatch", "AI Verification", "Analytics"],
+      summary: "An AI-powered emergency management platform that enables real-time incident reporting, multimodal AI verification, intelligent dispatch, and fraud detection for emergency services across India.",
+      features: [
+        "Real-time citizen reporting of fires, accidents, and disasters via Web and Mobile channels",
+        "Multimodal AI analysis (image/video/text) to verify the authenticity of reported incidents",
+        "Intelligent routing algorithm to dispatch closest ambulance/fire engines based on traffic data",
+        "Advanced fraud detection dashboard flagging spam calls or duplicate reporting vectors"
+      ],
+      architecture: "Built with Google Cloud Platform, leveraging cloud functions, App Engine, Firebase Realtime Database, and machine learning APIs for analysis and dispatch routing.",
+      github: "https://github.com/uk0976/NSERS---National-Smart-Emergency-Response-System"
+    },
+    "safestep": {
+      title: "SafeStep Journey Safety Tracker",
+      icon: "🛡️",
+      tags: ["JavaScript", "Journey Tracking", "Risk Alerts", "Notifications"],
+      summary: "An AI-assisted real-time check-in system designed to protect solo travelers and late commuters with live path tracking and smart risk alerts.",
+      features: [
+        "Live location check-in tracking with geographic path maps",
+        "Smart risk alerts triggered if the user deviates from the expected route or is delayed",
+        "Automated SMS/Email notification alerts to emergency contacts without requiring signups",
+        "Designed and built for HackDevengers 1.0 hackathon competition"
+      ],
+      architecture: "A responsive JavaScript frontend integrated with location APIs and third-party SMS dispatch protocols for real-time safety monitoring.",
+      github: "https://github.com/uk0976/SafeStep"
+    },
+    "dsa-journey": {
+      title: "Data Structures & Algorithms Journey",
+      icon: "🚩",
+      tags: ["Python", "Data Structures", "Algorithms", "Solutions"],
+      summary: "A structured repository of solutions to advanced coding challenges across LeetCode and placement assessments.",
+      features: [
+        "Comprehensive collection of clean Python solutions for arrays, trees, graphs, and dynamic programming",
+        "Time and space complexity analysis documented for every solution",
+        "Visual trace walkthroughs of complex algorithms like back-tracking and tree traversals",
+        "A placement preparation tracker outlining progress across key coding topics"
+      ],
+      architecture: "Organized as a modular Python codebase with test execution templates and Markdown guides documenting problem-solving patterns.",
+      github: "https://github.com/uk0976/Data-Structures-Algorithms-DSA-Journey"
     }
   };
   
