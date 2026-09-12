@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCosmicCanvas();
   initCardGlow();
   initProjectModal();
+  initCertGallery();
 });
 
 /* ============================================================
@@ -425,7 +426,7 @@ function initCosmicCanvas() {
    UPGRADE: CARD GLOW DYNAMIC POSITIONING
    ============================================================ */
 function initCardGlow() {
-  const cards = document.querySelectorAll('.project-card, .cert-card, .achieve-card, .build-item, .tool-item, .beyond-card, .edu-content, .contact-form-wrap, .intern-card, .resume-card, .pub-card');
+  const cards = document.querySelectorAll('.project-card, .cert-card, .cert-gallery-card, .achieve-card, .build-item, .tool-item, .beyond-card, .edu-content, .contact-form-wrap, .intern-card, .resume-card, .pub-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -462,7 +463,7 @@ function initProjectModal() {
         "Automated attendance sheets generated instantly upon system operation session closure"
       ],
       architecture: "Engineered as an end-to-end Python pipeline using OpenCV for real-time video grab and preprocessing, an LBPH model for face prediction, and MySQL Connector for log transactions. Features a desktop interface built in Tkinter.",
-      github: "https://github.com/uk0976"
+      github: "https://github.com/uk0976/Multiple-Face-Recognition-Attendance-System"
     },
     "task-scheduler": {
       title: "Smart Task Scheduler with AI Integration",
@@ -476,7 +477,7 @@ function initProjectModal() {
         "Intelligent scheduling algorithm dynamic ranks daily task order to optimize user focus and output"
       ],
       architecture: "Constructed with a Python core using NLTK/SpaCy for linguistic analysis, scikit-learn models for priority prediction, and a light Web UI for tasks listing.",
-      github: "https://github.com/uk0976"
+      github: "https://github.com/uk0976/Smart-Task-Scheduler-with-AI-Integration"
     },
     "stock-prediction": {
       title: "Stock Prediction System with Integrated Chatbot",
@@ -490,7 +491,7 @@ function initProjectModal() {
         "Beautiful Matplotlib dashboards visualize historical stock prices overlaid with prediction projections"
       ],
       architecture: "Built in Python using Pandas and NumPy for complex data handling, Scikit-Learn/TensorFlow for prediction modeling, and NLTK for the rules-based financial query chatbot.",
-      github: "https://github.com/uk0976"
+      github: "https://github.com/uk0976/StockSage---Stock-Prediction-System-with-Integrated-ChatBot"
     },
     "medical-summarizer": {
       title: "Medical Report Summarizer",
@@ -504,7 +505,7 @@ function initProjectModal() {
         "Built-in visual dictionary helps patients click on complex medical terms to view clear definitions"
       ],
       architecture: "Uses Python with PyTesseract for PDF OCR, SpaCy NER models for clinical terms extraction, and Hugging Face transformer models (like BART/T5) for summary generation.",
-      github: "https://github.com/uk0976"
+      github: "https://github.com/uk0976/MedInsight---RAG-Based-AI-Medical-Report-Summarizer"
     },
     "library-management": {
       title: "Library Management System",
@@ -518,7 +519,7 @@ function initProjectModal() {
         "Clean administrative dashboards showcase inventory metrics and quick actions panels"
       ],
       architecture: "A desktop Python desktop app using Tkinter for GUI layout and MySQL Workbench for database modeling, utilizing raw SQL connectors for optimized queries.",
-      github: "https://github.com/uk0976"
+      github: "https://github.com/uk0976/Library-Management-System"
     },
     "sentiment-analysis": {
       title: "Sentiment Analysis Project",
@@ -546,7 +547,7 @@ function initProjectModal() {
         "Interactive dice component features clean frame animations showing face rolls"
       ],
       architecture: "Engineered in Python using the Tkinter library, focusing on canvas grid drawings and asynchronous animation loops.",
-      github: "https://github.com/uk0976"
+      github: "https://github.com/uk0976/Snakes-and-Ladder-Game"
     },
     "secure-identity": {
       title: "Secure Identity Verification Using Face Biometrics",
@@ -560,7 +561,7 @@ function initProjectModal() {
         "Admin user control panels manage user enrollment, role privileges, and faceprint updates"
       ],
       architecture: "Constructed with Python, leveraging OpenCV for image parsing, LBPH for mapping facial profiles, and MySQL for logs.",
-      github: "https://github.com/uk0976"
+      github: "https://github.com/uk0976/Multiple-Face-Recognition-Attendance-System"
     },
     "codemedic-ai": {
       title: "CodeMedic AI",
@@ -688,5 +689,67 @@ function initProjectModal() {
   
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  });
+}
+
+/* ============================================================
+   UPGRADE: CERTIFICATE GALLERY & LIGHTBOX
+   ============================================================ */
+function openCertLightbox(imgSrc, title, issuer) {
+  const lightbox = document.getElementById('certLightbox');
+  const img = document.getElementById('certLightboxImg');
+  const titleEl = document.getElementById('certLightboxTitle');
+  const issuerEl = document.getElementById('certLightboxIssuer');
+  const downloadLink = document.getElementById('certDownloadLink');
+  
+  if (!lightbox) return;
+  if (img) img.src = imgSrc;
+  if (titleEl) titleEl.textContent = title || 'Certificate Inspection';
+  if (issuerEl) issuerEl.textContent = issuer || '';
+  if (downloadLink) downloadLink.href = imgSrc;
+  
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCertLightbox() {
+  const lightbox = document.getElementById('certLightbox');
+  if (!lightbox) return;
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function initCertGallery() {
+  const filterBtns = document.querySelectorAll('.cert-filter-btn');
+  const cards = document.querySelectorAll('.cert-gallery-card');
+  
+  if (!filterBtns.length) return;
+  
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const filter = btn.getAttribute('data-filter');
+      
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          card.style.display = 'flex';
+          card.style.animation = 'certZoomIn 0.35s ease';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const lightbox = document.getElementById('certLightbox');
+      if (lightbox && lightbox.classList.contains('active')) {
+        closeCertLightbox();
+      }
+    }
   });
 }
