@@ -632,6 +632,47 @@ function initProjectModal() {
       ],
       architecture: "Organized as a modular Python codebase with test execution templates and Markdown guides documenting problem-solving patterns.",
       github: "https://github.com/uk0976/Data-Structures-Algorithms-DSA-Journey"
+    },
+    "voiceguard": {
+      title: "VoiceGuard — AI Voice Clone Deepfake Detector",
+      icon: "🎙️",
+      tags: ["FastAPI", "PyTorch", "Wav2Vec2", "React 18", "Librosa", "WebSockets"],
+      summary: "An enterprise-grade biometric audio forensics system engineered to detect synthetic voice clones, AI-generated speech, and audio deepfakes in both pre-recorded files and live microphone streams.",
+      features: [
+        "Real-time dual-engine inference combining deep neural acoustic representations (Wav2Vec2) with DSP heuristics",
+        "Live microphone WebSocket audio streaming with chunk-level forensic classification and waveform visualization",
+        "Heuristic explainability reporting phase incoherence, micro-jitter absence, and unnatural spectral flatness",
+        "Zero-retention ephemeral privacy pipeline and comprehensive PDF forensic audit report generation"
+      ],
+      architecture: "FastAPI backend hosting PyTorch and TorchAudio neural pipelines alongside Librosa DSP processors, streaming telemetry via WebSockets to a React 18 & Vite dashboard.",
+      github: "https://github.com/uk0976/VoiceGuard---AI-Voice-Clone-Deepfake-Detector"
+    },
+    "blockloan": {
+      title: "BlockLoan — Decentralized Peer-to-Peer Lending Platform",
+      icon: "⛓️",
+      tags: ["Solidity", "Ethereum", "Hardhat", "React 18", "TypeScript", "FastAPI", "Web3.py"],
+      summary: "A decentralized, non-custodial peer-to-peer lending protocol and DApp that eliminates centralized financial intermediaries through Ethereum smart contracts.",
+      features: [
+        "Non-custodial smart contracts autonomously enforcing loan principal, simple interest, and collateral lifecycle states",
+        "Open decentralized liquidity marketplace allowing direct peer-to-peer funding between borrowers and lenders",
+        "FastAPI and Web3.py backend event indexer caching on-chain logs for low-latency frontend queries",
+        "58 Hardhat unit and negative security test cases verifying protocol invariants against reentrancy and overflows"
+      ],
+      architecture: "Solidity ^0.8.20 smart contracts deployed on Ethereum/Hardhat network, integrated with a Web3.py event indexing microservice and a React 18 TypeScript frontend via Ethers.js.",
+      github: "https://github.com/uk0976/BlockLoan-Blockchain-Based-Decentralized-Peer-to-Peer-Lending-Platform"
+    },
+    "coreforge-studio": {
+      title: "CoreForge Studio — Digital Agency Platform",
+      icon: "💻",
+      tags: ["React", "JavaScript", "Vite", "Tailwind CSS", "UI/UX"],
+      summary: "A high-performance modern web platform for a digital design and development agency showcasing creative tech services and client case studies.",
+      features: [
+        "Responsive component-driven React architecture optimized for swift navigation and zero layout shifts",
+        "Dynamic interactive service showcases highlighting UI/UX, full-stack development, and brand design capabilities",
+        "Modern dark aesthetic with refined CSS animations, fluid typography, and optimized asset loading"
+      ],
+      architecture: "Custom single-page React application bundled with Vite and styled with modern responsive utility layouts.",
+      github: "https://github.com/uk0976/CoreForge-Studio"
     }
   };
   
