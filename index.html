@@ -1,61 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Doctor Umerkhan Junaidkhan – AI & Data Science Student, Python Developer, AI/ML Enthusiast. Portfolio showcasing projects, skills, certifications, and publications." />
-  <meta name="keywords" content="Umerkhan Junaidkhan, AI, Data Science, Python Developer, Machine Learning, Portfolio, Terna Engineering College" />
+  <meta name="description" content="Doctor Umerkhan Junaidkhan – AI & Data Science Engineer, Machine Learning Developer, and Software Engineer. Explore production AI projects, research, and technical systems." />
+  <meta name="keywords" content="Umerkhan Junaidkhan, AI Engineer, Machine Learning, Data Science, Python, Deep Learning, Full Stack Developer, Computer Vision, NLP" />
   <meta name="author" content="Doctor Umerkhan Junaidkhan" />
   
   <!-- SEO & Robots -->
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://umerkhan-portfolio.vercel.app/" />
+  <link rel="canonical" href="https://my-portfolio-website-msm1.onrender.com/" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://umerkhan-portfolio.vercel.app/" />
-  <meta property="og:title" content="Doctor Umerkhan Junaidkhan | AI & Data Science Portfolio" />
-  <meta property="og:description" content="Python Developer | AI/ML Enthusiast | Data Science Student. Explore my projects, publications, and skills." />
-  <meta property="og:image" content="https://umerkhan-portfolio.vercel.app/og-image.jpg" />
+  <meta property="og:url" content="https://my-portfolio-website-msm1.onrender.com/" />
+  <meta property="og:title" content="Doctor Umerkhan Junaidkhan — AI & Data Science Engineer" />
+  <meta property="og:description" content="Building Intelligent Systems. Engineering Real-World Impact. Explore AI, ML, Computer Vision, and Full-Stack Systems." />
+  <meta property="og:image" content="assets/profile/hero-umer.png" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://umerkhan-portfolio.vercel.app/" />
-  <meta property="twitter:title" content="Doctor Umerkhan Junaidkhan | AI & Data Science Portfolio" />
-  <meta property="twitter:description" content="Python Developer | AI/ML Enthusiast | Data Science Student. Explore my projects, publications, and skills." />
-  <meta property="twitter:image" content="https://umerkhan-portfolio.vercel.app/og-image.jpg" />
+  <meta property="twitter:url" content="https://my-portfolio-website-msm1.onrender.com/" />
+  <meta property="twitter:title" content="Doctor Umerkhan Junaidkhan — AI & Data Science Engineer" />
+  <meta property="twitter:description" content="Building Intelligent Systems. Engineering Real-World Impact. Explore AI, ML, Computer Vision, and Full-Stack Systems." />
+  <meta property="twitter:image" content="assets/profile/hero-umer.png" />
 
-  <title>Doctor Umerkhan Junaidkhan | Portfolio</title>
+  <title>Doctor Umerkhan Junaidkhan | AI &amp; Data Science Engineer</title>
   
-  <!-- Fonts Preconnect -->
+  <!-- Premium Modern Fonts: Sora (Headings), Manrope (Body), Space Grotesk (Accents) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
 <canvas id="cosmic-canvas"></canvas>
 
-<!-- NAVBAR -->
+<!-- FLOATING NAVBAR -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <svg class="nav-logo-svg" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 6px;">
-        <path d="M10 22L4 16L10 10" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M22 10L28 16L22 22" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M18 6L14 26" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round"/>
-        <defs>
-          <linearGradient id="logo-grad" x1="4" y1="6" x2="28" y2="26" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#00f5ff"/>
-            <stop offset="0.5" stop-color="#5d54ff"/>
-            <stop offset="1" stop-color="#d946ef"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <span>UK<span style="color: var(--cyan);">/</span>Portfolio</span>
+      <div class="nav-logo-mark">&lt;UK/&gt;</div>
+      <span>Umer<span class="text-crimson">.</span>Khan</span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="index.html" class="nav-link active">Home</a></li>
       <li><a href="about.html" class="nav-link">About</a></li>
       <li><a href="skills.html" class="nav-link">Skills</a></li>
       <li><a href="projects.html" class="nav-link">Projects</a></li>
@@ -63,6 +52,11 @@
       <li><a href="achievements.html" class="nav-link">Achievements</a></li>
       <li><a href="contact.html" class="nav-link">Contact</a></li>
       <li><a href="UmerKhan_Resume.pdf" download class="nav-cta">Resume &darr;</a></li>
+      <li>
+        <button type="button" class="theme-toggle-btn" aria-label="Toggle theme" title="Toggle theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+      </li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileOverlay">
       <span></span><span></span><span></span>
@@ -82,215 +76,235 @@
     <li><a href="achievements.html">Achievements</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="UmerKhan_Resume.pdf" download class="mobile-cta">Download Resume</a></li>
+    <li style="margin-top: 1rem;">
+      <button type="button" class="theme-toggle-btn" aria-label="Toggle theme" style="margin: 0 auto; width: 44px; height: 44px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line></svg>
+      </button>
+    </li>
   </ul>
 </div>
 
-<!-- HERO -->
+<!-- CINEMATIC HERO SECTION -->
 <section class="hero" id="hero">
-  <div class="hero-mesh"></div>
-  <div class="hero-orb orb-1"></div>
-  <div class="hero-orb orb-2"></div>
-  <div class="hero-orb orb-3"></div>
+  <div class="hero-bg-glow"></div>
+  <div class="container">
+    <div class="hero-grid">
+      
+      <!-- Left Column: Content & Positioning -->
+      <div class="hero-content">
+        <div class="hero-status-pill reveal">
+          <span class="status-dot-pulse"></span>
+          <span>Available for Engineering Roles &amp; AI Collaborations</span>
+        </div>
+        
+        <div class="hero-name-label reveal delay-1">Umer Khan</div>
+        
+        <h1 class="hero-headline reveal delay-1">
+          AI &amp; Data Science <span class="gradient-text">Engineer.</span>
+        </h1>
+        
+        <div class="hero-role-bar reveal delay-2">
+          Building Intelligent Systems &middot; Engineering Real-World Impact
+        </div>
+        
+        <p class="hero-lead reveal delay-2">
+          I develop intelligent applications at the intersection of Artificial Intelligence, Machine Learning, Data Science, Automation, and modern software engineering.
+        </p>
+        
+        <p class="hero-sub reveal delay-3">
+          Specializing in end-to-end production systems—from neural forensics (VoiceGuard) and clinical RAG pipelines (MedInsight) to decentralized protocols (BlockLoan) and peer-reviewed computer vision.
+        </p>
 
-  <div class="hero-content">
-    <div class="hero-badge reveal">
-      <span class="badge-dot"></span> Open to Opportunities
-    </div>
-    <h1 class="hero-name reveal delay-1">
-      Hi, I'm <span class="gradient-text">Umer</span> Khan
-    </h1>
-    <p class="hero-title reveal delay-2">
-      CODE &middot; SOLVE &middot; DESIGN &middot; AUTOMATE &middot; INNOVATE
-    </p>
-    <div class="profile-badges reveal delay-3">
-      <span class="prof-badge">🎯 Problem Solver</span>
-      <span class="prof-badge">📖 Lifelong Learner</span>
-      <span class="prof-badge">🚀 Builder</span>
-      <span class="prof-badge">💡 Creative Thinker</span>
-      <span class="prof-badge">📈 Impact Driven</span>
-    </div>
-    <p class="hero-sub reveal delay-3">
-      Building intelligent systems at the intersection of data, machine learning, and real-world impact.
-    </p>
-    <div class="hero-buttons reveal delay-4">
-      <a href="projects.html" class="btn btn-primary">
-        <span>View Projects</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
-      <a href="UmerKhan_Resume.pdf" download class="btn btn-outline">Download Resume &darr;</a>
-      <a href="contact.html" class="btn btn-ghost">Connect With Me</a>
-    </div>
-    
-    <!-- Hero Node Network Animation Visual -->
-    <div class="hero-graphic reveal delay-5" style="margin: 2rem auto 0 auto; display: flex; justify-content: center; max-width: 320px;">
-      <svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="20" y1="40" x2="80" y2="20" stroke="url(#hero-g1)" stroke-width="1.5" stroke-dasharray="3 3"/>
-        <line x1="20" y1="40" x2="80" y2="60" stroke="url(#hero-g2)" stroke-width="1.5"/>
-        <line x1="80" y1="20" x2="160" y2="20" stroke="url(#hero-g1)" stroke-width="2"/>
-        <line x1="80" y1="60" x2="160" y2="60" stroke="url(#hero-g2)" stroke-width="2"/>
-        <line x1="80" y1="20" x2="160" y2="60" stroke="url(#hero-g3)" stroke-width="1"/>
-        <line x1="80" y1="60" x2="160" y2="20" stroke="url(#hero-g3)" stroke-width="1"/>
-        <line x1="160" y1="20" x2="220" y2="40" stroke="url(#hero-g1)" stroke-width="1.5"/>
-        <line x1="160" y1="60" x2="220" y2="40" stroke="url(#hero-g2)" stroke-width="1.5" stroke-dasharray="3 3"/>
-        <circle cx="20" cy="40" r="6" fill="#030712" stroke="#00f5ff" stroke-width="2.5"/>
-        <circle cx="80" cy="20" r="8" fill="#030712" stroke="#5d54ff" stroke-width="2.5"/>
-        <circle cx="80" cy="60" r="8" fill="#030712" stroke="#d946ef" stroke-width="2.5"/>
-        <circle cx="160" cy="20" r="8" fill="#030712" stroke="#00f5ff" stroke-width="2.5"/>
-        <circle cx="160" cy="60" r="8" fill="#030712" stroke="#d946ef" stroke-width="2.5"/>
-        <circle cx="220" cy="40" r="6" fill="#030712" stroke="#5d54ff" stroke-width="2.5"/>
-        <defs>
-          <linearGradient id="hero-g1" x1="20" y1="20" x2="220" y2="60" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#00f5ff" stop-opacity="0.8"/>
-            <stop offset="1" stop-color="#5d54ff" stop-opacity="0.2"/>
-          </linearGradient>
-          <linearGradient id="hero-g2" x1="20" y1="20" x2="220" y2="60" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#5d54ff" stop-opacity="0.2"/>
-            <stop offset="1" stop-color="#d946ef" stop-opacity="0.8"/>
-          </linearGradient>
-          <linearGradient id="hero-g3" x1="20" y1="20" x2="220" y2="60" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#00f5ff" stop-opacity="0.4"/>
-            <stop offset="1" stop-color="#d946ef" stop-opacity="0.4"/>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
+        <!-- Professional Pillars -->
+        <div class="hero-badges-row reveal delay-3">
+          <span class="hero-badge-item">🎯 Algorithmic Problem Solving</span>
+          <span class="hero-badge-item">🤖 Generative AI &amp; LLMs</span>
+          <span class="hero-badge-item">👁️ Computer Vision</span>
+          <span class="hero-badge-item">🔐 Secure Systems</span>
+          <span class="hero-badge-item">⚡ Full-Stack Delivery</span>
+        </div>
+        
+        <!-- Primary Actions -->
+        <div class="hero-actions reveal delay-4">
+          <a href="projects.html" class="btn btn-primary">
+            <span>Explore My Work</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="UmerKhan_Resume.pdf" download class="btn btn-outline">
+            <span>Download Resume</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5z"/><polyline points="14 3 14 8 20 8"/></svg>
+          </a>
+          <a href="contact.html" class="btn btn-ghost">Let's Connect</a>
+        </div>
 
-    <div class="hero-stats reveal delay-5">
-      <div class="stat">
-        <span class="stat-number">15+</span>
-        <span class="stat-label">Projects</span>
+        <!-- Verified Metrics Strip -->
+        <div class="hero-stats-strip reveal delay-5">
+          <div class="hstat">
+            <span class="hstat-num">16+</span>
+            <span class="hstat-label">Engineered Projects</span>
+          </div>
+          <div class="hstat-divider"></div>
+          <div class="hstat">
+            <span class="hstat-num">3</span>
+            <span class="hstat-label">Industrial Internships</span>
+          </div>
+          <div class="hstat-divider"></div>
+          <div class="hstat">
+            <span class="hstat-num">90.33%</span>
+            <span class="hstat-label">Diploma Distinction</span>
+          </div>
+          <div class="hstat-divider"></div>
+          <div class="hstat">
+            <span class="hstat-num">1</span>
+            <span class="hstat-label">Peer-Reviewed Paper</span>
+          </div>
+        </div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <span class="stat-number">10+</span>
-        <span class="stat-label">Clients</span>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <span class="stat-number">2+</span>
-        <span class="stat-label">Years Exp</span>
-      </div>
-    </div>
-  </div>
 
-  <div class="hero-scroll">
-    <span></span>
-    <div class="scroll-line"></div>
+      <!-- Right Column: Cinematic Profile Visual Card -->
+      <div class="hero-visual-frame reveal delay-2">
+        <div class="hero-ambient-halo"></div>
+        <div class="hero-card-container">
+          <div class="hero-image-wrap">
+            <img src="assets/profile/hero-umer.png" alt="Doctor Umerkhan Junaidkhan" class="hero-profile-img" />
+            <div class="hero-image-overlay"></div>
+          </div>
+          <div class="hero-card-details">
+            <div class="hero-card-name">Doctor Umerkhan Junaidkhan</div>
+            <div class="hero-card-tag">B.E. Artificial Intelligence &amp; Data Science &middot; Terna Engineering College</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 0.85rem;">
+              Passionate engineer committed to scalable, high-integrity AI systems with proven deliveries in computer vision, automated testing, and web platforms.
+            </p>
+            <div class="hero-card-meta-row">
+              <span class="hero-card-badge">📍 Kalyan, Maharashtra</span>
+              <a href="https://github.com/uk0976" target="_blank" style="color: var(--crimson); font-weight: 600; display: inline-flex; align-items: center; gap: 0.3rem;">
+                GitHub Profile &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- ABOUT TEASER -->
-<section class="section" id="about">
+<!-- EDITORIAL ABOUT TEASER -->
+<section class="section section-alt" id="about">
   <div class="container">
-    <div class="section-tag">Who I Am</div>
-    <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
-    <div class="about-grid">
-      <div class="about-avatar-wrap">
-        <div class="about-avatar">
-          <div class="avatar-initials">UK</div>
-          <div class="avatar-ring"></div>
-          <div class="avatar-ring ring-2"></div>
-        </div>
-        <div class="about-location-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--cyan); vertical-align: middle; margin-right: 4px;"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          Kalyan, Maharashtra, India
-        </div>
-      </div>
-      <div class="about-text">
-        <p class="about-lead">
-          I'm a B.E. student in <strong>Artificial Intelligence &amp; Data Science</strong> at <strong>Terna Engineering College</strong>, driven by a deep curiosity for how intelligent systems perceive, learn, and reason about the world.
+    <div class="section-tag">Identity &amp; Philosophy</div>
+    <h2 class="section-title">Who I <span class="gradient-text">Am.</span></h2>
+    <p class="section-sub">A background built on mathematical rigor, hands-on production code, and disciplined problem solving.</p>
+    
+    <div class="about-dossier-grid">
+      <div class="about-narrative">
+        <p>
+          I am an aspiring technology professional pursuing my <strong>B.E. in Artificial Intelligence &amp; Data Science</strong> at Terna Engineering College (Mumbai University), backed by a three-year <strong>Diploma in AI &amp; Machine Learning (90.33% distinction, Class Rank #1)</strong> from A. R. Kalsekar Polytechnic.
         </p>
         <p>
-          With a Diploma in AI &amp; ML (90.33%) and hands-on experience in machine learning models, computer vision pipelines, and full-stack automation, I build solutions that bridge ideas with real-world impact.
+          My engineering journey blends academic excellence with practical execution. I have authored and published a <strong>peer-reviewed research paper</strong> on real-time face recognition attendance systems in the <em>International Journal of Research and Analytical Reviews (IJRAR)</em>, and presented technical methodologies at state-level symposiums.
         </p>
-        <div style="margin-top: 1.8rem;">
-          <a href="about.html" class="btn btn-primary">
-            <span>Read Full Story</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
+        
+        <div class="about-highlight-box">
+          <h4>Development Philosophy</h4>
+          <p>
+            I believe software should not merely function—it must be performant, mathematically sound, securely architected, and built to solve tangible human challenges. Whether engineering real-time deepfake audio classifiers or decentralized lending contracts, I design for edge-case resilience and zero fluff.
+          </p>
+        </div>
+
+        <p>
+          Having completed three distinct industrial internships across <strong>ExamSetu</strong> (Full-Stack), <strong>MPI Automotives</strong> (Web Architecture), and <strong>IRABOT TechEd LLP</strong> (Python Development), alongside serving 10+ freelance clients globally, I bring actual delivery velocity and production discipline to high-growth teams.
+        </p>
+
+        <div style="margin-top: 1rem;">
+          <a href="about.html" class="btn btn-outline">Read Full Biography &amp; Journey &rarr;</a>
+        </div>
+      </div>
+
+      <div class="about-side-rail">
+        <div class="editorial-card">
+          <div class="editorial-card-tag">Academic Pillar</div>
+          <h3 class="editorial-card-title">B.E. AI &amp; Data Science</h3>
+          <p>Terna Engineering College, Navi Mumbai (2024 – 2027 Ongoing). Specializing in Deep Learning, DSA, and System Design.</p>
+        </div>
+
+        <div class="editorial-card">
+          <div class="editorial-card-tag">Distinction</div>
+          <h3 class="editorial-card-title">Diploma AI &amp; Machine Learning</h3>
+          <p>90.33% aggregate. Ranked 1st in class consistently from 1st through 6th semester. Published research author during this tenure.</p>
+        </div>
+
+        <div class="editorial-card">
+          <div class="editorial-card-tag">Industrial Impact</div>
+          <h3 class="editorial-card-title">3 Industry Internships</h3>
+          <p>Delivered production codebases across Python, React, and backend APIs for EdTech, Automotive, and Robotics sectors.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE TEASER -->
-<section class="section section-alt" id="experience-teaser">
-  <div class="container">
-    <div class="section-tag">Career Preview</div>
-    <h2 class="section-title">Work <span class="gradient-text">Experience</span></h2>
-    <p class="section-sub">A brief overview of my professional internships and remote freelancing roles.</p>
-    
-    <div class="intern-card" style="margin-top: 2rem;">
-      <div class="intern-left">
-        <div class="intern-logo freelance-logo">FL</div>
-      </div>
-      <div class="intern-right">
-        <h3>Freelance AI &amp; Python Developer</h3>
-        <p class="intern-company">Self-Employed &bull; Remote &bull; 2023 - Present</p>
-        <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.95rem;">
-          Delivered end-to-end Python automation scripts, customized machine learning prototype models (sentiment classifiers, forecasting tools), and web scrapers for 10+ clients remotely.
-        </p>
-        <div style="margin-top: 1.5rem;">
-          <a href="about.html#internship" class="btn btn-outline">
-            <span>Explore Experience Timeline</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS TEASER -->
+<!-- CAPABILITIES & TECHNICAL STACK TEASER -->
 <section class="section" id="skills-teaser">
   <div class="container">
-    <div class="section-tag">Core Capabilities</div>
-    <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
-    <p class="section-sub">I build intelligent data-driven solutions using a modern machine learning, AI, and developer tools stack.</p>
+    <div class="section-tag">Technical Competencies</div>
+    <h2 class="section-title">Core <span class="gradient-text">Capabilities.</span></h2>
+    <p class="section-sub">A breakdown of my primary development stack spanning machine learning, modern backends, and full-stack frameworks.</p>
     
-    <div class="skills-grid" style="margin-top: 2rem;">
+    <div class="skills-grid">
+      <!-- AI / ML Category -->
       <div class="skill-category">
-        <!-- Neural Network SVG -->
-        <svg class="cat-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--cyan); margin-bottom: 1rem;">
-          <circle cx="12" cy="5" r="3" stroke="currentColor" stroke-width="2" />
-          <circle cx="5" cy="12" r="3" stroke="currentColor" stroke-width="2" />
-          <circle cx="19" cy="12" r="3" stroke="currentColor" stroke-width="2" />
-          <circle cx="12" cy="19" r="3" stroke="currentColor" stroke-width="2" />
-          <line x1="8" y1="10" x2="10.5" y2="6.5" stroke="currentColor" stroke-width="2" />
-          <line x1="16" y1="10" x2="13.5" y2="6.5" stroke="currentColor" stroke-width="2" />
-          <line x1="8" y1="14" x2="10.5" y2="17.5" stroke="currentColor" stroke-width="2" />
-          <line x1="16" y1="14" x2="13.5" y2="17.5" stroke="currentColor" stroke-width="2" />
-          <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" />
-        </svg>
-        <h3>AI / ML &amp; GenAI</h3>
+        <svg class="cat-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="12" r="3"/><circle cx="19" cy="12" r="3"/><circle cx="12" cy="19" r="3"/><line x1="8" y1="10" x2="10.5" y2="6.5"/><line x1="16" y1="10" x2="13.5" y2="6.5"/><line x1="8" y1="14" x2="10.5" y2="17.5"/><line x1="16" y1="14" x2="13.5" y2="17.5"/></svg>
+        <h3>AI, ML &amp; GenAI</h3>
         <div class="skill-pills">
-          <span class="skill-pill level-high">Machine Learning</span>
-          <span class="skill-pill level-high">Deep Learning</span>
-          <span class="skill-pill level-high">Generative AI</span>
-          <span class="skill-pill level-high">LLMs &amp; RAG</span>
+          <span class="skill-pill">Machine Learning</span>
+          <span class="skill-pill">Deep Learning</span>
+          <span class="skill-pill">Generative AI</span>
+          <span class="skill-pill">LLMs &amp; RAG</span>
+          <span class="skill-pill">LangChain</span>
+          <span class="skill-pill">FAISS</span>
+          <span class="skill-pill">BioBERT</span>
+          <span class="skill-pill">Computer Vision</span>
         </div>
       </div>
+
+      <!-- Languages & Backends -->
       <div class="skill-category">
-        <!-- Stack Layer SVG -->
-        <svg class="cat-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--blue); margin-bottom: 1rem;">
-          <path d="M12 3L4 9L12 15L20 9L12 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M4 14L12 20L20 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <h3>DSA &amp; Programming</h3>
+        <svg class="cat-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <h3>Languages &amp; Core Systems</h3>
         <div class="skill-pills">
-          <span class="skill-pill level-high">Python</span>
-          <span class="skill-pill level-high">SQL</span>
-          <span class="skill-pill level-high">Data Structures</span>
-          <span class="skill-pill level-high">Algorithms</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">JavaScript / TypeScript</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">Data Structures</span>
+          <span class="skill-pill">Algorithms</span>
+          <span class="skill-pill">FastAPI</span>
+          <span class="skill-pill">Node.js / Express</span>
+        </div>
+      </div>
+
+      <!-- Web & Cloud -->
+      <div class="skill-category">
+        <svg class="cat-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <h3>Web &amp; Cloud Infrastructure</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">React 18</span>
+          <span class="skill-pill">Next.js</span>
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">Supabase</span>
+          <span class="skill-pill">Firebase</span>
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">Git &amp; GitHub</span>
+          <span class="skill-pill">Google Cloud Platform</span>
         </div>
       </div>
     </div>
-    
-    <div style="margin-top: 2.5rem; text-align: center;">
+
+    <div style="margin-top: 3rem; text-align: center;">
       <a href="skills.html" class="btn btn-primary">
-        <span>View Full Skills &amp; Tools</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        <span>Explore Full Capability Matrix</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </a>
     </div>
   </div>
@@ -299,120 +313,102 @@
 <!-- FEATURED PROJECTS TEASER -->
 <section class="section section-alt" id="projects-teaser">
   <div class="container">
-    <div class="section-tag">Featured Work</div>
-    <h2 class="section-title">Selected <span class="gradient-text">Projects</span></h2>
-    <p class="section-sub">A glance at some of the systems I've built in computer vision and artificial intelligence.</p>
+    <div class="section-tag">Engineered Solutions</div>
+    <h2 class="section-title">Selected <span class="gradient-text">Projects.</span></h2>
+    <p class="section-sub">A curated selection of real-world systems demonstrating applied machine learning, computer vision, and backend architecture.</p>
     
     <div class="projects-grid">
-      <!-- Project 1 -->
+
+      <!-- Project 1: VoiceGuard -->
       <div class="project-card">
         <div class="project-accent"></div>
-        <div class="project-number">01</div>
-        <!-- Face Recognition SVG -->
-        <svg class="project-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--cyan); margin-bottom: 0.25rem;">
-          <path d="M4 8V6C4 4.89543 4.89543 4 6 4H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <path d="M20 8V6C20 4.89543 19.1046 4 18 4H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <path d="M4 16V18C4 19.1046 4.89543 20 6 20H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <path d="M20 16V18C20 19.1046 19.1046 20 18 20H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
-          <line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" />
-        </svg>
-        <h3>Multiple Face Recognition Attendance System</h3>
-        <p>An automated attendance system that recognizes and logs multiple faces in real-time using Local Binary Pattern Histograms and Haar Cascade detection, storing records in SQL database.</p>
+        <div class="project-number">PROJECT 01 &middot; FORENSIC AI</div>
+        <svg class="project-icon-svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 10v4M12 7v10M15 9v6"/></svg>
+        <h3>VoiceGuard — AI Voice Clone Deepfake Detector</h3>
+        <p>An enterprise-grade biometric audio forensics system engineered to detect synthetic voice clones, AI-generated speech, and audio deepfakes in real-time streams and recorded audio using Wav2Vec2 and acoustic DSP heuristics.</p>
         <div class="project-tech">
-          <span>Python</span><span>OpenCV</span><span>Haar Cascade</span><span>LBPH</span><span>SQL</span>
+          <span>FastAPI</span><span>PyTorch</span><span>Wav2Vec2</span><span>React 18</span><span>Librosa</span><span>WebSockets</span>
         </div>
         <div class="project-links">
-          <a href="projects.html" class="proj-btn">View All Projects</a>
-          <a href="https://github.com/uk0976/Multiple-Face-Recognition-Attendance-System" target="_blank" class="proj-btn proj-btn-ghost">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="voiceguard">View Details</button>
+          <a href="https://github.com/uk0976/VoiceGuard---AI-Voice-Clone-Deepfake-Detector" target="_blank" class="proj-btn proj-btn-ghost">
             <span>GitHub</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           </a>
-        </div>
-      </div>
-      
-      <!-- Project 2 -->
-      <div class="project-card">
-        <div class="project-accent"></div>
-        <div class="project-number">02</div>
-        <!-- Smart Task Scheduler SVG -->
-        <svg class="project-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--blue); margin-bottom: 0.25rem;">
-          <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2" />
-          <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <line x1="7" y1="11" x2="12" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <line x1="7" y1="15" x2="17" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-        <h3>Smart Task Scheduler with AI Integration</h3>
-        <p>An intelligent task management system powered by NLP and machine learning that understands natural language inputs to automatically schedule, prioritize, and manage tasks.</p>
-        <div class="project-tech">
-          <span>Python</span><span>NLP</span><span>Machine Learning</span>
-        </div>
-        <div class="project-links">
-          <a href="projects.html" class="proj-btn">View All Projects</a>
-          <a href="https://github.com/uk0976/Smart-Task-Scheduler-with-AI-Integration" target="_blank" class="proj-btn proj-btn-ghost">
-            <span>GitHub</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          <a href="https://voiceguard-app.onrender.com" target="_blank" class="proj-btn proj-btn-ghost" style="border-color: rgba(198, 40, 40, 0.4);">
+            <span>Live Demo</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
           </a>
         </div>
       </div>
 
-      <!-- Project 3 -->
+      <!-- Project 2: MedInsight -->
       <div class="project-card">
         <div class="project-accent"></div>
-        <div class="project-number">03</div>
-        <!-- Stock Market SVG -->
-        <svg class="project-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="color: var(--purple); margin-bottom: 0.25rem;">
-          <line x1="6" y1="4" x2="6" y2="20" stroke="currentColor" stroke-width="1.5" />
-          <line x1="12" y1="2" x2="12" y2="22" stroke="currentColor" stroke-width="1.5" />
-          <line x1="18" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" />
-          <rect x="4" y="8" width="4" height="6" fill="#030712" stroke="currentColor" stroke-width="2" />
-          <rect x="10" y="6" width="4" height="10" fill="#030712" stroke="currentColor" stroke-width="2" />
-          <rect x="16" y="10" width="4" height="5" fill="#030712" stroke="currentColor" stroke-width="2" />
-        </svg>
-        <h3>Stock Prediction System with Integrated Chatbot</h3>
-        <p>A dual-function application combining ML-based stock price prediction with an integrated chatbot that answers user queries about market trends and forecasting results.</p>
+        <div class="project-number">PROJECT 02 &middot; HEALTHCARE GENAI</div>
+        <svg class="project-icon-svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <h3>MedInsight — RAG Medical Report Summarizer</h3>
+        <p>A multilingual AI platform using Retrieval-Augmented Generation (RAG), BioBERT clinical entity extraction, FAISS vector indexing, and Llama-3 to distill pathology reports into doctor and patient summaries.</p>
         <div class="project-tech">
-          <span>Python</span><span>Machine Learning</span><span>Data Analysis</span>
+          <span>Python</span><span>RAG</span><span>LangChain</span><span>BioBERT</span><span>FAISS</span><span>Llama-3</span>
         </div>
         <div class="project-links">
-          <a href="projects.html" class="proj-btn">View All Projects</a>
-          <a href="https://github.com/uk0976/StockSage---Stock-Prediction-System-with-Integrated-ChatBot" target="_blank" class="proj-btn proj-btn-ghost">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="medical-summarizer">View Details</button>
+          <a href="https://github.com/uk0976/MedInsight---RAG-Based-AI-Medical-Report-Summarizer" target="_blank" class="proj-btn proj-btn-ghost">
             <span>GitHub</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           </a>
         </div>
       </div>
+
+      <!-- Project 3: Multiple Face Recognition Attendance System -->
+      <div class="project-card">
+        <div class="project-accent"></div>
+        <div class="project-number">PROJECT 03 &middot; PEER-REVIEWED PUBLICATION</div>
+        <svg class="project-icon-svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8V6a2 2 0 0 1 2-2h2M20 8V6a2 2 0 0 0-2-2h-2M4 16v2a2 2 0 0 0 2 2h2M20 16v2a2 2 0 0 1-2 2h-2"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Multiple Face Recognition Attendance System</h3>
+        <p>A computer vision system published in IJRAR (2024) that simultaneously recognizes multiple faces in real time using LBPH and Haar Cascades, with automated SQL attendance tracking.</p>
+        <div class="project-tech">
+          <span>Python</span><span>OpenCV</span><span>LBPH</span><span>Haar Cascade</span><span>SQL</span><span>IJRAR 2024</span>
+        </div>
+        <div class="project-links">
+          <button type="button" class="proj-btn view-details-btn" data-project-id="face-recognition">View Details</button>
+          <a href="https://github.com/uk0976/Multiple-Face-Recognition-Attendance-System" target="_blank" class="proj-btn proj-btn-ghost">
+            <span>GitHub</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </div>
+      </div>
+
     </div>
     
-    <div style="margin-top: 3rem; text-align: center;">
+    <div style="margin-top: 3.5rem; text-align: center;">
       <a href="projects.html" class="btn btn-primary">
-        <span>Browse All 15+ Projects</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        <span>Browse All 16+ Production Repositories</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </a>
     </div>
   </div>
 </section>
 
-<!-- CONNECT TEASER -->
+<!-- CONNECT / CONVERSION TEASER -->
 <section class="section" id="connect-teaser">
   <div class="container">
     <div class="resume-card">
       <div class="resume-left">
         <div class="resume-icon-wrap">
-          <!-- Connect Envelope SVG -->
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--cyan);"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         </div>
         <div>
-          <div class="section-tag" style="margin-bottom:0.5rem;">Collaboration</div>
-          <h2 class="section-title" style="margin-bottom:0.75rem;">Let's <span class="gradient-text">Connect</span></h2>
-          <p style="margin-bottom:0;">Open to internships, entry-level developer roles, freelancing, and research collaborations.</p>
+          <div class="section-tag" style="margin-bottom: 0.4rem;">Initiate Contact</div>
+          <h2 class="section-title" style="margin-bottom: 0.5rem; font-size: 2rem;">Have an Idea? Let's Build Something <span class="gradient-text">Meaningful.</span></h2>
+          <p style="margin: 0; font-size: 0.98rem;">Open to software engineering roles, applied AI research, and impactful collaborations.</p>
         </div>
       </div>
       <div class="resume-right">
         <a href="contact.html" class="btn btn-primary btn-large">
           <span>Get In Touch</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       </div>
     </div>
@@ -424,17 +420,17 @@
   <div class="footer-inner">
     <div class="footer-logo-wrap">
       <div class="footer-logo">
-        <span style="color: var(--text-primary); font-weight: 500;">&lt;</span>UK<span style="color: var(--cyan); font-weight: 700;">/&gt;</span>
+        <span>&lt;</span>UK<span class="text-crimson">/&gt;</span>
       </div>
-      <p class="footer-tagline" style="font-size: 0.8rem; letter-spacing: 0.05em; color: var(--cyan); margin-top: 0.5rem; font-weight: 700; text-transform: uppercase;">
-        BUILDING SOLUTIONS. IMPACTING LIVES.
+      <p class="footer-tagline">
+        BUILDING SOLUTIONS &middot; IMPACTING LIVES
       </p>
     </div>
-    <div class="footer-middle" style="text-align: center; margin: 1rem 0;">
-      <p class="footer-motto" style="font-family: var(--font-display); font-weight: 700; color: var(--text-primary); font-size: 1rem; font-style: italic;">
+    <div class="footer-middle">
+      <p class="footer-motto">
         Keep Building. Keep Growing.
       </p>
-      <p class="footer-text" style="margin-top: 0.5rem;">&copy; 2026 Doctor Umerkhan Junaidkhan. All Rights Reserved.</p>
+      <p class="footer-text">&copy; 2026 Doctor Umerkhan Junaidkhan. All Rights Reserved.</p>
     </div>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/umer-khan-57a458288/" target="_blank">LinkedIn</a>
@@ -444,8 +440,23 @@
   </div>
 </footer>
 
-<!-- Back to Top -->
-<button class="back-to-top" id="backToTop" onclick="scrollToTop()">&uarr;</button>
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">&uarr;</button>
+
+<!-- PROJECT DETAILS MODAL OVERLAY -->
+<div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+  <div class="modal-container">
+    <button class="modal-close" id="modalClose" aria-label="Close details">✕</button>
+    <div class="modal-header">
+      <h3 class="modal-title" id="modalTitle">
+        <span class="modal-title-icon" id="modalIcon">👥</span>
+        <span id="modalName">Project Title</span>
+      </h3>
+      <div class="modal-tags" id="modalTags"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>

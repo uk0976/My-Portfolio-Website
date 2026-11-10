@@ -1,9 +1,11 @@
 /* ============================================================
-   DOCTOR UMERKHAN JUNAIDKHAN — PORTFOLIO SCRIPT
+   DOCTOR UMERKHAN JUNAIDKHAN — OBSIDIAN RED SCRIPT
+   Cinematic Particles · Theme Toggle · Dynamic Project Modals
    ============================================================ */
 
 /* ── DOM READY ── */
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
   initNavbar();
   initMobileMenu();
   initScrollReveal();
@@ -13,14 +15,49 @@ document.addEventListener('DOMContentLoaded', () => {
   initStatCounters();
   initProjectCardTilt();
   initContactForm();
-  initCosmicCanvas();
+  initObsidianCanvas();
   initCardGlow();
   initProjectModal();
   initCertGallery();
 });
 
 /* ============================================================
-   NAVBAR — scrolled class + shadow
+   THEME TOGGLE — OBSIDIAN DARK / PURE LIGHT MODE
+   ============================================================ */
+function initThemeToggle() {
+  const currentTheme = localStorage.getItem('uk-portfolio-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  updateThemeIcon(currentTheme);
+
+  const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = activeTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('uk-portfolio-theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
+  });
+}
+
+function updateThemeIcon(theme) {
+  const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
+  toggleBtns.forEach(btn => {
+    if (theme === 'light') {
+      btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+      btn.setAttribute('aria-label', 'Switch to Dark Mode');
+      btn.setAttribute('title', 'Switch to Dark Mode');
+    } else {
+      btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+      btn.setAttribute('aria-label', 'Switch to Light Mode');
+      btn.setAttribute('title', 'Switch to Light Mode');
+    }
+  });
+}
+
+/* ============================================================
+   NAVBAR — scrolled class + backdrop transition
    ============================================================ */
 function initNavbar() {
   const navbar = document.getElementById('navbar');
@@ -39,7 +76,7 @@ function initNavbar() {
 }
 
 /* ============================================================
-   MOBILE MENU — hamburger / overlay / close
+   MOBILE MENU — overlay / hamburger
    ============================================================ */
 function initMobileMenu() {
   const hamburger     = document.getElementById('hamburger');
@@ -80,7 +117,7 @@ function initMobileMenu() {
 }
 
 /* ============================================================
-   SCROLL REVEAL — fade-up animation for .reveal elements
+   SCROLL REVEAL
    ============================================================ */
 function initScrollReveal() {
   const revealEls = document.querySelectorAll('.reveal');
@@ -94,7 +131,7 @@ function initScrollReveal() {
       }
     });
   }, {
-    threshold: 0.12,
+    threshold: 0.1,
     rootMargin: '0px 0px -40px 0px'
   });
 
@@ -102,7 +139,7 @@ function initScrollReveal() {
 }
 
 /* ============================================================
-   ACTIVE NAV LINKS — highlight current section link
+   ACTIVE NAV LINKS
    ============================================================ */
 function initActiveNavLinks() {
   const navLinks = document.querySelectorAll('.nav-link, .mobile-links a');
@@ -111,7 +148,6 @@ function initActiveNavLinks() {
   const currentPath = window.location.pathname;
   let currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1);
 
-  // default page handling
   if (currentPage === "") {
     currentPage = "index.html";
   }
@@ -126,13 +162,13 @@ function initActiveNavLinks() {
 }
 
 /* ============================================================
-   SKILL PILL HOVER — subtle glow pulse on hover
+   SKILL PILL HOVER
    ============================================================ */
 function initSkillPillHover() {
   const pills = document.querySelectorAll('.skill-pill');
   pills.forEach(pill => {
     pill.addEventListener('mouseenter', () => {
-      pill.style.transform = 'translateY(-3px) scale(1.04)';
+      pill.style.transform = 'translateY(-3px)';
     });
     pill.addEventListener('mouseleave', () => {
       pill.style.transform = '';
@@ -161,10 +197,10 @@ function scrollToTop() {
 }
 
 /* ============================================================
-   STAT COUNTERS — animate numbers when hero stats are visible
+   STAT COUNTERS
    ============================================================ */
 function initStatCounters() {
-  const stats = document.querySelectorAll('.stat-number');
+  const stats = document.querySelectorAll('.stat-number, .hstat-num');
   if (!stats.length) return;
 
   const observer = new IntersectionObserver((entries) => {
@@ -184,11 +220,11 @@ function animateCounter(el) {
   const isFloat  = raw.includes('.');
   const suffix   = raw.replace(/[\d.]/g, '');
   const target   = parseFloat(raw);
+  if (isNaN(target)) return;
   const duration = 1400;
   const step     = 16;
   const steps    = Math.ceil(duration / step);
   let   count    = 0;
-
   const increment = target / steps;
 
   const timer = setInterval(() => {
@@ -204,10 +240,11 @@ function animateCounter(el) {
 }
 
 /* ============================================================
-   PROJECT CARD SUBTLE TILT on mouse move
+   PROJECT CARD SUBTLE TILT
    ============================================================ */
 function initProjectCardTilt() {
-  const cards = document.querySelectorAll('.project-card');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cards = document.querySelectorAll('.project-card, .editorial-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -215,9 +252,9 @@ function initProjectCardTilt() {
       const y    = e.clientY - rect.top;
       const cx   = rect.width  / 2;
       const cy   = rect.height / 2;
-      const rotX = ((y - cy) / cy) * -5;
-      const rotY = ((x - cx) / cx) *  5;
-      card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+      const rotX = ((y - cy) / cy) * -4;
+      const rotY = ((x - cx) / cx) *  4;
+      card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
     });
 
     card.addEventListener('mouseleave', () => {
@@ -227,14 +264,14 @@ function initProjectCardTilt() {
 }
 
 /* ============================================================
-   CONTACT FORM — Formspree AJAX (no page redirect)
+   CONTACT FORM — AJAX (Formspree)
    ============================================================ */
 function initContactForm() {
-  const form    = document.getElementById('contactForm');
+  const form = document.getElementById('contactForm');
   if (!form) return;
 
   form.addEventListener('submit', async function (e) {
-    e.preventDefault(); // ✅ Stops redirect to Formspree page
+    e.preventDefault();
 
     const fname    = document.getElementById('fname');
     const femail   = document.getElementById('femail');
@@ -243,21 +280,17 @@ function initContactForm() {
     const formMsg  = document.getElementById('formMsg');
     const sendBtn  = document.getElementById('sendBtn');
 
-    // Clear previous error styles
     [fname, femail, fsubject, fmessage].forEach(el => {
       if (el) el.style.borderColor = '';
     });
 
-    // Remove previous error message if any
     const existing = document.getElementById('formError');
     if (existing) existing.remove();
 
-    // Validation
     let valid = true;
-
     const markError = (el) => {
       if (el) {
-        el.style.borderColor = '#ff4d6d';
+        el.style.borderColor = '#C62828';
         el.focus();
       }
       valid = false;
@@ -269,12 +302,11 @@ function initContactForm() {
     if (!fname     || !fname.value.trim()) markError(fname);
 
     if (!valid) {
-      showFormError('Please fill in all fields correctly.');
+      showFormError('Please complete all fields with valid information.');
       return;
     }
 
-    // Send via Formspree
-    sendBtn.textContent = 'Sending…';
+    sendBtn.textContent = 'Sending Message…';
     sendBtn.disabled    = true;
 
     try {
@@ -285,24 +317,19 @@ function initContactForm() {
       });
 
       if (response.ok) {
-        // ✅ Show success on your own page
         if (formMsg) {
           formMsg.style.display = 'block';
-          formMsg.innerHTML = '✅ Message sent! I\'ll get back to you soon.';
-          setTimeout(() => { formMsg.style.display = 'none'; }, 5000);
+          formMsg.innerHTML = '✓ Message received! I will get in touch with you shortly.';
+          setTimeout(() => { formMsg.style.display = 'none'; }, 6000);
         }
-
-        // Reset form fields
         [fname, femail, fsubject, fmessage].forEach(el => {
           if (el) el.value = '';
         });
-
       } else {
-        showFormError('❌ Something went wrong. Please try again.');
+        showFormError('Failed to dispatch message. Please try again or email directly.');
       }
-
     } catch (error) {
-      showFormError('❌ Network error. Please check your connection.');
+      showFormError('Network communication error. Please check your connection.');
     }
 
     sendBtn.textContent = 'Send Message →';
@@ -322,111 +349,97 @@ function showFormError(msg) {
   errEl.id    = 'formError';
   errEl.textContent = msg;
   errEl.style.cssText = `
-    color: #ff4d6d;
+    color: #E53935;
     font-size: 0.875rem;
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
+    font-weight: 500;
   `;
 
   const sendBtn = document.getElementById('sendBtn');
   if (sendBtn) sendBtn.insertAdjacentElement('afterend', errEl);
-
-  setTimeout(() => errEl.remove(), 3500);
+  setTimeout(() => errEl.remove(), 4000);
 }
 
 /* ============================================================
-   SMOOTH SCROLL for nav links (fallback for older browsers)
+   CINEMATIC OBSIDIAN CANVAS (Subtle Crimson & Charcoal Dust)
    ============================================================ */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', (e) => {
-    const href = anchor.getAttribute('href');
-    if (href === '#') return;
-    const target = document.querySelector(href);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
-/* ============================================================
-   UPGRADE: COSMIC CANVAS BACKGROUND
-   ============================================================ */
-function initCosmicCanvas() {
+function initObsidianCanvas() {
   const canvas = document.getElementById('cosmic-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   
-  let stars = [];
+  let particles = [];
   let mouseX = 0;
   let mouseY = 0;
   let targetMouseX = 0;
   let targetMouseY = 0;
-  
+
   const resize = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    initStars();
+    initParticles();
   };
-  
-  const initStars = () => {
-    stars = [];
-    const count = Math.floor((canvas.width * canvas.height) / 11000);
+
+  const initParticles = () => {
+    particles = [];
+    const count = Math.floor((canvas.width * canvas.height) / 14000);
     for (let i = 0; i < count; i++) {
-      stars.push({
+      const isRed = Math.random() < 0.28;
+      particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 1.6 + 0.4,
-        alpha: Math.random() * 0.7 + 0.3,
-        speed: Math.random() * 0.08 + 0.02,
-        parallaxSpeed: Math.random() * 12 + 6,
-        color: Math.random() > 0.45 ? '#38bdf8' : '#cbd5e1'
+        size: Math.random() * 1.5 + 0.3,
+        alpha: Math.random() * 0.6 + 0.2,
+        speed: Math.random() * 0.09 + 0.02,
+        parallaxSpeed: Math.random() * 10 + 4,
+        color: isRed ? '#C62828' : '#777777'
       });
     }
   };
-  
+
   window.addEventListener('resize', resize, { passive: true });
   window.addEventListener('mousemove', (e) => {
     targetMouseX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
     targetMouseY = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
   }, { passive: true });
-  
+
   const animate = () => {
-    mouseX += (targetMouseX - mouseX) * 0.07;
-    mouseY += (targetMouseY - mouseY) * 0.07;
-    
+    mouseX += (targetMouseX - mouseX) * 0.06;
+    mouseY += (targetMouseY - mouseY) * 0.06;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    stars.forEach(star => {
-      star.y -= star.speed;
-      if (star.y < 0) {
-        star.y = canvas.height;
-        star.x = Math.random() * canvas.width;
+
+    particles.forEach(p => {
+      p.y -= p.speed;
+      if (p.y < 0) {
+        p.y = canvas.height;
+        p.x = Math.random() * canvas.width;
       }
-      
-      const px = star.x - mouseX * star.parallaxSpeed;
-      const py = star.y - mouseY * star.parallaxSpeed;
-      
+
+      const px = p.x - mouseX * p.parallaxSpeed;
+      const py = p.y - mouseY * p.parallaxSpeed;
+
       ctx.save();
-      ctx.globalAlpha = star.alpha;
-      ctx.fillStyle = star.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle = p.color;
       ctx.beginPath();
-      ctx.arc(px, py, star.size, 0, Math.PI * 2);
+      ctx.arc(px, py, p.size, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     });
-    
+
     requestAnimationFrame(animate);
   };
-  
+
   resize();
   animate();
 }
 
 /* ============================================================
-   UPGRADE: CARD GLOW DYNAMIC POSITIONING
+   CARD GLOW CURSOR POSITIONING
    ============================================================ */
 function initCardGlow() {
-  const cards = document.querySelectorAll('.project-card, .cert-card, .cert-gallery-card, .achieve-card, .build-item, .tool-item, .beyond-card, .edu-content, .contact-form-wrap, .intern-card, .resume-card, .pub-card');
+  const cards = document.querySelectorAll('.project-card, .cert-card, .cert-gallery-card, .achieve-card, .build-item, .tool-item, .editorial-card, .edu-content, .contact-form-wrap, .intern-card, .pub-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -439,210 +452,208 @@ function initCardGlow() {
 }
 
 /* ============================================================
-   UPGRADE: INTERACTIVE PROJECT DETAIL MODALS
+   PROJECT MODAL DIALOG & FULL DATA STORE
    ============================================================ */
 function initProjectModal() {
   const modal = document.getElementById('projectModal');
   const closeBtn = document.getElementById('modalClose');
-  const closeFooterBtn = document.getElementById('modalCloseBtn');
   const detailButtons = document.querySelectorAll('.view-details-btn');
   
   if (!modal) return;
-  
+
   const projectData = {
     "face-recognition": {
       title: "Multiple Face Recognition Attendance System",
-      icon: "👥",
-      tags: ["Python", "OpenCV", "Haar Cascade", "LBPH", "SQL"],
-      summary: "An automated attendance system that detects and recognizes multiple human faces in real-time, matching them against a registration database to log entries automatically.",
+      icon: "👤",
+      tags: ["Python", "OpenCV", "LBPH", "Haar Cascade", "SQL"],
+      summary: "A peer-reviewed computer vision attendance system published in IJRAR (March 2024). Detects and recognizes multiple student faces simultaneously from live camera streams with automated SQL logging.",
       features: [
-        "Real-time simultaneous detection of multiple faces in a single video input stream",
-        "Haar Cascade Classifiers utilized for fast and lightweight face bounding-box detection",
-        "Local Binary Patterns Histograms (LBPH) algorithm used for facial feature extraction and match scoring",
-        "Integrated SQL database to maintain profiles, registration states, and logs with exportable formats",
-        "Automated attendance sheets generated instantly upon system operation session closure"
+        "Simultaneous multi-face detection using Haar Feature-based Cascade Classifiers",
+        "Robust grayscale texture recognition via Local Binary Pattern Histograms (LBPH)",
+        "Automated structured SQL logging eliminating manual attendance paper logs",
+        "Peer-reviewed research published in the International Journal of Research and Analytical Reviews"
       ],
-      architecture: "Engineered as an end-to-end Python pipeline using OpenCV for real-time video grab and preprocessing, an LBPH model for face prediction, and MySQL Connector for log transactions. Features a desktop interface built in Tkinter.",
+      architecture: "Python desktop runtime leveraging OpenCV video capture pipelines, local LBPH model trainers, and SQL relational tables.",
       github: "https://github.com/uk0976/Multiple-Face-Recognition-Attendance-System"
     },
     "task-scheduler": {
       title: "Smart Task Scheduler with AI Integration",
-      icon: "📅",
-      tags: ["Python", "NLP", "Machine Learning"],
-      summary: "An intelligent productivity scheduler that parses task details from natural language, predicts task priorities using machine learning, and structures optimal daily schedules.",
+      icon: "⚡",
+      tags: ["Python", "NLP", "Machine Learning", "Workflow Automation"],
+      summary: "An intelligent productivity engine that parses natural language inputs, extracts scheduling semantics, and dynamically optimizes task priorities.",
       features: [
-        "Natural Language Processing (NLP) parses details from raw messages like 'remind me to prepare presentation tomorrow'",
-        "Advanced text classifier automatically tags task categories based on keywords and embeddings",
-        "Machine learning model predicts importance scores based on deadlines, descriptions, and user categories",
-        "Intelligent scheduling algorithm dynamic ranks daily task order to optimize user focus and output"
+        "Natural language date/time/action entity parsing from raw text queries",
+        "Rule-based and heuristic prioritization algorithms ordering urgent tasks",
+        "Calendar synchronization and automated deadline reminders",
+        "Clean productivity dashboard tracking weekly completion velocity"
       ],
-      architecture: "Constructed with a Python core using NLTK/SpaCy for linguistic analysis, scikit-learn models for priority prediction, and a light Web UI for tasks listing.",
+      architecture: "Python NLP extraction modules processing input streams and delegating to scheduling managers with local persistent state.",
       github: "https://github.com/uk0976/Smart-Task-Scheduler-with-AI-Integration"
     },
     "stock-prediction": {
       title: "Stock Prediction System with Integrated Chatbot",
       icon: "📈",
-      tags: ["Python", "Machine Learning", "Data Analysis"],
-      summary: "A robust analytics platform that predicts financial trends using historical market datasets, paired with a smart chatbot for answering quantitative financial queries.",
+      tags: ["Python", "Machine Learning", "Streamlit", "Data Analytics"],
+      summary: "A financial intelligence platform combining predictive stock price forecasting models with an interactive advisory chatbot for real-time market context.",
       features: [
-        "Real-time historical stock market data retrieval via yfinance APIs",
-        "Time-series prediction models forecast upcoming price directions and trend confidence",
-        "Interactive chatbot provides immediate answers about predictions, general stock performance, and company profiles",
-        "Beautiful Matplotlib dashboards visualize historical stock prices overlaid with prediction projections"
+        "Historical OHLCV financial timeseries forecasting using ML regressors",
+        "Interactive conversational bot answering equity queries and ticker comparisons",
+        "Comprehensive visualization charts with technical trend indicators",
+        "Streamlit-powered responsive web interface"
       ],
-      architecture: "Built in Python using Pandas and NumPy for complex data handling, Scikit-Learn/TensorFlow for prediction modeling, and NLTK for the rules-based financial query chatbot.",
+      architecture: "Streamlit UI coupled with Yahoo Finance API ingestion pipelines and Scikit-learn regressors.",
       github: "https://github.com/uk0976/StockSage---Stock-Prediction-System-with-Integrated-ChatBot"
     },
     "medical-summarizer": {
-      title: "Medical Report Summarizer",
+      title: "MedInsight — RAG-Based AI Medical Report Summarizer",
       icon: "🏥",
-      tags: ["Python", "NLP", "Machine Learning", "AI"],
-      summary: "An AI-powered document helper that converts scanned clinical sheets to digital text, highlights critical medical entities, and constructs concise layman-friendly summaries.",
+      tags: ["RAG", "LangChain", "BioBERT", "FAISS", "Llama-3", "Streamlit"],
+      summary: "A clinical AI platform that transforms complex pathology, lab, and discharge reports into role-tailored summaries for doctors, patients, and paramedics.",
       features: [
-        "Optical Character Recognition (OCR) converts paper clinical reports into digital data streams",
-        "Named Entity Recognition (NER) extracts key medical entities (symptoms, drugs, dosages, diagnostics)",
-        "Advanced Summarizer compresses complex medical records into structured 1-page summaries",
-        "Built-in visual dictionary helps patients click on complex medical terms to view clear definitions"
+        "Retrieval-Augmented Generation (RAG) pipeline utilizing FAISS vector storage",
+        "BioBERT clinical named-entity recognition (NER) extracting medical terminology",
+        "Llama-3 LLM reasoning via Groq delivering instant multi-perspective briefs",
+        "Multilingual voice readout synthesis for accessible patient comprehension"
       ],
-      architecture: "Uses Python with PyTesseract for PDF OCR, SpaCy NER models for clinical terms extraction, and Hugging Face transformer models (like BART/T5) for summary generation.",
+      architecture: "Streamlit frontend hosting LangChain document loaders, chunking engines, BioBERT embeddings, FAISS vector index, and Llama-3 inference pipelines.",
       github: "https://github.com/uk0976/MedInsight---RAG-Based-AI-Medical-Report-Summarizer"
     },
     "library-management": {
       title: "Library Management System",
       icon: "📚",
-      tags: ["Python", "Tkinter", "SQL", "MySQL Workbench"],
-      summary: "A production-ready desktop utility to automate library cataloging, rentals, borrower directories, and database auditing via an intuitive interface.",
+      tags: ["Python", "Tkinter", "SQL", "Database Design"],
+      summary: "A comprehensive institutional library automation platform managing book acquisitions, member records, and book issue/return lifecycles.",
       features: [
-        "Comprehensive database catalog search supporting title, author, category, or ISBN tags",
-        "Transactions tracker manages active rentals, return dates, late-fines computations, and status reports",
-        "Optimized relational schema featuring custom constraints, views, and index parameters",
-        "Clean administrative dashboards showcase inventory metrics and quick actions panels"
+        "CRUD operations for catalog management and student membership tiers",
+        "Automated overdue fine computation and penalty status trackers",
+        "SQL transaction management preventing conflicting checkouts",
+        "Responsive desktop GUI built with Python Tkinter"
       ],
-      architecture: "A desktop Python desktop app using Tkinter for GUI layout and MySQL Workbench for database modeling, utilizing raw SQL connectors for optimized queries.",
+      architecture: "Python Tkinter client interacting with MySQL relational schemas via parameterized SQL connectors.",
       github: "https://github.com/uk0976/Library-Management-System"
     },
     "sentiment-analysis": {
-      title: "Sentiment Analysis Project",
-      icon: "💬",
-      tags: ["Python", "NLP", "ML", "Matplotlib", "Jupyter"],
-      summary: "A text classification pipeline that identifies positive, negative, or neutral sentiment in textual datasets, with detailed graphical summaries.",
+      title: "Sentiment Analysis on Movie Reviews",
+      icon: "🎭",
+      tags: ["Python", "NLP", "Scikit-learn", "TF-IDF"],
+      summary: "A text classification pipeline trained on large-scale IMDB movie reviews to classify viewer sentiments with high accuracy.",
       features: [
-        "Feature engineering pipeline applying TF-IDF vectorization, lemmatization, and stop-words filters",
-        "Multi-model comparisons analyzing Naive Bayes, Logistic Regression, and SVM performance metrics",
-        "Data visualization plots showcasing sentiments distributions, accuracy metrics, and word-clouds",
-        "Structured Jupyter pipeline documenting steps from raw data ingest to evaluation reports"
+        "Text pre-processing pipeline including regex normalization, stopword filtering, and lemmatization",
+        "TF-IDF n-gram vectorization capturing linguistic nuances and idioms",
+        "Comparative evaluation across Naive Bayes, Logistic Regression, and SVM classifiers",
+        "Real-time review prediction input console"
       ],
-      architecture: "Built on top of Python's scientific libraries (Pandas, NumPy, Scikit-Learn, Matplotlib) and visualized in Jupyter Notebook for quick experimentation.",
-      github: "https://github.com/uk0976"
+      architecture: "Modular Python data science pipeline using Pandas, NLTK, and Scikit-learn.",
+      github: "https://github.com/uk0976/Sentiment-Analysis-on-Movie-Reviews"
     },
     "snake-ladder": {
-      title: "Snake and Ladder GUI Game",
+      title: "Snake and Ladder Game",
       icon: "🎲",
-      tags: ["Python", "Tkinter", "GUI Development"],
-      summary: "A polished interactive desktop recreation of the classic board game, featuring custom canvas animations and dynamic player turn management.",
+      tags: ["Python", "OOP", "Game Logic", "CLI"],
+      summary: "An object-oriented implementation of the classic Indian board game featuring multi-player support, automated AI opponents, and statistical dice roll simulation.",
       features: [
-        "Custom coordinates grid mapping automatically calculates movement paths across the board",
-        "Animated tokens transition smoothly step-by-step to emulate dice rolls rather than jumping",
-        "Supports both human-versus-human play and computer-driven AI opponents",
-        "Interactive dice component features clean frame animations showing face rolls"
+        "Clean Object-Oriented Architecture (Board, Player, Die, and Rule-Engine classes)",
+        "Configurable snakes and ladders coordinates with cycle detection",
+        "Turn-based console animation with position feedback",
+        "AI computer player automated strategy"
       ],
-      architecture: "Engineered in Python using the Tkinter library, focusing on canvas grid drawings and asynchronous animation loops.",
-      github: "https://github.com/uk0976/Snakes-and-Ladder-Game"
+      architecture: "Pure Python OOP module designed with modular class hierarchies and testable invariants.",
+      github: "https://github.com/uk0976/Snake-and-Ladder-Game"
     },
     "secure-identity": {
-      title: "Secure Identity Verification Using Face Biometrics",
-      icon: "🔒",
-      tags: ["Python", "OpenCV", "LBPH", "Haar Cascade", "SQL"],
-      summary: "A biometric access control portal that verifies identity signatures using facial matching and cross-references active directories.",
+      title: "Secure Identity & Access Control System",
+      icon: "🔐",
+      tags: ["Python", "OpenCV", "Biometrics", "Cybersecurity", "Access Control"],
+      summary: "An integrated physical security platform combining biometric facial verification with cryptographic credential hashing.",
       features: [
-        "Secure webcam authentication system matching active user frames with registered profiles",
-        "Facial landmark analysis flags photo or screen attacks to ensure liveness",
-        "Security logs directory tracks successful auths, failure alerts, match scores, and timestamp metrics",
-        "Admin user control panels manage user enrollment, role privileges, and faceprint updates"
+        "Dual-factor authentication: Face verification + salted cryptographic password hashing",
+        "Anti-spoofing heuristic verification preventing static photo attacks",
+        "Tamper-evident audit logging for access granted and denied events",
+        "Role-based privilege management (Admin, Staff, Guest)"
       ],
-      architecture: "Constructed with Python, leveraging OpenCV for image parsing, LBPH for mapping facial profiles, and MySQL for logs.",
-      github: "https://github.com/uk0976/Multiple-Face-Recognition-Attendance-System"
+      architecture: "Python OpenCV computer vision layer integrated with hashlib/bcrypt authentication services and secure access control logs.",
+      github: "https://github.com/uk0976/Secure-Identity-and-Access-Control-System"
     },
     "codemedic-ai": {
-      title: "CodeMedic AI",
-      icon: "💻",
-      tags: ["TypeScript", "NodeJS", "AI Agents", "Codex"],
-      summary: "An autonomous multi-agent AI assistant that revolutionizes software engineering by combining real-time bug detection, security scanning, performance optimization, and automated test & doc generation into a unified workflow.",
+      title: "CodeMedic AI — Full-Stack AI Code Analysis Platform",
+      icon: "🩺",
+      tags: ["Next.js", "FastAPI", "Python", "PostgreSQL", "LLMs", "DevTools"],
+      summary: "An automated software engineering copilot for automated bug triage, security scanning (CVE/OWASP patterns), performance optimization, and unit test generation.",
       features: [
-        "Real-time bug detection and diagnostic suggestions",
-        "Security vulnerability scanning against OWASP Top 10 standards",
-        "Automated unit test generation and comprehensive docstring documentation",
-        "Performance profiling and refactoring suggestions powered by OpenAI Codex models"
+        "Static code parsing and LLM AST inspection flagging security vulnerabilities and memory leaks",
+        "Automated unit test generation matching pytest and Jest standards",
+        "Performance refactoring suggestions with Big-O complexity estimates",
+        "Interactive dashboard displaying repository health scores"
       ],
-      architecture: "Designed as a multi-agent TypeScript workspace coordinating specialized agents for checking syntax, scanning security, profiling performance, and checking test coverages.",
+      architecture: "Next.js frontend coupled with a FastAPI Python microservice running analysis workers against a PostgreSQL storage layer.",
       github: "https://github.com/uk0976/CodeMedic-AI"
     },
     "nirman": {
-      title: "Nirman AI Software Company",
+      title: "Nirman — Construction & Infrastructure Marketplace",
       icon: "🏗️",
-      tags: ["TypeScript", "AI Agents", "Software Development"],
-      summary: "An autonomous AI software development system powered by a collaborative team of specialized AI agents that design, develop, test, secure, document, and deploy software from a single prompt.",
+      tags: ["React", "Node.js", "Express", "MongoDB", "Material Tracking"],
+      summary: "A specialized B2B marketplace bridging builders, contractors, and material suppliers with transparent procurement tracking.",
       features: [
-        "Collaborative agent teams representing PM, Architect, Coder, Tester, and DevOps roles",
-        "Asynchronous task queues and event-driven communication logs between agents",
-        "Automated workspace build steps, compilation checks, and sandbox code execution",
-        "Self-correction loop where tester agents submit bug logs back to coder agents"
+        "Real-time catalog of verified construction materials and machinery rentals",
+        "Milestone-based contractor bidding and quotation management",
+        "Live order dispatch tracking and digital invoicing",
+        "Role-based portals for suppliers, contractors, and developers"
       ],
-      architecture: "Built with TypeScript, using advanced agent runtimes to schedule tasks, manage workspace file systems, and run sandbox tests.",
+      architecture: "MERN stack (MongoDB, Express.js, React, Node.js) with JWT authentication and RESTful endpoints.",
       github: "https://github.com/uk0976/Nirman"
     },
     "nsers": {
-      title: "NSERS – National Smart Emergency Response System",
+      title: "NSERS — National Smart Emergency Response System",
       icon: "🚨",
-      tags: ["Google Cloud", "Incident Dispatch", "AI Verification", "Analytics"],
-      summary: "An AI-powered emergency management platform that enables real-time incident reporting, multimodal AI verification, intelligent dispatch, and fraud detection for emergency services across India.",
+      tags: ["Python", "Emergency Dispatch", "IoT", "GPS", "Hackathon Finalist"],
+      summary: "A mission-critical emergency triage platform connecting emergency victims, ambulances, police, and hospitals with real-time GPS routing.",
       features: [
-        "Real-time citizen reporting of fires, accidents, and disasters via Web and Mobile channels",
-        "Multimodal AI analysis (image/video/text) to verify the authenticity of reported incidents",
-        "Intelligent routing algorithm to dispatch closest ambulance/fire engines based on traffic data",
-        "Advanced fraud detection dashboard flagging spam calls or duplicate reporting vectors"
+        "One-click multi-department emergency dispatch with live geolocation broadcast",
+        "Automated hospital bed and blood-bank inventory match based on transit proximity",
+        "Driver navigation app with dynamic congestion avoidance",
+        "Built for the Smart India Hackathon (SIH) competition"
       ],
-      architecture: "Built with Google Cloud Platform, leveraging cloud functions, App Engine, Firebase Realtime Database, and machine learning APIs for analysis and dispatch routing.",
-      github: "https://github.com/uk0976/NSERS---National-Smart-Emergency-Response-System"
+      architecture: "Distributed microservices coordinating geolocation broadcasts, WebSocket telemetry, and emergency services dashboards.",
+      github: "https://github.com/uk0976/NSERS"
     },
     "safestep": {
-      title: "SafeStep Journey Safety Tracker",
+      title: "SafeStep — AI-Assisted Smart Safety Companion",
       icon: "🛡️",
       tags: ["JavaScript", "Journey Tracking", "Risk Alerts", "Notifications"],
-      summary: "An AI-assisted real-time check-in system designed to protect solo travelers and late commuters with live path tracking and smart risk alerts.",
+      summary: "A safety companion application for commuters featuring anomaly route detection, scheduled check-ins, and automated emergency dispatches.",
       features: [
-        "Live location check-in tracking with geographic path maps",
-        "Smart risk alerts triggered if the user deviates from the expected route or is delayed",
-        "Automated SMS/Email notification alerts to emergency contacts without requiring signups",
-        "Designed and built for HackDevengers 1.0 hackathon competition"
+        "Live location tracking with expected-route corridor boundaries",
+        "Automated risk alerts if the commuter is detained or deviates significantly",
+        "Emergency SMS/WhatsApp dispatch to trusted circles without app download",
+        "Developed for the HackDevengers hackathon"
       ],
-      architecture: "A responsive JavaScript frontend integrated with location APIs and third-party SMS dispatch protocols for real-time safety monitoring.",
+      architecture: "Responsive web client utilizing Geolocation API and third-party SMS/webhook dispatch bridges.",
       github: "https://github.com/uk0976/SafeStep"
     },
     "dsa-journey": {
       title: "Data Structures & Algorithms Journey",
       icon: "🚩",
-      tags: ["Python", "Data Structures", "Algorithms", "Solutions"],
-      summary: "A structured repository of solutions to advanced coding challenges across LeetCode and placement assessments.",
+      tags: ["Python", "DSA", "LeetCode", "Algorithms", "Problem Solving"],
+      summary: "A comprehensive laboratory of optimized algorithmic solutions across LeetCode, GeekForGeeks, and technical interview benchmarks.",
       features: [
-        "Comprehensive collection of clean Python solutions for arrays, trees, graphs, and dynamic programming",
-        "Time and space complexity analysis documented for every solution",
-        "Visual trace walkthroughs of complex algorithms like back-tracking and tree traversals",
-        "A placement preparation tracker outlining progress across key coding topics"
+        "Clean, documented Python implementations across Arrays, Trees, Graphs, and DP",
+        "Detailed time and space complexity ($O(N)$, $O(\log N)$) annotations",
+        "Visual trace explanations for complex recursion and graph traversals",
+        "Placement preparation roadmap tracking core algorithmic competencies"
       ],
-      architecture: "Organized as a modular Python codebase with test execution templates and Markdown guides documenting problem-solving patterns.",
+      architecture: "Modular Python codebase organized by data structure paradigm with test execution suites.",
       github: "https://github.com/uk0976/Data-Structures-Algorithms-DSA-Journey"
     },
     "voiceguard": {
       title: "VoiceGuard — AI Voice Clone Deepfake Detector",
       icon: "🎙️",
       tags: ["FastAPI", "PyTorch", "Wav2Vec2", "React 18", "Librosa", "WebSockets"],
-      summary: "An enterprise-grade biometric audio forensics system engineered to detect synthetic voice clones, AI-generated speech, and audio deepfakes in both pre-recorded files and live microphone streams.",
+      summary: "An enterprise biometric audio forensics system engineered to detect synthetic voice clones, AI-generated speech, and audio deepfakes in real-time streams and recorded audio.",
       features: [
-        "Real-time dual-engine inference combining deep neural acoustic representations (Wav2Vec2) with DSP heuristics",
-        "Live microphone WebSocket audio streaming with chunk-level forensic classification and waveform visualization",
-        "Heuristic explainability reporting phase incoherence, micro-jitter absence, and unnatural spectral flatness",
-        "Zero-retention ephemeral privacy pipeline and comprehensive PDF forensic audit report generation"
+        "Dual-engine inference combining deep Wav2Vec2 representations with acoustic DSP heuristics",
+        "Live microphone WebSocket audio streaming with chunk-level forensic classification",
+        "Heuristic explainability reporting phase incoherence, micro-jitter absence, and spectral flatness",
+        "Zero-retention ephemeral privacy pipeline with comprehensive PDF audit reports"
       ],
       architecture: "FastAPI backend hosting PyTorch and TorchAudio neural pipelines alongside Librosa DSP processors, streaming telemetry via WebSockets to a React 18 & Vite dashboard.",
       github: "https://github.com/uk0976/VoiceGuard---AI-Voice-Clone-Deepfake-Detector"
@@ -653,36 +664,36 @@ function initProjectModal() {
       tags: ["Solidity", "Ethereum", "Hardhat", "React 18", "TypeScript", "FastAPI", "Web3.py"],
       summary: "A decentralized, non-custodial peer-to-peer lending protocol and DApp that eliminates centralized financial intermediaries through Ethereum smart contracts.",
       features: [
-        "Non-custodial smart contracts autonomously enforcing loan principal, simple interest, and collateral lifecycle states",
-        "Open decentralized liquidity marketplace allowing direct peer-to-peer funding between borrowers and lenders",
-        "FastAPI and Web3.py backend event indexer caching on-chain logs for low-latency frontend queries",
-        "58 Hardhat unit and negative security test cases verifying protocol invariants against reentrancy and overflows"
+        "Non-custodial smart contracts autonomously enforcing loan principal, simple interest, and collateral states",
+        "Open decentralized liquidity marketplace allowing direct funding between borrowers and lenders",
+        "FastAPI and Web3.py backend event indexer caching on-chain logs for low-latency queries",
+        "58 Hardhat unit test cases verifying protocol invariants against reentrancy and overflows"
       ],
-      architecture: "Solidity ^0.8.20 smart contracts deployed on Ethereum/Hardhat network, integrated with a Web3.py event indexing microservice and a React 18 TypeScript frontend via Ethers.js.",
+      architecture: "Solidity ^0.8.20 smart contracts deployed on Ethereum/Hardhat network, integrated with a Web3.py event indexing microservice and a React 18 TypeScript frontend.",
       github: "https://github.com/uk0976/BlockLoan-Blockchain-Based-Decentralized-Peer-to-Peer-Lending-Platform"
     },
     "coreforge-studio": {
       title: "CoreForge Studio — Digital Agency Platform",
       icon: "💻",
       tags: ["React", "JavaScript", "Vite", "Tailwind CSS", "UI/UX"],
-      summary: "A high-performance modern web platform for a digital design and development agency showcasing creative tech services and client case studies.",
+      summary: "A high-performance modern web platform for a digital design and engineering agency showcasing creative tech services and client case studies.",
       features: [
-        "Responsive component-driven React architecture optimized for swift navigation and zero layout shifts",
-        "Dynamic interactive service showcases highlighting UI/UX, full-stack development, and brand design capabilities",
-        "Modern dark aesthetic with refined CSS animations, fluid typography, and optimized asset loading"
+        "Responsive component-driven React architecture optimized for rapid navigation and zero layout shifts",
+        "Dynamic interactive service showcases highlighting UI/UX, full-stack, and brand design capabilities",
+        "Obsidian dark aesthetic with refined CSS animations and optimized asset loading"
       ],
-      architecture: "Custom single-page React application bundled with Vite and styled with modern responsive utility layouts.",
+      architecture: "Custom single-page React application bundled with Vite and styled with responsive utility architectures.",
       github: "https://github.com/uk0976/CoreForge-Studio"
     }
   };
-  
+
   const openModal = (id) => {
     const data = projectData[id];
     if (!data) return;
-    
+
     document.getElementById('modalIcon').textContent = data.icon;
     document.getElementById('modalName').textContent = data.title;
-    
+
     const tagsContainer = document.getElementById('modalTags');
     tagsContainer.innerHTML = '';
     data.tags.forEach(tag => {
@@ -690,107 +701,122 @@ function initProjectModal() {
       span.textContent = tag;
       tagsContainer.appendChild(span);
     });
-    
-    const featuresHtml = data.features.map(f => `<li>${f}</li>`).join('');
-    document.getElementById('modalBody').innerHTML = `
-      <p><strong>Overview:</strong> ${data.summary}</p>
-      <h4>Key Features</h4>
-      <ul>${featuresHtml}</ul>
-      <h4>Technical Architecture</h4>
-      <p>${data.architecture}</p>
+
+    const bodyContainer = document.getElementById('modalBody');
+    bodyContainer.innerHTML = `
+      <div style="margin-bottom: 1.5rem;">
+        <h4 style="font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--crimson); margin-bottom: 0.5rem; font-family: var(--font-mono);">Overview</h4>
+        <p style="font-size: 0.98rem; line-height: 1.65; color: var(--text-secondary);">${data.summary}</p>
+      </div>
+
+      <div style="margin-bottom: 1.5rem;">
+        <h4 style="font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--crimson); margin-bottom: 0.5rem; font-family: var(--font-mono);">Key Capabilities &amp; Architecture</h4>
+        <ul style="padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-secondary); font-size: 0.94rem;">
+          ${data.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 1.75rem; padding: 1.15rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border: 1px solid var(--border);">
+        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--soft-grey); margin-bottom: 0.35rem; font-family: var(--font-mono);">System Architecture</h4>
+        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; margin: 0;">${data.architecture}</p>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        ${data.github ? `
+          <a href="${data.github}" target="_blank" class="proj-btn" style="padding: 0.65rem 1.35rem;">
+            <span>Open Dedicated Repository</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        ` : ''}
+        <button type="button" class="proj-btn proj-btn-ghost" id="modalCloseBtn" style="padding: 0.65rem 1.35rem;">Close Details</button>
+      </div>
     `;
-    
-    const ghLink = document.getElementById('modalGithub');
-    if (ghLink) ghLink.href = data.github || "https://github.com/uk0976";
-    
+
+    document.getElementById('modalCloseBtn')?.addEventListener('click', closeModal);
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   };
-  
+
   const closeModal = () => {
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   };
-  
+
   detailButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const id = btn.getAttribute('data-project-id');
-      openModal(id);
+      if (id) openModal(id);
     });
   });
-  
-  closeBtn.addEventListener('click', closeModal);
-  if (closeFooterBtn) closeFooterBtn.addEventListener('click', closeModal);
-  
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
   });
-  
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
   });
 }
 
 /* ============================================================
-   UPGRADE: CERTIFICATE GALLERY & LIGHTBOX
+   CERTIFICATE GALLERY FILTER & LIGHTBOX
    ============================================================ */
+function initCertGallery() {
+  const filterBtns = document.querySelectorAll('.cert-filter-btn');
+  const cards = document.querySelectorAll('.cert-gallery-card');
+
+  if (filterBtns.length && cards.length) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+}
+
 function openCertLightbox(imgSrc, title, issuer) {
   const lightbox = document.getElementById('certLightbox');
   const img = document.getElementById('certLightboxImg');
   const titleEl = document.getElementById('certLightboxTitle');
   const issuerEl = document.getElementById('certLightboxIssuer');
   const downloadLink = document.getElementById('certDownloadLink');
-  
+
   if (!lightbox) return;
+
   if (img) img.src = imgSrc;
-  if (titleEl) titleEl.textContent = title || 'Certificate Inspection';
+  if (titleEl) titleEl.textContent = title || 'Certificate Preview';
   if (issuerEl) issuerEl.textContent = issuer || '';
-  if (downloadLink) downloadLink.href = imgSrc;
-  
+  if (downloadLink) {
+    downloadLink.href = imgSrc;
+    downloadLink.setAttribute('download', (title || 'Certificate').replace(/\s+/g, '_') + '.jpg');
+  }
+
   lightbox.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
 function closeCertLightbox() {
   const lightbox = document.getElementById('certLightbox');
-  if (!lightbox) return;
-  lightbox.classList.remove('active');
-  document.body.style.overflow = '';
+  if (lightbox) {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 }
 
-function initCertGallery() {
-  const filterBtns = document.querySelectorAll('.cert-filter-btn');
-  const cards = document.querySelectorAll('.cert-gallery-card');
-  
-  if (!filterBtns.length) return;
-  
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      const filter = btn.getAttribute('data-filter');
-      
-      cards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          card.style.display = 'flex';
-          card.style.animation = 'certZoomIn 0.35s ease';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const lightbox = document.getElementById('certLightbox');
-      if (lightbox && lightbox.classList.contains('active')) {
-        closeCertLightbox();
-      }
-    }
-  });
-}
+window.openCertLightbox = openCertLightbox;
+window.closeCertLightbox = closeCertLightbox;
+window.scrollToTop = scrollToTop;
