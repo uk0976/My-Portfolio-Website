@@ -1,463 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Doctor Umerkhan Junaidkhan – AI & Data Science Engineer, Machine Learning Developer, and Software Engineer. Explore production AI projects, research, and technical systems." />
-  <meta name="keywords" content="Umerkhan Junaidkhan, AI Engineer, Machine Learning, Data Science, Python, Deep Learning, Full Stack Developer, Computer Vision, NLP" />
-  <meta name="author" content="Doctor Umerkhan Junaidkhan" />
-  
-  <!-- SEO & Robots -->
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://my-portfolio-website-msm1.onrender.com/" />
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Umerkhan Junaidkhan | AI Engineer & Systems Developer</title>
+    <meta name="description" content="Portfolio of Umerkhan Junaidkhan — AI engineer and software developer specializing in real-time biometric audio forensics, clinical RAG systems, and full-stack platforms." />
+    <meta name="keywords" content="Umerkhan Junaidkhan, AI Engineer, Machine Learning, Voice Forensics, Wav2Vec2, Full-Stack, RAG, PyTorch, React, Developer Portfolio" />
+    <meta name="author" content="Umerkhan Junaidkhan Doctor" />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://my-portfolio-website-msm1.onrender.com/" />
-  <meta property="og:title" content="Doctor Umerkhan Junaidkhan — AI & Data Science Engineer" />
-  <meta property="og:description" content="Building Intelligent Systems. Engineering Real-World Impact. Explore AI, ML, Computer Vision, and Full-Stack Systems." />
-  <meta property="og:image" content="assets/profile/hero-umer.png" />
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Umerkhan Junaidkhan | AI Engineer & Systems Developer" />
+    <meta property="og:description" content="Real-time biometric audio forensics, clinical RAG architectures, and full-stack platforms built by Umerkhan Junaidkhan." />
+    <meta property="og:url" content="https://my-portfolio-website-msm1.onrender.com/" />
+    <meta property="og:image" content="/assets/profile/hero-umer.png" />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://my-portfolio-website-msm1.onrender.com/" />
-  <meta property="twitter:title" content="Doctor Umerkhan Junaidkhan — AI & Data Science Engineer" />
-  <meta property="twitter:description" content="Building Intelligent Systems. Engineering Real-World Impact. Explore AI, ML, Computer Vision, and Full-Stack Systems." />
-  <meta property="twitter:image" content="assets/profile/hero-umer.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Umerkhan Junaidkhan | AI Engineer & Systems Developer" />
+    <meta name="twitter:description" content="Real-time biometric audio forensics, clinical RAG architectures, and full-stack platforms." />
+    <meta name="twitter:image" content="/assets/profile/hero-umer.png" />
 
-  <title>Doctor Umerkhan Junaidkhan | AI &amp; Data Science Engineer</title>
-  
-  <!-- Premium Modern Fonts: Sora (Headings), Manrope (Body), Space Grotesk (Accents) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=3" />
-</head>
-<body>
-<canvas id="cosmic-canvas"></canvas>
+    <!-- Structured Data (Person Schema) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Umerkhan Junaidkhan Doctor",
+        "jobTitle": "AI Engineer & Software Developer",
+        "url": "https://my-portfolio-website-msm1.onrender.com/",
+        "sameAs": [
+          "https://github.com/uk0976",
+          "https://www.linkedin.com/in/umer-khan-57a458288/"
+        ],
+        "alumniOf": [
+          {
+            "@type": "EducationalOrganization",
+            "name": "Terna Engineering College"
+          },
+          {
+            "@type": "EducationalOrganization",
+            "name": "A. R. Kalsekar Polytechnic"
+          }
+        ]
+      }
+    </script>
 
-<!-- FLOATING NAVBAR -->
-<nav class="navbar" id="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="nav-logo-mark">&lt;UK/&gt;</div>
-      <span>Umer<span class="text-crimson">.</span>Khan</span>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="nav-link active">Home</a></li>
-      <li><a href="about.html" class="nav-link">About</a></li>
-      <li><a href="skills.html" class="nav-link">Skills</a></li>
-      <li><a href="projects.html" class="nav-link">Projects</a></li>
-      <li><a href="certificates.html" class="nav-link">Certificates</a></li>
-      <li><a href="achievements.html" class="nav-link">Achievements</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
-      <li><a href="UmerKhan_Resume.pdf" download class="nav-cta">Resume &darr;</a></li>
-      <li>
-        <button type="button" class="theme-toggle-btn" aria-label="Toggle theme" title="Toggle theme">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        </button>
-      </li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileOverlay">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- Mobile Menu Overlay -->
-<div class="mobile-overlay" id="mobileOverlay">
-  <button class="close-menu" id="closeMenu">✕</button>
-  <ul class="mobile-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="skills.html">Skills</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="certificates.html">Certificates</a></li>
-    <li><a href="achievements.html">Achievements</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="UmerKhan_Resume.pdf" download class="mobile-cta">Download Resume</a></li>
-    <li style="margin-top: 1rem;">
-      <button type="button" class="theme-toggle-btn" aria-label="Toggle theme" style="margin: 0 auto; width: 44px; height: 44px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line></svg>
-      </button>
-    </li>
-  </ul>
-</div>
-
-<!-- CINEMATIC HERO SECTION -->
-<section class="hero" id="hero">
-  <div class="hero-bg-glow"></div>
-  <div class="container">
-    <div class="hero-grid">
-      
-      <!-- Left Column: Content & Positioning -->
-      <div class="hero-content">
-        <div class="hero-status-pill reveal">
-          <span class="status-dot-pulse"></span>
-          <span>Available for Engineering Roles &amp; AI Collaborations</span>
-        </div>
-        
-        <div class="hero-name-label reveal delay-1">Umer Khan</div>
-        
-        <h1 class="hero-headline reveal delay-1">
-          AI &amp; Data Science <span class="gradient-text">Engineer.</span>
-        </h1>
-        
-        <div class="hero-role-bar reveal delay-2">
-          Building Intelligent Systems &middot; Engineering Real-World Impact
-        </div>
-        
-        <p class="hero-lead reveal delay-2">
-          I develop intelligent applications at the intersection of Artificial Intelligence, Machine Learning, Data Science, Automation, and modern software engineering.
-        </p>
-        
-        <p class="hero-sub reveal delay-3">
-          Specializing in end-to-end production systems—from neural forensics (VoiceGuard) and clinical RAG pipelines (MedInsight) to decentralized protocols (BlockLoan) and peer-reviewed computer vision.
-        </p>
-
-        <!-- Professional Pillars -->
-        <div class="hero-badges-row reveal delay-3">
-          <span class="hero-badge-item">🎯 Algorithmic Problem Solving</span>
-          <span class="hero-badge-item">🤖 Generative AI &amp; LLMs</span>
-          <span class="hero-badge-item">👁️ Computer Vision</span>
-          <span class="hero-badge-item">🔐 Secure Systems</span>
-          <span class="hero-badge-item">⚡ Full-Stack Delivery</span>
-        </div>
-        
-        <!-- Primary Actions -->
-        <div class="hero-actions reveal delay-4">
-          <a href="projects.html" class="btn btn-primary">
-            <span>Explore My Work</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
-          <a href="UmerKhan_Resume.pdf" download class="btn btn-outline">
-            <span>Download Resume</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5z"/><polyline points="14 3 14 8 20 8"/></svg>
-          </a>
-          <a href="contact.html" class="btn btn-ghost">Let's Connect</a>
-        </div>
-
-        <!-- Verified Metrics Strip -->
-        <div class="hero-stats-strip reveal delay-5">
-          <div class="hstat">
-            <span class="hstat-num">16+</span>
-            <span class="hstat-label">Engineered Projects</span>
-          </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <span class="hstat-num">3</span>
-            <span class="hstat-label">Industrial Internships</span>
-          </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <span class="hstat-num">90.33%</span>
-            <span class="hstat-label">Diploma Distinction</span>
-          </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <span class="hstat-num">1</span>
-            <span class="hstat-label">Peer-Reviewed Paper</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column: Cinematic Profile Visual Card -->
-      <div class="hero-visual-frame reveal delay-2">
-        <div class="hero-ambient-halo"></div>
-        <div class="hero-card-container">
-          <div class="hero-image-wrap">
-            <img src="assets/profile/hero-umer.png" alt="Doctor Umerkhan Junaidkhan" class="hero-profile-img" />
-            <div class="hero-image-overlay"></div>
-          </div>
-          <div class="hero-card-details">
-            <div class="hero-card-name">Doctor Umerkhan Junaidkhan</div>
-            <div class="hero-card-tag">B.E. Artificial Intelligence &amp; Data Science &middot; Terna Engineering College</div>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 0.85rem;">
-              Passionate engineer committed to scalable, high-integrity AI systems with proven deliveries in computer vision, automated testing, and web platforms.
-            </p>
-            <div class="hero-card-meta-row">
-              <span class="hero-card-badge">📍 Kalyan, Maharashtra</span>
-              <a href="https://github.com/uk0976" target="_blank" style="color: var(--crimson); font-weight: 600; display: inline-flex; align-items: center; gap: 0.3rem;">
-                GitHub Profile &rarr;
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- EDITORIAL ABOUT TEASER -->
-<section class="section section-alt" id="about">
-  <div class="container">
-    <div class="section-tag">Identity &amp; Philosophy</div>
-    <h2 class="section-title">Who I <span class="gradient-text">Am.</span></h2>
-    <p class="section-sub">A background built on mathematical rigor, hands-on production code, and disciplined problem solving.</p>
-    
-    <div class="about-dossier-grid">
-      <div class="about-narrative">
-        <p>
-          I am an aspiring technology professional pursuing my <strong>B.E. in Artificial Intelligence &amp; Data Science</strong> at Terna Engineering College (Mumbai University), backed by a three-year <strong>Diploma in AI &amp; Machine Learning (90.33% distinction, Class Rank #1)</strong> from A. R. Kalsekar Polytechnic.
-        </p>
-        <p>
-          My engineering journey blends academic excellence with practical execution. I have authored and published a <strong>peer-reviewed research paper</strong> on real-time face recognition attendance systems in the <em>International Journal of Research and Analytical Reviews (IJRAR)</em>, and presented technical methodologies at state-level symposiums.
-        </p>
-        
-        <div class="about-highlight-box">
-          <h4>Development Philosophy</h4>
-          <p>
-            I believe software should not merely function—it must be performant, mathematically sound, securely architected, and built to solve tangible human challenges. Whether engineering real-time deepfake audio classifiers or decentralized lending contracts, I design for edge-case resilience and zero fluff.
-          </p>
-        </div>
-
-        <p>
-          Having completed three distinct industrial internships across <strong>ExamSetu</strong> (Full-Stack), <strong>MPI Automotives</strong> (Web Architecture), and <strong>IRABOT TechEd LLP</strong> (Python Development), alongside serving 10+ freelance clients globally, I bring actual delivery velocity and production discipline to high-growth teams.
-        </p>
-
-        <div style="margin-top: 1rem;">
-          <a href="about.html" class="btn btn-outline">Read Full Biography &amp; Journey &rarr;</a>
-        </div>
-      </div>
-
-      <div class="about-side-rail">
-        <div class="editorial-card">
-          <div class="editorial-card-tag">Academic Pillar</div>
-          <h3 class="editorial-card-title">B.E. AI &amp; Data Science</h3>
-          <p>Terna Engineering College, Navi Mumbai (2024 – 2027 Ongoing). Specializing in Deep Learning, DSA, and System Design.</p>
-        </div>
-
-        <div class="editorial-card">
-          <div class="editorial-card-tag">Distinction</div>
-          <h3 class="editorial-card-title">Diploma AI &amp; Machine Learning</h3>
-          <p>90.33% aggregate. Ranked 1st in class consistently from 1st through 6th semester. Published research author during this tenure.</p>
-        </div>
-
-        <div class="editorial-card">
-          <div class="editorial-card-tag">Industrial Impact</div>
-          <h3 class="editorial-card-title">3 Industry Internships</h3>
-          <p>Delivered production codebases across Python, React, and backend APIs for EdTech, Automotive, and Robotics sectors.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CAPABILITIES & TECHNICAL STACK TEASER -->
-<section class="section" id="skills-teaser">
-  <div class="container">
-    <div class="section-tag">Technical Competencies</div>
-    <h2 class="section-title">Core <span class="gradient-text">Capabilities.</span></h2>
-    <p class="section-sub">A breakdown of my primary development stack spanning machine learning, modern backends, and full-stack frameworks.</p>
-    
-    <div class="skills-grid">
-      <!-- AI / ML Category -->
-      <div class="skill-category">
-        <svg class="cat-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="12" r="3"/><circle cx="19" cy="12" r="3"/><circle cx="12" cy="19" r="3"/><line x1="8" y1="10" x2="10.5" y2="6.5"/><line x1="16" y1="10" x2="13.5" y2="6.5"/><line x1="8" y1="14" x2="10.5" y2="17.5"/><line x1="16" y1="14" x2="13.5" y2="17.5"/></svg>
-        <h3>AI, ML &amp; GenAI</h3>
-        <div class="skill-pills">
-          <span class="skill-pill">Machine Learning</span>
-          <span class="skill-pill">Deep Learning</span>
-          <span class="skill-pill">Generative AI</span>
-          <span class="skill-pill">LLMs &amp; RAG</span>
-          <span class="skill-pill">LangChain</span>
-          <span class="skill-pill">FAISS</span>
-          <span class="skill-pill">BioBERT</span>
-          <span class="skill-pill">Computer Vision</span>
-        </div>
-      </div>
-
-      <!-- Languages & Backends -->
-      <div class="skill-category">
-        <svg class="cat-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        <h3>Languages &amp; Core Systems</h3>
-        <div class="skill-pills">
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">Java</span>
-          <span class="skill-pill">JavaScript / TypeScript</span>
-          <span class="skill-pill">SQL</span>
-          <span class="skill-pill">Data Structures</span>
-          <span class="skill-pill">Algorithms</span>
-          <span class="skill-pill">FastAPI</span>
-          <span class="skill-pill">Node.js / Express</span>
-        </div>
-      </div>
-
-      <!-- Web & Cloud -->
-      <div class="skill-category">
-        <svg class="cat-icon-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        <h3>Web &amp; Cloud Infrastructure</h3>
-        <div class="skill-pills">
-          <span class="skill-pill">React 18</span>
-          <span class="skill-pill">Next.js</span>
-          <span class="skill-pill">PostgreSQL</span>
-          <span class="skill-pill">Supabase</span>
-          <span class="skill-pill">Firebase</span>
-          <span class="skill-pill">MySQL</span>
-          <span class="skill-pill">Git &amp; GitHub</span>
-          <span class="skill-pill">Google Cloud Platform</span>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top: 3rem; text-align: center;">
-      <a href="skills.html" class="btn btn-primary">
-        <span>Explore Full Capability Matrix</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED PROJECTS TEASER -->
-<section class="section section-alt" id="projects-teaser">
-  <div class="container">
-    <div class="section-tag">Engineered Solutions</div>
-    <h2 class="section-title">Selected <span class="gradient-text">Projects.</span></h2>
-    <p class="section-sub">A curated selection of real-world systems demonstrating applied machine learning, computer vision, and backend architecture.</p>
-    
-    <div class="projects-grid">
-
-      <!-- Project 1: VoiceGuard -->
-      <div class="project-card">
-        <div class="project-accent"></div>
-        <div class="project-number">PROJECT 01 &middot; FORENSIC AI</div>
-        <svg class="project-icon-svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 10v4M12 7v10M15 9v6"/></svg>
-        <h3>VoiceGuard — AI Voice Clone Deepfake Detector</h3>
-        <p>An enterprise-grade biometric audio forensics system engineered to detect synthetic voice clones, AI-generated speech, and audio deepfakes in real-time streams and recorded audio using Wav2Vec2 and acoustic DSP heuristics.</p>
-        <div class="project-tech">
-          <span>FastAPI</span><span>PyTorch</span><span>Wav2Vec2</span><span>React 18</span><span>Librosa</span><span>WebSockets</span>
-        </div>
-        <div class="project-links">
-          <button type="button" class="proj-btn view-details-btn" data-project-id="voiceguard">View Details</button>
-          <a href="https://github.com/uk0976/VoiceGuard---AI-Voice-Clone-Deepfake-Detector" target="_blank" class="proj-btn proj-btn-ghost">
-            <span>GitHub</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-          </a>
-          <a href="https://voiceguard-app.onrender.com" target="_blank" class="proj-btn proj-btn-ghost" style="border-color: rgba(198, 40, 40, 0.4);">
-            <span>Live Demo</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Project 2: MedInsight -->
-      <div class="project-card">
-        <div class="project-accent"></div>
-        <div class="project-number">PROJECT 02 &middot; HEALTHCARE GENAI</div>
-        <svg class="project-icon-svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        <h3>MedInsight — RAG Medical Report Summarizer</h3>
-        <p>A multilingual AI platform using Retrieval-Augmented Generation (RAG), BioBERT clinical entity extraction, FAISS vector indexing, and Llama-3 to distill pathology reports into doctor and patient summaries.</p>
-        <div class="project-tech">
-          <span>Python</span><span>RAG</span><span>LangChain</span><span>BioBERT</span><span>FAISS</span><span>Llama-3</span>
-        </div>
-        <div class="project-links">
-          <button type="button" class="proj-btn view-details-btn" data-project-id="medical-summarizer">View Details</button>
-          <a href="https://github.com/uk0976/MedInsight---RAG-Based-AI-Medical-Report-Summarizer" target="_blank" class="proj-btn proj-btn-ghost">
-            <span>GitHub</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Project 3: Multiple Face Recognition Attendance System -->
-      <div class="project-card">
-        <div class="project-accent"></div>
-        <div class="project-number">PROJECT 03 &middot; PEER-REVIEWED PUBLICATION</div>
-        <svg class="project-icon-svg" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8V6a2 2 0 0 1 2-2h2M20 8V6a2 2 0 0 0-2-2h-2M4 16v2a2 2 0 0 0 2 2h2M20 16v2a2 2 0 0 1-2 2h-2"/><circle cx="12" cy="12" r="3"/></svg>
-        <h3>Multiple Face Recognition Attendance System</h3>
-        <p>A computer vision system published in IJRAR (2024) that simultaneously recognizes multiple faces in real time using LBPH and Haar Cascades, with automated SQL attendance tracking.</p>
-        <div class="project-tech">
-          <span>Python</span><span>OpenCV</span><span>LBPH</span><span>Haar Cascade</span><span>SQL</span><span>IJRAR 2024</span>
-        </div>
-        <div class="project-links">
-          <button type="button" class="proj-btn view-details-btn" data-project-id="face-recognition">View Details</button>
-          <a href="https://github.com/uk0976/Multiple-Face-Recognition-Attendance-System" target="_blank" class="proj-btn proj-btn-ghost">
-            <span>GitHub</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-          </a>
-        </div>
-      </div>
-
-    </div>
-    
-    <div style="margin-top: 3.5rem; text-align: center;">
-      <a href="projects.html" class="btn btn-primary">
-        <span>Browse All 16+ Production Repositories</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- CONNECT / CONVERSION TEASER -->
-<section class="section" id="connect-teaser">
-  <div class="container">
-    <div class="resume-card">
-      <div class="resume-left">
-        <div class="resume-icon-wrap">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </div>
-        <div>
-          <div class="section-tag" style="margin-bottom: 0.4rem;">Initiate Contact</div>
-          <h2 class="section-title" style="margin-bottom: 0.5rem; font-size: 2rem;">Have an Idea? Let's Build Something <span class="gradient-text">Meaningful.</span></h2>
-          <p style="margin: 0; font-size: 0.98rem;">Open to software engineering roles, applied AI research, and impactful collaborations.</p>
-        </div>
-      </div>
-      <div class="resume-right">
-        <a href="contact.html" class="btn btn-primary btn-large">
-          <span>Get In Touch</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-logo-wrap">
-      <div class="footer-logo">
-        <span>&lt;</span>UK<span class="text-crimson">/&gt;</span>
-      </div>
-      <p class="footer-tagline">
-        BUILDING SOLUTIONS &middot; IMPACTING LIVES
-      </p>
-    </div>
-    <div class="footer-middle">
-      <p class="footer-motto">
-        Keep Building. Keep Growing.
-      </p>
-      <p class="footer-text">&copy; 2026 Doctor Umerkhan Junaidkhan. All Rights Reserved.</p>
-    </div>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/umer-khan-57a458288/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/uk0976" target="_blank">GitHub</a>
-      <a href="mailto:umerkhandoctor04@gmail.com">Email</a>
-    </div>
-  </div>
-</footer>
-
-<!-- BACK TO TOP -->
-<button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">&uarr;</button>
-
-<!-- PROJECT DETAILS MODAL OVERLAY -->
-<div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
-  <div class="modal-container">
-    <button class="modal-close" id="modalClose" aria-label="Close details">✕</button>
-    <div class="modal-header">
-      <h3 class="modal-title" id="modalTitle">
-        <span class="modal-title-icon" id="modalIcon">👥</span>
-        <span id="modalName">Project Title</span>
-      </h3>
-      <div class="modal-tags" id="modalTags"></div>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-  </div>
-</div>
-
-<script src="script.js"></script>
-</body>
+    <!-- Typography: Fraunces (Editorial Display) + Geist + Geist Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..700&family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#09090B] text-[#EDEAE4] selection:bg-[#FF3B00] selection:text-white antialiased overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
