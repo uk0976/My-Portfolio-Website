@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import { MotionProvider, useMotion } from './context/MotionContext';
 import { Preloader } from './components/Preloader';
@@ -47,8 +47,11 @@ const AppInner: React.FC = () => {
     };
   }, [motionEnabled]);
 
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
   return (
-    <div className="relative min-h-screen bg-[#0B0B0C] text-[#EDEAE4] overflow-x-hidden flex flex-col justify-between selection:bg-[#FF3B00] selection:text-white">
+    <div className="relative min-h-screen bg-[#090C12] text-[#F2F2EF] overflow-x-hidden flex flex-col justify-between selection:bg-[#FB5E28] selection:text-white">
       {/* Subtle Noise Texture & Vignette */}
       <div className="film-grain" aria-hidden="true" />
       <div className="vignette-overlay" aria-hidden="true" />
@@ -59,8 +62,8 @@ const AppInner: React.FC = () => {
       {/* Cinematic Title-Card Preloader (once per session) */}
       {!preloaderDone && <Preloader onComplete={() => setPreloaderDone(true)} />}
 
-      {/* Fixed Editorial Header with Motion Toggle */}
-      <Header />
+      {/* Fixed Editorial Header with Motion Toggle for Subpages */}
+      {!isHome && <Header />}
 
       {/* Main Multi-Page Route Outlet */}
       <main className="flex-grow">
@@ -82,13 +85,13 @@ const AppInner: React.FC = () => {
             path="*"
             element={
               <div className="pt-40 pb-24 px-6 max-w-3xl mx-auto text-center space-y-6">
-                <div className="font-mono-code text-xs text-[#FF3B00] uppercase tracking-widest">
+                <div className="font-mono-code text-xs text-[#FB5E28] uppercase tracking-widest">
                   [SYSTEM 404 // SIGNAL LOST]
                 </div>
-                <h1 className="font-display text-4xl md:text-6xl text-[#EDEAE4]">
+                <h1 className="font-display text-4xl md:text-6xl text-[#F2F2EF]">
                   Zero Signal on this Frequency
                 </h1>
-                <p className="font-sans text-sm text-[#949089]">
+                <p className="font-sans text-sm text-[#9AA0AA]">
                   The route you requested does not correspond to an active service or case study.
                 </p>
               </div>
@@ -97,8 +100,8 @@ const AppInner: React.FC = () => {
         </Routes>
       </main>
 
-      {/* Editorial Footer with "psst" Easter Egg */}
-      <Footer />
+      {/* Editorial Footer for Subpages */}
+      {!isHome && <Footer />}
     </div>
   );
 };

@@ -1,83 +1,126 @@
 @import "tailwindcss";
+@import "./skhiladze.css";
 
 @layer base {
   :root {
-    --bg-carbon: #09090b;
-    --bg-surface: #121215;
-    --bg-surface-elevated: #18181c;
-    --text-primary: #edeae4;
-    --text-secondary: #949089;
-    --text-muted: #5c5a55;
-    --border-hairline: rgba(237, 234, 228, 0.08);
-    --border-active: rgba(237, 234, 228, 0.2);
-    --accent: #ff3b00;
+    --bg: #090c12;
+    --bg-2: #11151c;
+    --bg-card: rgba(17, 21, 28, 0.7);
+    --ink: #f2f2ef;
+    --muted: #9aa0aa;
+    --dim: #5c626d;
+    --accent: #fb5e28;
+    --accent-hi: #ff7a4d;
+    --accent-ink: #090c12;
+    --inv-bg: #f2f2ef;
+    --inv-ink: #090c12;
+    --scrim: rgba(9, 12, 18, 0.75);
+    --hairline: rgba(242, 242, 239, 0.09);
+    --hairline-hover: rgba(242, 242, 239, 0.22);
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-io: cubic-bezier(0.77, 0, 0.175, 1);
+    --t-ui: 0.24s;
   }
 
   body {
-    background-color: var(--bg-carbon);
-    color: var(--text-primary);
-    font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Martian Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.015em;
   }
 
-  /* Editorial Serif Display */
+  /* Display Font */
   .font-display {
-    font-family: 'Fraunces', Georgia, serif;
-    font-optical-sizing: auto;
+    font-family: 'Martian Display', 'Martian Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.04em;
   }
 
-  /* Technical Mono */
+  /* Monospace Font */
   .font-mono-code {
-    font-family: 'Geist Mono', monospace;
+    font-family: 'JetBrains Mono', 'Geist Mono', monospace;
   }
 }
 
-/* Subtle Film Grain Noise */
-.film-grain {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 999;
-  opacity: 0.038;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+/* Skhiladze Signature Indicator Dot */
+.pt-stop {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  margin-left: 4px;
+  vertical-align: baseline;
+  box-shadow: 0 0 10px rgba(251, 94, 40, 0.6);
 }
 
-/* Atmospheric Vignette */
-.vignette-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 998;
-  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.45) 100%);
+/* Kinetic Pendulum Arm for Motion Toggle */
+@keyframes pendulumSwing {
+  0% { transform: rotate(-28deg); }
+  50% { transform: rotate(28deg); }
+  100% { transform: rotate(-28deg); }
 }
 
-/* Hairline dividers */
+.pendulum-swing {
+  transform-origin: top center;
+  animation: pendulumSwing 1.6s ease-in-out infinite;
+}
+
+/* Hairline helpers */
 .hairline-b {
-  border-bottom: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--hairline);
 }
 .hairline-t {
-  border-top: 1px solid var(--border-hairline);
+  border-top: 1px solid var(--hairline);
 }
 .hairline-l {
-  border-left: 1px solid var(--border-hairline);
+  border-left: 1px solid var(--hairline);
 }
 .hairline-r {
-  border-right: 1px solid var(--border-hairline);
+  border-right: 1px solid var(--hairline);
 }
 
-/* Custom horizontal scroll bar concealment */
+/* Button with Skhiladze pill roll */
+.skh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 9999px;
+  background: var(--ink);
+  color: var(--inv-ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--t-ui) var(--ease-out);
+}
+.skh-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.skh-btn-ghost {
+  background: rgba(242, 242, 239, 0.04);
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+}
+.skh-btn-ghost:hover {
+  background: rgba(242, 242, 239, 0.08);
+  border-color: var(--hairline-hover);
+  color: var(--ink);
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 3px;
+  background: #252b36;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff3b00;
+  background: var(--accent);
 }
