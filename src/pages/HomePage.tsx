@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SkhiladzeDialEnter } from '../components/SkhiladzeDialEnter';
 import { SkhiladzeHeader } from '../components/SkhiladzeHeader';
 import { SkhiladzeHero, type HeroProject } from '../components/SkhiladzeHero';
 import { SkhiladzeMake } from '../components/SkhiladzeMake';
@@ -14,36 +15,53 @@ export const HomePage: React.FC = () => {
   const [view, setView] = useState<'featured' | 'full'>('featured');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeViewerProject, setActiveViewerProject] = useState<HeroProject | null>(null);
+  const [showDial, setShowDial] = useState<boolean>(() => {
+    return sessionStorage.getItem('skh-entered') !== '1';
+  });
 
   return (
     <div className="relative min-h-screen bg-[#090C12] text-[#F2F2EF] overflow-x-hidden selection:bg-[#FB5E28] selection:text-white">
-      {/* Skhiladze Top Bar (.bar) */}
-      <SkhiladzeHeader onOpenMenu={() => setIsMenuOpen(true)} />
+      {/* 1. Signature Radial Dial Intro Entrance (from video frame_004s.jpg & frame_140s.jpg) */}
+      {showDial && (
+        <SkhiladzeDialEnter
+          onEnter={() => {
+            setShowDial(false);
+            sessionStorage.setItem('skh-entered', '1');
+          }}
+        />
+      )}
 
-      {/* Skhiladze Hero Gate (.hero) with Perspective Corridor & Project Channels */}
+      {/* 2. Top Navigation Bar (.bar) with all proper routes + Featured. Full toggle */}
+      <SkhiladzeHeader
+        onOpenMenu={() => setIsMenuOpen(true)}
+        currentView={view}
+        onToggleView={() => setView(view === 'featured' ? 'full' : 'featured')}
+      />
+
+      {/* 3. Skhiladze Perspective Tunnel Corridor & Central Project Gate */}
       <SkhiladzeHero
         onOpenViewer={(project) => setActiveViewerProject(project)}
       />
 
-      {/* Skhiladze "What I make" Section (.make) */}
+      {/* 4. Skhiladze "What I make" Section (.make) with 6 Categories */}
       <SkhiladzeMake />
 
-      {/* Engineering Craft: Blueprint-to-Live Reveal */}
+      {/* 5. Engineering Craft: Blueprint-to-Live Reveal */}
       <BlueprintLiveReveal />
 
-      {/* Skhiladze "About" Section (.op) & Trajectory */}
+      {/* 6. Skhiladze "About" Section (.op) with Horizontal Curving Timeline String */}
       <SkhiladzeAbout />
 
-      {/* Floating Bottom View Toggle [Featured | Full] */}
+      {/* 7. Floating Bottom View Switcher [Featured | All Work (16+)] */}
       <SkhiladzeViewSwitch
         currentView={view}
         onViewChange={(newView) => setView(newView)}
       />
 
-      {/* Floating Direct Transmission Button */}
+      {/* 8. Floating Direct Transmission Action */}
       <SkhiladzeFab />
 
-      {/* Fullscreen Slide-Down Menu */}
+      {/* 9. Fullscreen Slide-Down Menu with All Proper Navigation Links */}
       <SkhiladzeMenu
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
@@ -51,13 +69,13 @@ export const HomePage: React.FC = () => {
         onSelectView={(newView) => setView(newView)}
       />
 
-      {/* All Work Full Directory Modal */}
+      {/* 10. All Work Full Directory Modal */}
       <SkhiladzeFull
         isOpen={view === 'full'}
         onClose={() => setView('featured')}
       />
 
-      {/* Theater Project Viewer Dialog */}
+      {/* 11. Project Theater Viewer Dialog */}
       <SkhiladzeViewer
         project={activeViewerProject}
         onClose={() => setActiveViewerProject(null)}

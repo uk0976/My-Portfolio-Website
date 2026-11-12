@@ -80,11 +80,106 @@ interface SkhiladzeHeroProps {
 export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const { motionEnabled } = useMotion();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const bgCanvasRef = useRef<HTMLCanvasElement>(null);
+  const previewCanvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Dynamic visualizer for the active project
+  // Background 3D Perspective Tunnel Corridor Canvas (matching Skhiladze frame_120s.jpg)
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = bgCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animId: number;
+    let time = 0;
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      ctx.scale(dpr, dpr);
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    const drawCorridor = () => {
+      time += motionEnabled ? 0.008 : 0;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const cx = w * 0.5;
+      const cy = h * 0.46;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Deep dark base
+      ctx.fillStyle = '#090C12';
+      ctx.fillRect(0, 0, w, h);
+
+      // Subtle atmospheric purple glow from the top center (like in Skhiladze showreel)
+      const glow = ctx.createRadialGradient(cx, cy * 0.3, 10, cx, cy * 0.5, w * 0.6);
+      glow.addColorStop(0, 'rgba(150, 40, 200, 0.16)');
+      glow.addColorStop(0.5, 'rgba(251, 94, 40, 0.06)');
+      glow.addColorStop(1, 'transparent');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, w, h);
+
+      // Receding vertical cards along left and right walls of the tunnel
+      const rows = 12;
+      const speed = time * 0.4;
+
+      for (let r = 0; r < rows; r++) {
+        // depth from 0 (close) to 1 (far)
+        const depth = ((r / rows + speed) % 1);
+        const invDepth = 1 - depth; // 1 = close, 0 = far
+        const scale = Math.pow(invDepth, 2.2);
+
+        if (scale < 0.05) continue;
+
+        const cardW = 120 * scale;
+        const cardH = 200 * scale;
+        const xOffset = (w * 0.52) * Math.pow(invDepth, 1.3);
+
+        const alpha = Math.min(0.25, invDepth * 0.35);
+
+        // Left card
+        const lx = cx - xOffset - cardW;
+        const ly = cy - cardH * 0.5;
+        ctx.fillStyle = `rgba(20, 25, 38, ${alpha})`;
+        ctx.strokeStyle = `rgba(180, 80, 250, ${alpha * 0.8})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(lx, ly, cardW, cardH, 4 * scale);
+        ctx.fill();
+        ctx.stroke();
+
+        // Right card
+        const rx = cx + xOffset;
+        const ry = cy - cardH * 0.5;
+        ctx.fillStyle = `rgba(20, 25, 38, ${alpha})`;
+        ctx.strokeStyle = `rgba(180, 80, 250, ${alpha * 0.8})`;
+        ctx.beginPath();
+        ctx.roundRect(rx, ry, cardW, cardH, 4 * scale);
+        ctx.fill();
+        ctx.stroke();
+      }
+
+      if (motionEnabled) {
+        animId = requestAnimationFrame(drawCorridor);
+      }
+    };
+
+    drawCorridor();
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(animId);
+    };
+  }, [motionEnabled]);
+
+  // Central Card Interactive Visualizer
+  useEffect(() => {
+    const canvas = previewCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -103,7 +198,7 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
     resize();
     window.addEventListener('resize', resize);
 
-    const render = () => {
+    const renderPreview = () => {
       t += motionEnabled ? 0.03 : 0;
       const rect = canvas.getBoundingClientRect();
       const w = rect.width;
@@ -111,10 +206,10 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
 
       ctx.clearRect(0, 0, w, h);
 
-      // Deep studio background
-      const bgGrad = ctx.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, w / 1.4);
-      bgGrad.addColorStop(0, '#151A24');
-      bgGrad.addColorStop(1, '#090C12');
+      // Deep radial glow
+      const bgGrad = ctx.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, w / 1.3);
+      bgGrad.addColorStop(0, '#161B26');
+      bgGrad.addColorStop(1, '#0A0D14');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, w, h);
 
@@ -122,10 +217,10 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
 
       if (active.type === 'audio') {
         // VoiceGuard: Acoustic wave harmonics & jitter
-        const lines = 14;
+        const lines = 16;
         for (let l = 0; l < lines; l++) {
           ctx.beginPath();
-          const isCenter = l === 7;
+          const isCenter = l === 8;
           ctx.strokeStyle = isCenter ? '#FB5E28' : `rgba(242, 242, 239, ${0.08 + l * 0.03})`;
           ctx.lineWidth = isCenter ? 2.5 : 1;
 
@@ -134,7 +229,7 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
             const envelope = Math.sin(normX * Math.PI);
             const wave1 = Math.sin(normX * 16 + t * 2.2 + l * 0.35);
             const wave2 = Math.cos(normX * 32 - t * 1.8);
-            const y = h * 0.5 + (wave1 * 34 + wave2 * 14) * envelope * (1 - Math.abs(l - 7) / 8);
+            const y = h * 0.5 + (wave1 * 34 + wave2 * 14) * envelope * (1 - Math.abs(l - 8) / 9);
 
             if (x === 0) ctx.moveTo(x, y);
             else ctx.lineTo(x, y);
@@ -143,7 +238,7 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
         }
       } else if (active.type === 'neural') {
         // MedInsight: Neural graph constellation
-        const nodes = 20;
+        const nodes = 22;
         const cx = w * 0.5;
         const cy = h * 0.5;
 
@@ -161,7 +256,7 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
           ctx.lineTo(x, y);
           ctx.stroke();
 
-          // Lines to next
+          // Lines to neighbor
           const nextAngle = ((i + 1) / nodes) * Math.PI * 2 + t * 0.15;
           const nextR = 70 + Math.sin((i + 1) * 1.8 + t) * 30;
           ctx.strokeStyle = 'rgba(242, 242, 239, 0.1)';
@@ -202,12 +297,12 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
         ctx.lineTo(bx + bw - 4, scanY);
         ctx.stroke();
 
-        // Face mesh landmark points
+        // Facial landmarks
         ctx.fillStyle = 'rgba(242, 242, 239, 0.8)';
         const landmarks = [
-          [bx + 55, by + 75], [bx + 125, by + 75], // eyes
-          [bx + 90, by + 115], // nose
-          [bx + 70, by + 155], [bx + 110, by + 155], // mouth
+          [bx + 55, by + 75], [bx + 125, by + 75],
+          [bx + 90, by + 115],
+          [bx + 70, by + 155], [bx + 110, by + 155],
         ];
         landmarks.forEach(([lx, ly]) => {
           ctx.beginPath();
@@ -215,7 +310,7 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
           ctx.fill();
         });
       } else {
-        // Matrix Grid
+        // Grid Matrix
         ctx.strokeStyle = 'rgba(242, 242, 239, 0.08)';
         ctx.lineWidth = 1;
         const step = 28;
@@ -230,18 +325,18 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
         ctx.fillRect(pulse, h * 0.5, step, step);
       }
 
-      // HUD Telemetry
+      // Live HUD Telemetry
       ctx.fillStyle = 'rgba(242, 242, 239, 0.5)';
       ctx.font = '11px monospace';
-      ctx.fillText(`SYSTEM: [0${activeIndex + 1}] // ${active.name.toUpperCase()}`, 20, 30);
+      ctx.fillText(`CHANNEL: [0${activeIndex + 1}] // ${active.name.toUpperCase()}`, 20, 30);
       ctx.fillText(`METRICS: ${active.metrics}`, 20, h - 20);
 
       if (motionEnabled) {
-        animId = requestAnimationFrame(render);
+        animId = requestAnimationFrame(renderPreview);
       }
     };
 
-    render();
+    renderPreview();
 
     return () => {
       window.removeEventListener('resize', resize);
@@ -252,141 +347,111 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
   const activeProject = HERO_PROJECTS[activeIndex];
 
   return (
-    <section id="top" className="relative pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
-      {/* Top Header Typography & Bio */}
-      <div className="flex flex-col items-start mb-12">
-        <div className="flex items-center gap-2 mb-3">
-          <span className="w-2 h-2 rounded-full bg-[#FB5E28] animate-pulse" />
-          <p className="font-mono-code text-xs md:text-sm tracking-widest text-[#FB5E28] uppercase font-semibold">
-            [AI &amp; SYSTEMS ENGINEER]
-          </p>
-        </div>
+    <section id="top" className="relative min-h-[92vh] flex flex-col justify-between pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
+      {/* Background 3D Perspective Tunnel Canvas */}
+      <canvas
+        ref={bgCanvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none -z-10"
+      />
 
-        <h1 className="font-display text-[12vw] sm:text-[9vw] lg:text-[7.5vw] font-bold leading-[0.88] tracking-[-0.04em] text-[#F2F2EF] uppercase">
-          UMER KHAN
-        </h1>
+      {/* Main Central Gate Monitor (16:9 aspect ratio, exactly matching Skhiladze) */}
+      <div className="relative my-auto flex flex-col items-center justify-center">
+        <div className="relative w-full max-w-3xl aspect-[16/9] rounded-2xl overflow-hidden border border-white/[0.12] bg-[#0A0D14] shadow-[0_20px_60px_rgba(0,0,0,0.8)] group">
+          {/* Visualizer Canvas */}
+          <canvas
+            ref={previewCanvasRef}
+            className="w-full h-full block cursor-pointer"
+            onClick={() => onOpenViewer(activeProject)}
+          />
 
-        <div className="w-full flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mt-4">
-          <p className="font-mono-code text-xs md:text-sm text-[#F2F2EF] uppercase tracking-wider">
-            DOCTOR UMERKHAN JUNAIDKHAN
-          </p>
-          <p className="max-w-xl font-sans text-sm md:text-base text-[#9AA0AA] leading-relaxed">
-            I engineer biometric audio forensics, clinical RAG architectures, and computer vision systems—and ship the production backend and web platforms to scale them.
-          </p>
-        </div>
-
-        {/* Three-Beat Signature Intro Line */}
-        <div className="mt-6 px-4 py-3 bg-[#11151C] border border-white/[0.08] rounded-md font-mono-code text-xs text-[#F2F2EF] tracking-wider uppercase flex items-center gap-2">
-          <span className="text-[#FB5E28]">↳</span>
-          <span>Trained in AI. Tested in internships. Shipped in production.</span>
-        </div>
-      </div>
-
-      {/* Skhiladze Signature Central Gate / Showreel Theater */}
-      <div className="relative my-8">
-        <div className="relative rounded-2xl overflow-hidden border border-white/[0.12] bg-[#090C12] shadow-2xl">
-          {/* 16:9 Screen */}
-          <div className="relative w-full aspect-video md:aspect-[21/9] bg-black overflow-hidden">
-            <canvas
-              ref={canvasRef}
-              className="w-full h-full block cursor-pointer"
-              onClick={() => onOpenViewer(activeProject)}
-            />
-
-            {/* Play Button Overlay */}
-            <div className="absolute bottom-6 right-6 z-10">
-              <button
-                type="button"
-                onClick={() => onOpenViewer(activeProject)}
-                className="flex items-center gap-3 px-5 py-3 rounded-full bg-[#F2F2EF] hover:bg-[#FB5E28] text-black hover:text-white font-mono-code text-xs uppercase tracking-wider font-semibold transition-all duration-300 shadow-xl cursor-pointer"
-              >
-                <span>Inspect System</span>
-                <svg width="14" height="14" viewBox="0 0 58 58" fill="currentColor">
-                  <path d="M21.9 19.5V38.5L39 29Z" />
-                </svg>
-              </button>
+          {/* Bottom Left Pill Badge (e.g. "VoiceGuard 2026 · AI Forensics") */}
+          <div className="absolute bottom-5 left-5 z-10">
+            <div className="px-4 py-1.5 rounded-full bg-white text-black font-display font-bold text-xs sm:text-sm tracking-tight shadow-xl flex items-center gap-2">
+              <span>{activeProject.name}</span>
+              <span className="font-mono-code font-normal text-[11px] text-[#5C626D]">{activeProject.label}</span>
             </div>
           </div>
 
-          {/* Skhiladze 5 Project Channel Tabs */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 border-t border-white/[0.08] divide-x divide-white/[0.08] bg-[#11151C]">
-            {HERO_PROJECTS.map((proj, idx) => {
-              const isCurrent = idx === activeIndex;
-              return (
-                <button
-                  key={proj.id}
-                  type="button"
-                  onClick={() => setActiveIndex(idx)}
-                  className={`p-4 text-left transition-colors cursor-pointer flex flex-col justify-between gap-1.5 ${
-                    isCurrent
-                      ? 'bg-white/[0.06] border-b-2 border-b-[#FB5E28]'
-                      : 'hover:bg-white/[0.02]'
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono-code text-[11px] text-[#FB5E28]">
-                      [{proj.number}]
-                    </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                  </div>
-                  <div>
-                    <div className="font-display text-sm md:text-base font-bold text-[#F2F2EF]">
-                      {proj.name}
-                    </div>
-                    <div className="font-mono-code text-[10px] text-[#9AA0AA] truncate">
-                      {proj.label}
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
+          {/* Bottom Right Circle Play Button */}
+          <div className="absolute bottom-5 right-5 z-10">
+            <button
+              type="button"
+              onClick={() => onOpenViewer(activeProject)}
+              className="w-10 h-10 rounded-full bg-white text-black hover:bg-[#FB5E28] hover:text-white flex items-center justify-center shadow-xl transition-all duration-300 cursor-pointer"
+              aria-label={`Play ${activeProject.name}`}
+            >
+              <svg width="12" height="12" viewBox="0 0 58 58" fill="currentColor">
+                <path d="M21.9 19.5V38.5L39 29Z" />
+              </svg>
+            </button>
           </div>
         </div>
+
+        {/* 5 Channel Dashes with Orange Reticle Tracker (matching frame_120s.jpg) */}
+        <div className="flex items-center gap-3 mt-6">
+          {HERO_PROJECTS.map((proj, idx) => {
+            const isCurrent = idx === activeIndex;
+            return (
+              <button
+                key={proj.id}
+                type="button"
+                onClick={() => setActiveIndex(idx)}
+                className="group p-2 cursor-pointer flex items-center justify-center"
+                aria-label={`Switch to ${proj.name}`}
+              >
+                {isCurrent ? (
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-4 h-0.5 bg-[#FB5E28] rounded-full" />
+                    <span className="w-2.5 h-2.5 rounded-full border border-[#FB5E28] flex items-center justify-center">
+                      <span className="w-1 h-1 rounded-full bg-[#FB5E28]" />
+                    </span>
+                    <span className="w-4 h-0.5 bg-[#FB5E28] rounded-full" />
+                  </div>
+                ) : (
+                  <span className="w-6 h-0.5 bg-white/20 group-hover:bg-white/50 rounded-full transition-colors" />
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Telemetry Row */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 mt-6 border-t border-white/[0.08] font-mono-code text-xs text-[#5C626D]">
-        <div>
-          <span className="block text-3xl font-bold text-[#F2F2EF] tabular-nums">16+</span>
-          <span>SYSTEMS SHIPPED</span>
+      {/* Telemetry Row & Action Links */}
+      <div className="pt-6 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex items-center gap-8 font-mono-code text-xs text-[#5C626D]">
+          <div>
+            <span className="text-[#F2F2EF] font-bold text-sm block">16+</span>
+            <span>SYSTEMS SHIPPED</span>
+          </div>
+          <div>
+            <span className="text-[#F2F2EF] font-bold text-sm block">03</span>
+            <span>INTERNSHIPS</span>
+          </div>
+          <div>
+            <span className="text-[#F2F2EF] font-bold text-sm block">#1 RANK</span>
+            <span>90.33% DIPLOMA</span>
+          </div>
+          <div>
+            <span className="text-[#F2F2EF] font-bold text-sm block">01 PAPER</span>
+            <span>IJRAR 2024</span>
+          </div>
         </div>
-        <div>
-          <span className="block text-3xl font-bold text-[#F2F2EF] tabular-nums">03</span>
-          <span>INDUSTRY INTERNSHIPS</span>
-        </div>
-        <div>
-          <span className="block text-3xl font-bold text-[#F2F2EF] tabular-nums">#1 RANK</span>
-          <span>6 OF 6 SEMS (90.33%)</span>
-        </div>
-        <div>
-          <span className="block text-3xl font-bold text-[#F2F2EF] tabular-nums">01 PAPER</span>
-          <span>IJRAR 2024 PUBLISHED</span>
-        </div>
-      </div>
 
-      {/* Fast Action Buttons */}
-      <div className="mt-10 flex flex-wrap items-center gap-4">
-        <a
-          href="#work"
-          className="px-7 py-3.5 bg-[#F2F2EF] hover:bg-[#FB5E28] text-black hover:text-white font-mono-code text-xs uppercase tracking-wider font-semibold transition-all duration-300 rounded-full cursor-pointer shadow-lg"
-        >
-          Explore Work [01] →
-        </a>
-
-        <a
-          href="/Umerkhan_Resume.pdf"
-          download
-          className="px-7 py-3.5 border border-white/15 hover:border-white/40 bg-white/[0.02] text-[#F2F2EF] font-mono-code text-xs uppercase tracking-wider rounded-full transition-all duration-300 cursor-pointer"
-        >
-          Download Resume (PDF) ↗
-        </a>
-
-        <a
-          href="mailto:umerkhan0976@gmail.com"
-          className="px-6 py-3.5 text-[#9AA0AA] hover:text-[#F2F2EF] font-mono-code text-xs uppercase tracking-wider transition-colors cursor-pointer"
-        >
-          Direct Transmission →
-        </a>
+        <div className="flex items-center gap-4">
+          <a
+            href="#work"
+            className="px-6 py-2.5 bg-[#F2F2EF] hover:bg-[#FB5E28] text-black hover:text-white font-mono-code text-xs uppercase tracking-wider font-semibold transition-all rounded-full shadow"
+          >
+            Explore Work ↓
+          </a>
+          <a
+            href="/Umerkhan_Resume.pdf"
+            download
+            className="px-6 py-2.5 border border-white/20 hover:border-white/40 text-[#F2F2EF] font-mono-code text-xs uppercase tracking-wider rounded-full transition-all"
+          >
+            Resume (PDF) ↗
+          </a>
+        </div>
       </div>
     </section>
   );

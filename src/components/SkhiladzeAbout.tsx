@@ -7,6 +7,7 @@ interface Milestone {
   title: string;
   body: string;
   meta: string;
+  previewTag: string;
 }
 
 const MILESTONES: Milestone[] = [
@@ -17,6 +18,7 @@ const MILESTONES: Milestone[] = [
     title: 'Diploma in AI & Machine Learning',
     body: 'A. R. Kalsekar Polytechnic. Graduated with 90.33% aggregate. Ranked #1 in class across all six consecutive semesters with top marks in machine learning algorithms, discrete mathematics, and database management.',
     meta: 'Rank #1 · 90.33% Aggregate · 6 of 6 Semesters',
+    previewTag: 'Academic Excellence',
   },
   {
     num: '02',
@@ -25,6 +27,7 @@ const MILESTONES: Milestone[] = [
     title: 'Published Research in IJRAR',
     body: 'Author of peer-reviewed paper: "Multiple Face Recognition Attendance System" published in the International Journal of Research and Analytical Reviews (IJRAR 2024). Presented empirical accuracy evaluations across variable illumination and multi-subject frames.',
     meta: 'IJRAR 2024 · State Symposium Presentation',
+    previewTag: 'IJRAR Paper',
   },
   {
     num: '03',
@@ -33,6 +36,7 @@ const MILESTONES: Milestone[] = [
     title: 'Three Industrial Internships',
     body: 'Shipped production code across three companies: ExamSetu (full-stack examination platform architecture), MPI Automotives (enterprise web architecture and performance overhaul), and IRABOT TechEd (Python robotics curriculum & automation engines).',
     meta: 'ExamSetu · MPI Automotives · IRABOT TechEd',
+    previewTag: 'Industry Production',
   },
   {
     num: '04',
@@ -41,6 +45,7 @@ const MILESTONES: Milestone[] = [
     title: 'B.E. in Artificial Intelligence & Data Science',
     body: 'Terna Engineering College, Navi Mumbai. Deep focus on deep neural architectures, transformers, distributed systems, and real-time inference latency minimization.',
     meta: 'Bachelor of Engineering · Ongoing',
+    previewTag: 'Undergraduate Degree',
   },
   {
     num: '05',
@@ -49,65 +54,127 @@ const MILESTONES: Milestone[] = [
     title: 'Independent AI & Systems Engineer',
     body: 'Architecting and deploying 16+ production systems. Specializing in voice forensics (VoiceGuard), clinical RAG summarization (MedInsight), and non-custodial smart contracts (BlockLoan) for 10+ freelance clients worldwide.',
     meta: '16+ Shipped Systems · 10+ Freelance Clients',
+    previewTag: 'Active Engineering',
   },
 ];
 
 export const SkhiladzeAbout: React.FC = () => {
-  const [activeChap, setActiveChap] = useState(0);
+  const [activeChap, setActiveChap] = useState(4); // Default to current 2026 → milestone
   const curr = MILESTONES[activeChap];
 
   return (
     <section id="about" className="pt-24 pb-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/[0.08]">
-      {/* Header */}
-      <div className="mb-12">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="w-12 h-3.5 inline-block text-[#FB5E28]">
-            <svg viewBox="0 0 52.9 14" fill="none" stroke="currentColor" strokeWidth="1.6">
-              <path d="M1.00 1.4L6.76 8.23Q9.60 11.60 12.44 8.23L18.20 1.4" />
-              <path d="M20.80 1.4L24.49 5.77Q26.30 7.93 28.12 5.77L31.81 1.4" />
-              <path d="M33.47 1.4L35.83 4.20Q36.99 5.58 38.16 4.20L40.52 1.4" />
-              <path d="M41.58 1.4L43.09 3.19Q43.84 4.07 44.58 3.19L46.09 1.4" />
-              <path d="M46.77 1.4L47.74 2.55Q48.22 3.11 48.69 2.55L49.66 1.4" />
-              <path d="M50.09 1.4L50.71 2.13Q51.02 2.50 51.32 2.13L51.94 1.4" />
-              <circle cx="9.60" cy="7.32" r="2.4" fill="currentColor" />
-            </svg>
-          </span>
-          <span className="font-mono-code text-xs text-[#FB5E28] uppercase tracking-widest">
-            [02 // TRAJECTORY]
-          </span>
+      {/* Header matching frame_054s.jpg */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <div className="flex items-center gap-3 mb-2">
+            <span className="w-12 h-3.5 inline-block text-[#FB5E28]">
+              <svg viewBox="0 0 52.9 14" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <path d="M1.00 1.4L6.76 8.23Q9.60 11.60 12.44 8.23L18.20 1.4" />
+                <path d="M20.80 1.4L24.49 5.77Q26.30 7.93 28.12 5.77L31.81 1.4" />
+                <path d="M33.47 1.4L35.83 4.20Q36.99 5.58 38.16 4.20L40.52 1.4" />
+                <path d="M41.58 1.4L43.09 3.19Q43.84 4.07 44.58 3.19L46.09 1.4" />
+                <path d="M46.77 1.4L47.74 2.55Q48.22 3.11 48.69 2.55L49.66 1.4" />
+                <path d="M50.09 1.4L50.71 2.13Q51.02 2.50 51.32 2.13L51.94 1.4" />
+                <circle cx="9.60" cy="7.32" r="2.4" fill="currentColor" />
+              </svg>
+            </span>
+            <span className="font-mono-code text-xs text-[#FB5E28] uppercase tracking-widest">
+              [02 // TRAJECTORY]
+            </span>
+          </div>
+
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-[#F2F2EF] tracking-tight">
+            About
+          </h2>
+
+          <div className="font-mono-code text-xs text-[#FB5E28] mt-2">
+            0{activeChap + 1}/05 · {curr.title}
+          </div>
         </div>
 
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-[#F2F2EF] tracking-tight">
-          About &amp; Milestones
-        </h2>
+        <div className="font-display font-bold text-3xl md:text-5xl text-[#F2F2EF]">
+          {curr.year.includes('→') ? 'Now' : curr.year.split('–').pop()}
+        </div>
       </div>
 
-      {/* Timeline Chapter Selector */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      {/* Skhiladze Horizontally Curving Timeline String (matching frame_054s.jpg) */}
+      <div className="relative w-full h-16 my-8 hidden sm:block">
+        <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1000 60">
+          {/* Main curving white string */}
+          <path
+            d="M 0 30 Q 250 5 500 30 T 1000 30"
+            fill="none"
+            stroke="rgba(242, 242, 239, 0.25)"
+            strokeWidth="1.5"
+          />
+        </svg>
+
+        {/* 5 Milestone Knots on the Timeline String */}
+        <div className="absolute inset-0 flex items-center justify-between px-8">
+          {MILESTONES.map((m, idx) => {
+            const isSelected = idx === activeChap;
+            return (
+              <button
+                key={m.num}
+                type="button"
+                onClick={() => setActiveChap(idx)}
+                className="group relative flex flex-col items-center cursor-pointer"
+              >
+                {/* Node Dot */}
+                <span
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    isSelected
+                      ? 'bg-[#FB5E28] ring-4 ring-[#FB5E28]/30 scale-125'
+                      : 'bg-white/40 hover:bg-white'
+                  }`}
+                />
+                <span
+                  className={`font-mono-code text-[11px] mt-2 transition-colors ${
+                    isSelected ? 'text-[#FB5E28] font-bold' : 'text-[#5C626D] group-hover:text-[#F2F2EF]'
+                  }`}
+                >
+                  {m.year}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Mobile Milestone Button Tabs */}
+      <div className="flex flex-wrap gap-2 mb-8 sm:hidden">
         {MILESTONES.map((m, idx) => (
           <button
             key={m.num}
             type="button"
             onClick={() => setActiveChap(idx)}
-            className={`px-4 py-2 rounded-full font-mono-code text-xs transition-all cursor-pointer ${
+            className={`px-3 py-1.5 rounded-full font-mono-code text-xs transition-all cursor-pointer ${
               idx === activeChap
-                ? 'bg-[#FB5E28] text-white shadow-lg'
-                : 'bg-white/[0.04] hover:bg-white/[0.08] text-[#9AA0AA] border border-white/[0.08]'
+                ? 'bg-[#FB5E28] text-white'
+                : 'bg-white/[0.04] text-[#9AA0AA] border border-white/[0.08]'
             }`}
           >
-            [{m.num}] {m.year} · {m.badge}
+            {m.year}
           </button>
         ))}
       </div>
 
-      {/* Active Milestone Card */}
-      <div className="p-8 md:p-10 rounded-2xl bg-[#11151C] border border-white/[0.12] mb-16 shadow-xl">
-        <span className="font-mono-code text-xs text-[#FB5E28] uppercase tracking-widest font-semibold block mb-2">
-          {curr.meta}
-        </span>
+      {/* Active Milestone Showcase Card */}
+      <div className="p-8 md:p-10 rounded-2xl bg-[#11151C] border border-white/[0.12] mb-16 shadow-xl relative overflow-hidden">
+        <div className="flex items-center justify-between pb-4 border-b border-white/[0.08] mb-6">
+          <span className="font-mono-code text-xs text-[#FB5E28] uppercase tracking-widest font-semibold">
+            {curr.meta}
+          </span>
+          <span className="px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 font-mono-code text-[11px] text-[#F2F2EF]">
+            {curr.previewTag}
+          </span>
+        </div>
+
         <h3 className="font-display text-2xl md:text-4xl font-bold text-[#F2F2EF] mb-4">
           {curr.title}
         </h3>
+
         <p className="font-sans text-base md:text-lg text-[#9AA0AA] leading-relaxed max-w-3xl">
           {curr.body}
         </p>

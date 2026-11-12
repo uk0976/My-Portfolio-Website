@@ -42,36 +42,56 @@ export const SkhiladzeMenu: React.FC<SkhiladzeMenuProps> = ({
         </button>
       </div>
 
-      {/* Main Navigation */}
-      <nav className="my-auto py-12">
-        <ol className="flex flex-col gap-6 list-none p-0 m-0">
+      {/* Main Navigation with All Categories */}
+      <nav className="my-auto py-8">
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12 list-none p-0 m-0">
           <li>
             <a
               href="#work"
               onClick={onClose}
-              className="group flex items-baseline gap-4 text-3xl sm:text-5xl md:text-6xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
+              className="group flex items-baseline gap-4 text-3xl sm:text-4xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
             >
               <span className="font-mono-code text-sm text-[#FB5E28]">01</span>
-              <span>Work</span>
+              <span>Work (Featured Systems)</span>
             </a>
           </li>
           <li>
             <a
               href="#about"
               onClick={onClose}
-              className="group flex items-baseline gap-4 text-3xl sm:text-5xl md:text-6xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
+              className="group flex items-baseline gap-4 text-3xl sm:text-4xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
             >
               <span className="font-mono-code text-sm text-[#FB5E28]">02</span>
-              <span>About</span>
+              <span>About &amp; Trajectory</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/skills"
+              onClick={onClose}
+              className="group flex items-baseline gap-4 text-3xl sm:text-4xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
+            >
+              <span className="font-mono-code text-sm text-[#FB5E28]">03</span>
+              <span>Technical Skills Index</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/certificates"
+              onClick={onClose}
+              className="group flex items-baseline gap-4 text-3xl sm:text-4xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
+            >
+              <span className="font-mono-code text-sm text-[#FB5E28]">04</span>
+              <span>Certificates &amp; Awards</span>
             </a>
           </li>
           <li>
             <a
               href="/how-i-work"
               onClick={onClose}
-              className="group flex items-baseline gap-4 text-2xl sm:text-4xl md:text-5xl font-display font-bold text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors"
+              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors"
             >
-              <span className="font-mono-code text-sm text-[#5C626D]">03</span>
+              <span className="font-mono-code text-sm text-[#5C626D]">05</span>
               <span>How I Work</span>
             </a>
           </li>
@@ -79,10 +99,20 @@ export const SkhiladzeMenu: React.FC<SkhiladzeMenuProps> = ({
             <a
               href="/side-quests"
               onClick={onClose}
-              className="group flex items-baseline gap-4 text-2xl sm:text-4xl md:text-5xl font-display font-bold text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors"
+              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors"
             >
-              <span className="font-mono-code text-sm text-[#5C626D]">04</span>
+              <span className="font-mono-code text-sm text-[#5C626D]">06</span>
               <span>Side Quests</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contact"
+              onClick={onClose}
+              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors"
+            >
+              <span className="font-mono-code text-sm text-[#5C626D]">07</span>
+              <span>Contact &amp; Transmission</span>
             </a>
           </li>
           <li>
@@ -90,9 +120,9 @@ export const SkhiladzeMenu: React.FC<SkhiladzeMenuProps> = ({
               href="/Umerkhan_Resume.pdf"
               download
               onClick={onClose}
-              className="group flex items-baseline gap-4 text-2xl sm:text-4xl md:text-5xl font-display font-bold text-[#9AA0AA] hover:text-[#FB5E28] transition-colors"
+              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#9AA0AA] hover:text-[#FB5E28] transition-colors"
             >
-              <span className="font-mono-code text-sm text-[#5C626D]">05</span>
+              <span className="font-mono-code text-sm text-[#5C626D]">08</span>
               <span>Resume (PDF) ↗</span>
             </a>
           </li>
@@ -117,7 +147,7 @@ export const SkhiladzeMenu: React.FC<SkhiladzeMenuProps> = ({
           <button
             type="button"
             onClick={toggleMotion}
-            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors"
+            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors cursor-pointer"
           >
             {motionEnabled ? 'Motion: On' : 'Motion: Off'}
           </button>
@@ -128,7 +158,7 @@ export const SkhiladzeMenu: React.FC<SkhiladzeMenuProps> = ({
               onSelectView(currentView === 'featured' ? 'full' : 'featured');
               onClose();
             }}
-            className="text-[#FB5E28] hover:underline"
+            className="text-[#FB5E28] hover:underline cursor-pointer"
           >
             {currentView === 'featured' ? 'View: All Work (16+)' : 'View: Featured'}
           </button>

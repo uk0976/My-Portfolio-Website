@@ -15,6 +15,7 @@ import { AboutPage } from './pages/AboutPage';
 import { HowIWorkPage } from './pages/HowIWorkPage';
 import { SideQuestsPage } from './pages/SideQuestsPage';
 import { RecognitionPage } from './pages/RecognitionPage';
+import { SkillsPage } from './pages/SkillsPage';
 import { MetaCaseStudyPage } from './pages/MetaCaseStudyPage';
 import { ContactPage } from './pages/ContactPage';
 
@@ -75,6 +76,9 @@ const AppInner: React.FC = () => {
           <Route path="/projects" element={<WorkPage />} />
           <Route path="/projects/:id" element={<CaseStudyPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/skills" element={<SkillsPage />} />
+          <Route path="/certificates" element={<RecognitionPage />} />
+          <Route path="/achievements" element={<RecognitionPage />} />
           <Route path="/how-i-work" element={<HowIWorkPage />} />
           <Route path="/side-quests" element={<SideQuestsPage />} />
           <Route path="/recognition" element={<RecognitionPage />} />
