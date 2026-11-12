@@ -10,31 +10,32 @@ export const SkhiladzeViewSwitch: React.FC<SkhiladzeViewSwitchProps> = ({
   onViewChange,
 }) => {
   return (
-    <aside className="view" aria-label="View mode">
-      <button
-        className="view__b"
-        type="button"
-        data-view="featured"
-        aria-pressed={currentView === 'featured'}
-        onClick={() => onViewChange('featured')}
-      >
-        <span className="view__w">Featured</span>
-      </button>
+    <aside className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40" aria-label="View mode">
+      <div className="flex items-center gap-1 p-1 rounded-full bg-[#11151C]/90 backdrop-blur-md border border-white/15 shadow-2xl">
+        <button
+          type="button"
+          onClick={() => onViewChange('featured')}
+          className={`px-4 py-1.5 rounded-full font-mono-code text-xs uppercase tracking-wider transition-all cursor-pointer ${
+            currentView === 'featured'
+              ? 'bg-[#FB5E28] text-white shadow-md font-semibold'
+              : 'text-[#9AA0AA] hover:text-[#F2F2EF]'
+          }`}
+        >
+          Featured
+        </button>
 
-      <button
-        className="view__b"
-        type="button"
-        data-view="full"
-        aria-pressed={currentView === 'full'}
-        aria-controls="full"
-        onClick={() => onViewChange('full')}
-      >
-        <span className="view__w">Full</span>
-      </button>
-
-      <span className="view__pt" aria-hidden="true">
-        <span className="view__in" />
-      </span>
+        <button
+          type="button"
+          onClick={() => onViewChange('full')}
+          className={`px-4 py-1.5 rounded-full font-mono-code text-xs uppercase tracking-wider transition-all cursor-pointer ${
+            currentView === 'full'
+              ? 'bg-[#FB5E28] text-white shadow-md font-semibold'
+              : 'text-[#9AA0AA] hover:text-[#F2F2EF]'
+          }`}
+        >
+          All Work (16+)
+        </button>
+      </div>
     </aside>
   );
 };

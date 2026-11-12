@@ -7,89 +7,119 @@ interface SkhiladzeHeaderProps {
 
 export const SkhiladzeHeader: React.FC<SkhiladzeHeaderProps> = ({ onOpenMenu }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [istTime, setIstTime] = useState('');
   const { motionEnabled, toggleMotion } = useMotion();
 
   useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      };
+      setIstTime(new Intl.DateTimeFormat('en-GB', options).format(now));
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+
     const handleScroll = () => {
-      // Show .back navigation when scrolled past the hero section
-      setIsScrolled(window.scrollY > 350);
+      setIsScrolled(window.scrollY > 40);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
-    <>
-      {/* Top Bar on Hero (.bar) */}
-      <header className="bar">
-        <div className="bar__mark">
-          <a href="#top" aria-label="Umer Khan home">
-            <span className="name">
-              <span className="name__a">Umer</span> <span className="name__b">Khan</span>
-              <span className="pt pt--stop" aria-hidden="true"></span>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[#090C12]/90 backdrop-blur-md py-4 border-b border-white/[0.08]'
+          : 'bg-transparent py-6'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        {/* Brand Mark: Umer Khan with Skhiladze glowing dot */}
+        <a href="#top" className="flex items-center gap-3 text-left group cursor-pointer text-decoration-none">
+          <div>
+            <div className="flex items-center">
+              <span className="font-display font-bold text-lg md:text-xl tracking-tight text-[#F2F2EF] group-hover:text-[#FB5E28] transition-colors">
+                Umer Khan
+              </span>
+              <span className="inline-block w-2 h-2 rounded-full bg-[#FB5E28] ml-1.5 shadow-[0_0_8px_rgba(251,94,40,0.8)]" />
+            </div>
+            <span className="hidden sm:block font-mono-code text-[10px] text-[#5C626D] tracking-widest uppercase">
+              KALYAN, IN · {istTime} IST
             </span>
-          </a>
-        </div>
+          </div>
+        </a>
 
-        <nav className="bar__nav" aria-label="Sections">
-          <span className="bar__half">
-            <a href="#work">Work</a>
-          </span>
-          <span className="bar__half">
-            <a href="#about">About</a>
-          </span>
+        {/* Center Nav: Work and About */}
+        <nav className="hidden md:flex items-center gap-8 font-mono-code text-xs uppercase tracking-wider">
+          <a
+            href="#work"
+            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors flex items-center gap-1.5"
+          >
+            <span>[01]</span>
+            <span>Work</span>
+          </a>
+          <a
+            href="#about"
+            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors flex items-center gap-1.5"
+          >
+            <span>[02]</span>
+            <span>About</span>
+          </a>
+          <a
+            href="/how-i-work"
+            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors flex items-center gap-1.5"
+          >
+            <span>[03]</span>
+            <span>How I Work</span>
+          </a>
+          <a
+            href="/Umerkhan_Resume.pdf"
+            download
+            className="text-[#9AA0AA] hover:text-[#FB5E28] transition-colors flex items-center gap-1.5"
+          >
+            <span>Resume (PDF) ↗</span>
+          </a>
         </nav>
 
-        <div className="bar__end">
+        {/* Right End: Motion Toggle with Pendulum + Menu Button */}
+        <div className="flex items-center gap-4">
           <button
-            className="motion-sw"
             type="button"
-            aria-pressed={motionEnabled}
             onClick={toggleMotion}
-            title={motionEnabled ? 'Disable motion' : 'Enable motion'}
+            className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 bg-white/[0.03] text-xs font-mono-code text-[#9AA0AA] hover:text-[#F2F2EF] transition-all cursor-pointer"
+            title={motionEnabled ? 'Disable kinetic animations' : 'Enable kinetic animations'}
           >
-            <span className="mo" aria-hidden="true">
-              <span className={`mo__arm ${motionEnabled ? 'pendulum-swing' : ''}`}></span>
+            <span className="inline-block w-3.5 h-3.5 relative">
+              <span
+                className={`block w-0.5 h-2.5 bg-[#FB5E28] mx-auto origin-top ${
+                  motionEnabled ? 'pendulum-swing' : ''
+                }`}
+              />
             </span>
-            <span className="mo__on">Motion on</span>
-            <span className="mo__off">Motion off</span>
+            <span>{motionEnabled ? 'Motion on' : 'Motion off'}</span>
           </button>
 
           <button
-            className="bar__menu"
             type="button"
-            aria-expanded="false"
-            aria-controls="menu"
             onClick={onOpenMenu}
+            className="px-4 py-1.5 rounded-full border border-white/15 hover:border-white/40 bg-white/[0.04] hover:bg-white/[0.08] text-xs font-mono-code uppercase tracking-wider text-[#F2F2EF] transition-all cursor-pointer"
           >
             Menu
           </button>
         </div>
-      </header>
-
-      {/* Floating Sticky Bottom Bar (.back) */}
-      <nav className={`back ${isScrolled ? 'is-on' : ''}`} aria-label="Page sections">
-        <a className="back__mark" href="#top" aria-label="Back to top">
-          <span className="name">
-            <span className="name__a">Umer</span> <span className="name__b">Khan</span>
-            <span className="pt pt--stop" aria-hidden="true"></span>
-          </span>
-        </a>
-        <span className="back__nav">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
-        </span>
-        <button
-          className="back__menu"
-          type="button"
-          aria-expanded="false"
-          aria-controls="menu"
-          onClick={onOpenMenu}
-        >
-          Menu
-        </button>
-      </nav>
-    </>
+      </div>
+    </header>
   );
 };

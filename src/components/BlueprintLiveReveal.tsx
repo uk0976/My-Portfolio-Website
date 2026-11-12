@@ -93,42 +93,46 @@ export const BlueprintLiveReveal: React.FC = () => {
 
         {/* OVER LAYER: LIVE PRODUCTION SYSTEM HUD (Clipped by slider position) */}
         <div
-          className="absolute inset-0 bg-[#0D0D10] border-r border-[#FF3B00] overflow-hidden"
+          className="absolute inset-0 overflow-hidden z-10"
           style={{
             clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)`,
+            backgroundColor: '#11151C',
           }}
         >
-          <div className="w-full h-full p-8 sm:p-12 flex flex-col justify-between bg-gradient-to-br from-[#121215] to-[#0A0A0C] text-[#EDEAE4]">
+          <div
+            className="w-full h-full p-8 sm:p-12 flex flex-col justify-between text-[#F2F2EF]"
+            style={{ backgroundColor: '#11151C' }}
+          >
             {/* Top Bar Live Status */}
-            <div className="flex items-center justify-between hairline-b pb-4 font-mono-code text-xs">
+            <div className="flex items-center justify-between border-b border-white/[0.08] pb-4 font-mono-code text-xs">
               <div className="flex items-center gap-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#FF3B00] animate-pulse" />
-                <span className="font-bold text-[#EDEAE4]">VOICEGUARD · PRODUCTION HUD</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#FB5E28] animate-pulse" />
+                <span className="font-bold text-[#F2F2EF]">VOICEGUARD · PRODUCTION HUD</span>
               </div>
-              <span className="text-[#FF3B00]">LIVE INFERENCE STREAM</span>
+              <span className="text-[#FB5E28]">LIVE INFERENCE STREAM</span>
             </div>
 
             {/* Center Visual Mockup */}
             <div className="my-auto py-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="space-y-4">
-                <div className="font-mono-code text-xs text-[#5C5A55] uppercase">
+                <div className="font-mono-code text-xs text-[#5C626D] uppercase">
                   CLASSIFICATION CONFIDENCE
                 </div>
-                <div className="text-4xl sm:text-6xl font-display text-[#EDEAE4] tracking-tight">
+                <div className="text-4xl sm:text-6xl font-display font-bold text-[#F2F2EF] tracking-tight">
                   99.4% REAL
                 </div>
-                <div className="flex gap-2 font-mono-code text-[11px] text-[#949089]">
-                  <span className="px-2 py-0.5 bg-white/5 border border-white/10 rounded">Phase Coherent</span>
-                  <span className="px-2 py-0.5 bg-white/5 border border-white/10 rounded">Micro-Jitter Present</span>
+                <div className="flex gap-2 font-mono-code text-[11px] text-[#9AA0AA]">
+                  <span className="px-2.5 py-1 bg-white/5 border border-white/10 rounded">Phase Coherent</span>
+                  <span className="px-2.5 py-1 bg-white/5 border border-white/10 rounded">Micro-Jitter Present</span>
                 </div>
               </div>
 
               {/* Waveform Telemetry Visualizer */}
-              <div className="h-28 bg-black/60 border border-white/10 flex items-center justify-around px-4 gap-1">
+              <div className="h-28 bg-black/60 border border-white/10 rounded-xl flex items-center justify-around px-4 gap-1">
                 {[45, 60, 25, 80, 95, 30, 70, 85, 40, 65, 90, 35, 75, 50, 85, 60, 40, 70, 95, 30].map((h, i) => (
                   <div
                     key={i}
-                    className="w-1.5 bg-[#FF3B00] rounded-full transition-all duration-300"
+                    className="w-1.5 bg-[#FB5E28] rounded-full transition-all duration-300"
                     style={{ height: `${h}%` }}
                   />
                 ))}
@@ -136,10 +140,20 @@ export const BlueprintLiveReveal: React.FC = () => {
             </div>
 
             {/* Bottom Production Status */}
-            <div className="flex items-center justify-between font-mono-code text-xs text-[#5C5A55] hairline-t pt-4">
+            <div className="flex items-center justify-between font-mono-code text-xs text-[#5C626D] border-t border-white/[0.08] pt-4">
               <span>HOST: RENDER DEPLOYED</span>
-              <span className="text-[#EDEAE4]">RENDER LATENCY: 240ms</span>
+              <span className="text-[#F2F2EF]">RENDER LATENCY: 240ms</span>
             </div>
+          </div>
+        </div>
+
+        {/* Divider Slider Handle */}
+        <div
+          className="absolute top-0 bottom-0 w-0.5 bg-[#FB5E28] z-20 pointer-events-none"
+          style={{ left: `${sliderPos}%` }}
+        >
+          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#FB5E28] text-white flex items-center justify-center text-[10px] shadow-lg font-bold">
+            ⇄
           </div>
         </div>
 
