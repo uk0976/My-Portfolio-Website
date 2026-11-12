@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import * as THREE from 'three';
 import { useMotion } from '../context/MotionContext';
 
 export interface HeroProject {
@@ -79,105 +80,160 @@ interface SkhiladzeHeroProps {
 
 export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const { motionEnabled } = useMotion();
   const bgCanvasRef = useRef<HTMLCanvasElement>(null);
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Background 3D Perspective Tunnel Corridor Canvas (matching Skhiladze frame_120s.jpg)
+  // 1. Genuine Three.js 3D WebGL Perspective Corridor Tunnel
   useEffect(() => {
     const canvas = bgCanvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
 
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance',
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    // Scene & Fog
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2('#090C12', 0.016);
+
+    // Camera
+    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 300);
+    camera.position.set(0, 0, 16);
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight('#ffffff', 0.4);
+    scene.add(ambientLight);
+
+    const pointLightVermilion = new THREE.PointLight('#FB5E28', 2.5, 80);
+    pointLightVermilion.position.set(0, 5, -20);
+    scene.add(pointLightVermilion);
+
+    const pointLightViolet = new THREE.PointLight('#7B3FE4', 1.8, 100);
+    pointLightViolet.position.set(0, -10, -50);
+    scene.add(pointLightViolet);
+
+    // 3D Portal Frames (The Receding Tunnel)
+    const portalGroup = new THREE.Group();
+    scene.add(portalGroup);
+
+    const portalCount = 22;
+    const portalSpacing = 8;
+    const tunnelLength = portalCount * portalSpacing;
+    const portals: THREE.LineSegments[] = [];
+
+    const frameWidth = 26;
+    const frameHeight = 15;
+    const boxGeo = new THREE.BoxGeometry(frameWidth, frameHeight, 1.2);
+    const edgesGeo = new THREE.EdgesGeometry(boxGeo);
+
+    for (let i = 0; i < portalCount; i++) {
+      const zPos = -i * portalSpacing;
+      const isAccent = i % 4 === 0;
+
+      const mat = new THREE.LineBasicMaterial({
+        color: isAccent ? new THREE.Color('#FB5E28') : new THREE.Color('#222B3D'),
+        transparent: true,
+        opacity: isAccent ? 0.65 : 0.25,
+      });
+
+      const line = new THREE.LineSegments(edgesGeo, mat);
+      line.position.set(0, 0, zPos);
+      portalGroup.add(line);
+      portals.push(line);
+    }
+
+    // 3D Floating Particles / Volumetric Stars
+    const particleCount = 750;
+    const particleGeo = new THREE.BufferGeometry();
+    const particlePositions = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount; i++) {
+      particlePositions[i * 3] = (Math.random() - 0.5) * 60;
+      particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 40;
+      particlePositions[i * 3 + 2] = -Math.random() * tunnelLength + 10;
+    }
+
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+    const particleMat = new THREE.PointsMaterial({
+      color: new THREE.Color('#F2F2EF'),
+      size: 0.18,
+      transparent: true,
+      opacity: 0.4,
+    });
+    const particles = new THREE.Points(particleGeo, particleMat);
+    scene.add(particles);
+
+    // Mouse Parallax Targets
+    let targetX = 0;
+    let targetY = 0;
+
+    const onPointerMove = (e: PointerEvent) => {
+      const normX = (e.clientX / window.innerWidth) * 2 - 1;
+      const normY = (e.clientY / window.innerHeight) * 2 - 1;
+      targetX = normX;
+      targetY = normY;
+      setMousePos({ x: normX, y: normY });
+    };
+
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+
+    const onResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    window.addEventListener('resize', onResize);
+
+    // Animation Loop
     let animId: number;
-    let time = 0;
+    let clock = new THREE.Clock();
 
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      ctx.scale(dpr, dpr);
-    };
+    const animate = () => {
+      const delta = clock.getDelta();
+      const speed = motionEnabled ? delta * 12 : 0;
 
-    resize();
-    window.addEventListener('resize', resize);
-
-    const drawCorridor = () => {
-      time += motionEnabled ? 0.008 : 0;
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      const cx = w * 0.5;
-      const cy = h * 0.46;
-
-      ctx.clearRect(0, 0, w, h);
-
-      // Deep dark base
-      ctx.fillStyle = '#090C12';
-      ctx.fillRect(0, 0, w, h);
-
-      // Subtle atmospheric purple glow from the top center (like in Skhiladze showreel)
-      const glow = ctx.createRadialGradient(cx, cy * 0.3, 10, cx, cy * 0.5, w * 0.6);
-      glow.addColorStop(0, 'rgba(150, 40, 200, 0.16)');
-      glow.addColorStop(0.5, 'rgba(251, 94, 40, 0.06)');
-      glow.addColorStop(1, 'transparent');
-      ctx.fillStyle = glow;
-      ctx.fillRect(0, 0, w, h);
-
-      // Receding vertical cards along left and right walls of the tunnel
-      const rows = 12;
-      const speed = time * 0.4;
-
-      for (let r = 0; r < rows; r++) {
-        // depth from 0 (close) to 1 (far)
-        const depth = ((r / rows + speed) % 1);
-        const invDepth = 1 - depth; // 1 = close, 0 = far
-        const scale = Math.pow(invDepth, 2.2);
-
-        if (scale < 0.05) continue;
-
-        const cardW = 120 * scale;
-        const cardH = 200 * scale;
-        const xOffset = (w * 0.52) * Math.pow(invDepth, 1.3);
-
-        const alpha = Math.min(0.25, invDepth * 0.35);
-
-        // Left card
-        const lx = cx - xOffset - cardW;
-        const ly = cy - cardH * 0.5;
-        ctx.fillStyle = `rgba(20, 25, 38, ${alpha})`;
-        ctx.strokeStyle = `rgba(180, 80, 250, ${alpha * 0.8})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.roundRect(lx, ly, cardW, cardH, 4 * scale);
-        ctx.fill();
-        ctx.stroke();
-
-        // Right card
-        const rx = cx + xOffset;
-        const ry = cy - cardH * 0.5;
-        ctx.fillStyle = `rgba(20, 25, 38, ${alpha})`;
-        ctx.strokeStyle = `rgba(180, 80, 250, ${alpha * 0.8})`;
-        ctx.beginPath();
-        ctx.roundRect(rx, ry, cardW, cardH, 4 * scale);
-        ctx.fill();
-        ctx.stroke();
+      // Advance portals forward toward camera
+      for (let i = 0; i < portals.length; i++) {
+        portals[i].position.z += speed;
+        if (portals[i].position.z > 18) {
+          portals[i].position.z -= tunnelLength;
+        }
       }
 
-      if (motionEnabled) {
-        animId = requestAnimationFrame(drawCorridor);
-      }
+      // Smooth camera parallax
+      camera.position.x += (targetX * 3.5 - camera.position.x) * 0.05;
+      camera.position.y += (-targetY * 2.5 - camera.position.y) * 0.05;
+      camera.rotation.z += (-targetX * 0.03 - camera.rotation.z) * 0.05;
+      camera.lookAt(0, 0, -45);
+
+      renderer.render(scene, camera);
+      animId = requestAnimationFrame(animate);
     };
 
-    drawCorridor();
+    animate();
 
     return () => {
-      window.removeEventListener('resize', resize);
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('resize', onResize);
       cancelAnimationFrame(animId);
+      boxGeo.dispose();
+      edgesGeo.dispose();
+      particleGeo.dispose();
+      particleMat.dispose();
+      renderer.dispose();
     };
   }, [motionEnabled]);
 
-  // Central Card Interactive Visualizer
+  // 2. Central 16:9 Gate Interactive Visualizer
   useEffect(() => {
     const canvas = previewCanvasRef.current;
     if (!canvas) return;
@@ -248,56 +304,27 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
           const x = cx + Math.cos(angle) * radius;
           const y = cy + Math.sin(angle) * (radius * 0.65);
 
-          // Lines to center
-          ctx.strokeStyle = 'rgba(251, 94, 40, 0.25)';
-          ctx.lineWidth = 1;
+          ctx.fillStyle = i % 3 === 0 ? '#FB5E28' : 'rgba(242, 242, 239, 0.7)';
           ctx.beginPath();
-          ctx.moveTo(cx, cy);
-          ctx.lineTo(x, y);
-          ctx.stroke();
-
-          // Lines to neighbor
-          const nextAngle = ((i + 1) / nodes) * Math.PI * 2 + t * 0.15;
-          const nextR = 70 + Math.sin((i + 1) * 1.8 + t) * 30;
-          ctx.strokeStyle = 'rgba(242, 242, 239, 0.1)';
-          ctx.beginPath();
-          ctx.moveTo(x, y);
-          ctx.lineTo(cx + Math.cos(nextAngle) * nextR, cy + Math.sin(nextAngle) * (nextR * 0.65));
-          ctx.stroke();
-
-          // Nodes
-          ctx.fillStyle = i % 4 === 0 ? '#FB5E28' : '#F2F2EF';
-          ctx.beginPath();
-          ctx.arc(x, y, i % 4 === 0 ? 4 : 2, 0, Math.PI * 2);
+          ctx.arc(x, y, 3.5, 0, Math.PI * 2);
           ctx.fill();
+
+          if (i > 0) {
+            ctx.strokeStyle = 'rgba(242, 242, 239, 0.12)';
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+          }
         }
       } else if (active.type === 'vision') {
-        // Face Recognition: Bounding reticle and scanline
-        const bw = 180;
-        const bh = 220;
-        const bx = (w - bw) / 2;
-        const by = (h - bh) / 2;
-        const bLen = 22;
-
+        // Face Attendance: Facial Landmark Mesh
+        const bx = w * 0.5 - 90;
+        const by = h * 0.5 - 110;
         ctx.strokeStyle = '#FB5E28';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        // Corners
-        ctx.moveTo(bx, by + bLen); ctx.lineTo(bx, by); ctx.lineTo(bx + bLen, by);
-        ctx.moveTo(bx + bw - bLen, by); ctx.lineTo(bx + bw, by); ctx.lineTo(bx + bw, by + bLen);
-        ctx.moveTo(bx, by + bh - bLen); ctx.lineTo(bx, by + bh); ctx.lineTo(bx + bLen, by + bh);
-        ctx.moveTo(bx + bw - bLen, by + bh); ctx.lineTo(bx + bw, by + bh); ctx.lineTo(bx + bw, by + bh - bLen);
-        ctx.stroke();
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(bx, by, 180, 220);
 
-        // Scanline
-        const scanY = by + (Math.sin(t * 2) * 0.5 + 0.5) * bh;
-        ctx.strokeStyle = 'rgba(251, 94, 40, 0.7)';
-        ctx.beginPath();
-        ctx.moveTo(bx + 4, scanY);
-        ctx.lineTo(bx + bw - 4, scanY);
-        ctx.stroke();
-
-        // Facial landmarks
         ctx.fillStyle = 'rgba(242, 242, 239, 0.8)';
         const landmarks = [
           [bx + 55, by + 75], [bx + 125, by + 75],
@@ -310,7 +337,7 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
           ctx.fill();
         });
       } else {
-        // Grid Matrix
+        // Matrix Grid
         ctx.strokeStyle = 'rgba(242, 242, 239, 0.08)';
         ctx.lineWidth = 1;
         const step = 28;
@@ -346,17 +373,26 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
 
   const activeProject = HERO_PROJECTS[activeIndex];
 
+  // 3D dynamic tilt for the floating monitor gate
+  const tiltX = -mousePos.y * 8;
+  const tiltY = mousePos.x * 10;
+
   return (
-    <section id="top" className="relative min-h-[92vh] flex flex-col justify-between pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
-      {/* Background 3D Perspective Tunnel Canvas */}
+    <section id="top" className="relative min-h-[94vh] flex flex-col justify-between pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
+      {/* Background 3D Perspective WebGL Corridor Canvas */}
       <canvas
         ref={bgCanvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none -z-10"
+        className="absolute inset-0 w-full h-full pointer-events-none -z-10 block"
       />
 
-      {/* Main Central Gate Monitor (16:9 aspect ratio, exactly matching Skhiladze) */}
-      <div className="relative my-auto flex flex-col items-center justify-center">
-        <div className="relative w-full max-w-3xl aspect-[16/9] rounded-2xl overflow-hidden border border-white/[0.12] bg-[#0A0D14] shadow-[0_20px_60px_rgba(0,0,0,0.8)] group">
+      {/* Main Central Gate Monitor (16:9 aspect ratio with 3D tilt) */}
+      <div
+        className="relative my-auto flex flex-col items-center justify-center transition-transform duration-200 ease-out"
+        style={{
+          transform: `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
+        }}
+      >
+        <div className="relative w-full max-w-3xl aspect-[16/9] rounded-2xl overflow-hidden border border-white/[0.14] bg-[#0A0D14] shadow-[0_25px_70px_rgba(0,0,0,0.85)] group backdrop-blur-sm">
           {/* Visualizer Canvas */}
           <canvas
             ref={previewCanvasRef}
@@ -364,7 +400,7 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
             onClick={() => onOpenViewer(activeProject)}
           />
 
-          {/* Bottom Left Pill Badge (e.g. "VoiceGuard 2026 · AI Forensics") */}
+          {/* Bottom Left Pill Badge */}
           <div className="absolute bottom-5 left-5 z-10">
             <div className="px-4 py-1.5 rounded-full bg-white text-black font-display font-bold text-xs sm:text-sm tracking-tight shadow-xl flex items-center gap-2">
               <span>{activeProject.name}</span>
@@ -387,7 +423,7 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
           </div>
         </div>
 
-        {/* 5 Channel Dashes with Orange Reticle Tracker (matching frame_120s.jpg) */}
+        {/* 5 Channel Dashes with Orange Reticle Tracker */}
         <div className="flex items-center gap-3 mt-6">
           {HERO_PROJECTS.map((proj, idx) => {
             const isCurrent = idx === activeIndex;
@@ -439,7 +475,7 @@ export const SkhiladzeHero: React.FC<SkhiladzeHeroProps> = ({ onOpenViewer }) =>
 
         <div className="flex items-center gap-4">
           <a
-            href="#work"
+            href="/#work"
             className="px-6 py-2.5 bg-[#F2F2EF] hover:bg-[#FB5E28] text-black hover:text-white font-mono-code text-xs uppercase tracking-wider font-semibold transition-all rounded-full shadow"
           >
             Explore Work ↓

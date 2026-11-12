@@ -1,22 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface SkhiladzeDialEnterProps {
   onEnter: () => void;
 }
 
-const SECTORS = [
-  { name: 'VOICE FORENSICS', project: 'VoiceGuard', tag: 'AI Speech' },
-  { name: 'CLINICAL RAG', project: 'MedInsight', tag: 'BioBERT' },
-  { name: 'COMPUTER VISION', project: 'Face Attendance', tag: 'IJRAR 2024' },
-  { name: 'DEEP LEARNING', project: 'PyTorch / Wav2Vec2', tag: 'Acoustics' },
-  { name: 'SMART CONTRACTS', project: 'BlockLoan', tag: 'Web3 Protocol' },
-  { name: 'DEV PLATFORMS', project: 'CodeMedic AI', tag: 'AST Engine' },
-  { name: 'FULL-STACK SYSTEMS', project: 'ExamSetu', tag: 'FastAPI / React' },
-  { name: 'RESEARCH PAPER', project: 'IJRAR 2024', tag: 'Published' },
-  { name: 'ATTENDANCE DB', project: 'LBPH / SQL', tag: 'Biometrics' },
-  { name: 'NLP & LLMS', project: 'Llama-3', tag: 'RAG Pipeline' },
-  { name: 'AUTOMATION', project: 'IRABOT TechEd', tag: 'Robotics' },
-  { name: 'WEB ARCHITECTURE', project: 'MPI Automotives', tag: 'Scale' },
+export interface DialPageSector {
+  name: string;
+  path: string;
+  subtitle: string;
+  tag: string;
+}
+
+export const DIAL_PAGE_SECTORS: DialPageSector[] = [
+  { name: 'HOME', path: '/', subtitle: '3D Corridor Hero', tag: '00' },
+  { name: 'PROJECTS', path: '/projects', subtitle: '16+ Shipped Systems', tag: '01' },
+  { name: 'ABOUT', path: '/about', subtitle: 'Trajectory & Story', tag: '02' },
+  { name: 'SKILLS', path: '/skills', subtitle: '6 Core Disciplines', tag: '03' },
+  { name: 'CERTIFICATES', path: '/certificates', subtitle: 'Industry & Cloud', tag: '04' },
+  { name: 'ACHIEVEMENTS', path: '/achievements', subtitle: 'Awards & Honors', tag: '05' },
+  { name: 'HOW I WORK', path: '/how-i-work', subtitle: 'Engineering Doctrine', tag: '06' },
+  { name: 'CONTACT', path: '/contact', subtitle: 'Direct Transmission', tag: '07' },
 ];
 
 export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter }) => {
@@ -25,6 +29,7 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
   const [soundOn, setSoundOn] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   // Sound generator using Web Audio API for the signature tune-in sound
   const playTuneSound = () => {
@@ -52,6 +57,11 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
     }
   };
 
+  const activeSectorIndex = Math.floor(
+    (((activeAngle + Math.PI / DIAL_PAGE_SECTORS.length) % (Math.PI * 2)) / (Math.PI * 2)) * DIAL_PAGE_SECTORS.length
+  );
+  const currentSector = DIAL_PAGE_SECTORS[activeSectorIndex] || DIAL_PAGE_SECTORS[0];
+
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (isZooming || !containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
@@ -64,13 +74,20 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
     setActiveAngle(angle);
   };
 
-  const handleEnterClick = () => {
+  const handleNavigateToSector = (sector: DialPageSector) => {
     if (isZooming) return;
     playTuneSound();
     setIsZooming(true);
     setTimeout(() => {
       onEnter();
+      if (sector.path !== '/') {
+        navigate(sector.path);
+      }
     }, 700);
+  };
+
+  const handleEnterClick = () => {
+    handleNavigateToSector(currentSector);
   };
 
   // Keyboard navigation support: Space, Enter, or any key triggers entry
@@ -81,7 +98,7 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [soundOn, isZooming]);
+  }, [soundOn, isZooming, currentSector]);
 
   // Render the radial dial and sectors onto the background canvas
   useEffect(() => {
@@ -115,8 +132,8 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
       ctx.fillStyle = '#090C12';
       ctx.fillRect(0, 0, w, h);
 
-      // Radial web spokes
-      const sectorsCount = SECTORS.length;
+      // Radial web spokes (for each page sector)
+      const sectorsCount = DIAL_PAGE_SECTORS.length;
       ctx.strokeStyle = 'rgba(242, 242, 239, 0.06)';
       ctx.lineWidth = 1;
 
@@ -143,7 +160,7 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
       const tickCount = 120;
       for (let t = 0; t < tickCount; t++) {
         const theta = (t / tickCount) * Math.PI * 2;
-        const isMajor = t % 10 === 0;
+        const isMajor = t % 15 === 0;
         const r1 = radius - (isMajor ? 12 : 6);
         const r2 = radius;
 
@@ -183,11 +200,6 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
     };
   }, [activeAngle]);
 
-  const activeSectorIndex = Math.floor(
-    (((activeAngle + Math.PI / 12) % (Math.PI * 2)) / (Math.PI * 2)) * SECTORS.length
-  );
-  const currentSector = SECTORS[activeSectorIndex] || SECTORS[0];
-
   return (
     <div
       ref={containerRef}
@@ -217,13 +229,13 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
 
       {/* Central Dial Cluster */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-        {/* Top Hint: CLICK TO TUNE IN / ENTER, WITH SOUND */}
+        {/* Top Hint: CLICK TO ENTER // NAVIGATE TO PAGE */}
         <div className="mb-6 flex flex-col items-center">
           <span className="font-mono-code text-[11px] tracking-[0.2em] uppercase text-[#FB5E28] font-semibold animate-pulse">
-            {soundOn ? 'ENTER, WITH SOUND' : 'CLICK TO ENTER'}
+            {soundOn ? `ENTER · GO TO ${currentSector.name}` : `CLICK · OPEN ${currentSector.name}`}
           </span>
           <span className="font-mono-code text-[9px] text-[#5C626D] tracking-widest uppercase mt-0.5">
-            [HOVER TO ROTATE // CLICK TO ENTER]
+            [ROTATE TO SELECT PAGE // CLICK TO ENTER]
           </span>
         </div>
 
@@ -232,19 +244,19 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
           Umer Khan
         </h1>
 
-        {/* Current Hovered Sector Tagline */}
-        <div className="mt-4 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-md">
+        {/* Current Hovered Page Sector Tagline */}
+        <div className="mt-4 px-4 py-1.5 rounded-full bg-[#11151C]/80 border border-white/[0.12] backdrop-blur-md shadow-xl">
           <span className="font-mono-code text-xs text-[#9AA0AA]">
             <span className="text-[#FB5E28] font-bold mr-1.5">↳</span>
-            {currentSector.name} · <span className="text-[#F2F2EF] font-semibold">{currentSector.project}</span>
+            <span className="text-[#F2F2EF] font-bold">{currentSector.name}</span> · <span>{currentSector.subtitle}</span>
           </span>
         </div>
       </div>
 
       {/* Perimeter Sector Labels placed around the ring */}
-      <div className="absolute inset-0 pointer-events-none hidden md:block">
-        {SECTORS.map((sec, idx) => {
-          const angle = (idx / SECTORS.length) * Math.PI * 2 - Math.PI / 2;
+      <div className="absolute inset-0 hidden md:block">
+        {DIAL_PAGE_SECTORS.map((sec, idx) => {
+          const angle = (idx / DIAL_PAGE_SECTORS.length) * Math.PI * 2 - Math.PI / 2;
           const distPercent = 38; // 38% from center
           const leftPercent = 50 + Math.cos(angle) * distPercent;
           const topPercent = 50 + Math.sin(angle) * distPercent;
@@ -253,20 +265,24 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
           return (
             <div
               key={sec.name}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-200 text-center ${
-                isCurrent ? 'scale-110 opacity-100' : 'opacity-40'
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNavigateToSector(sec);
+              }}
+              className={`absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-200 text-center cursor-pointer pointer-events-auto p-2 group ${
+                isCurrent ? 'scale-115 opacity-100 z-10' : 'opacity-45 hover:opacity-90 hover:scale-105'
               }`}
               style={{ left: `${leftPercent}%`, top: `${topPercent}%` }}
             >
               <div
-                className={`font-mono-code text-[10px] tracking-widest font-semibold uppercase ${
-                  isCurrent ? 'text-[#FB5E28]' : 'text-[#F2F2EF]'
+                className={`font-mono-code text-xs tracking-widest font-bold uppercase transition-colors ${
+                  isCurrent ? 'text-[#FB5E28]' : 'text-[#F2F2EF] group-hover:text-[#FB5E28]'
                 }`}
               >
                 {sec.name}
               </div>
-              <div className="font-sans text-[11px] text-[#9AA0AA] truncate max-w-[120px]">
-                {sec.project}
+              <div className="font-sans text-[11px] text-[#9AA0AA] truncate max-w-[130px] group-hover:text-[#F2F2EF] transition-colors">
+                {sec.subtitle}
               </div>
             </div>
           );
@@ -300,7 +316,7 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
         onClick={(e) => e.stopPropagation()}
       >
         <a
-          href="mailto:umerkhan0976@gmail.com"
+          href="mailto:umerkhandoctor04@gmail.com"
           className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#FB5E28] hover:bg-[#FF7A4D] text-white font-mono-code text-xs uppercase tracking-wider font-semibold shadow-lg transition-all"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
