@@ -10,23 +10,23 @@ export const AboutPage: React.FC = () => {
           [02 // TRAJECTORY &amp; FOUNDATIONS]
         </div>
         <h1 className="font-display text-4xl md:text-7xl text-[#EDEAE4] tracking-tight">
-          About &amp; Background
+          About &amp; Story
         </h1>
       </div>
 
-      {/* Main Grid: Portrait + Detailed Narrative */}
+      {/* Main Grid: Portrait + Detailed Story */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         {/* Left Sticky Column */}
         <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#18181B] border border-white/10 group">
             <img
               src="/assets/profile/hero-umer.png"
-              alt="Umerkhan Junaidkhan Doctor"
+              alt="Umer Khan (Doctor Umerkhan Junaidkhan)"
               className="w-full h-full object-cover object-top grayscale contrast-125 brightness-90 group-hover:scale-102 transition-transform duration-700 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#09090B] via-transparent to-transparent opacity-80" />
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between font-mono-code text-[11px] text-[#EDEAE4]">
-              <span>UMERKHAN JUNAIDKHAN</span>
+              <span>UMER KHAN</span>
               <span className="text-[#FF3B00]">2026 // ED.</span>
             </div>
           </div>
@@ -37,17 +37,17 @@ export const AboutPage: React.FC = () => {
               <span className="text-[#EDEAE4]">B.E. AI &amp; Data Science</span>
             </div>
             <div className="flex items-center justify-between pb-3 hairline-b">
-              <span className="text-[#5C5A55] uppercase">University</span>
-              <span className="text-[#EDEAE4]">Terna Engg / Mumbai Univ (2027)</span>
+              <span className="text-[#5C5A55] uppercase">Institution</span>
+              <span className="text-[#EDEAE4]">Terna Engg (2024–2027)</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-[#5C5A55] uppercase">Diploma Aggregate</span>
+              <span className="text-[#5C5A55] uppercase">Diploma Milestone</span>
               <span className="text-[#FF3B00] font-bold">Rank #1 (90.33%)</span>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Narrative + Education + Internships */}
+        {/* Right Column: Luka-Style Storytelling Timeline */}
         <div className="lg:col-span-7 space-y-16">
           {/* Engineering Narrative */}
           <div className="space-y-6 font-display text-2xl sm:text-3xl text-[#EDEAE4] leading-snug tracking-tight">
@@ -62,9 +62,9 @@ export const AboutPage: React.FC = () => {
             </p>
             <p className="text-base font-sans text-[#949089] leading-relaxed">
               My formal foundation started with a 3-year Diploma in Artificial Intelligence &amp; Machine Learning
-              at A. R. Kalsekar Polytechnic (MSBTE), where I placed Class Rank #1 across 4 semesters and finished with
+              at A. R. Kalsekar Polytechnic (MSBTE), where I placed Class Rank #1 across all 6 semesters and finished with
               a 90.33% aggregate. Today I am pursuing my Bachelor of Engineering in AI &amp; Data Science at Terna
-              Engineering College, Navi Mumbai.
+              Engineering College, Mumbai University.
             </p>
           </div>
 

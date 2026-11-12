@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
+import { MotionProvider, useMotion } from './context/MotionContext';
 import { Preloader } from './components/Preloader';
 import { CustomCursor } from './components/CustomCursor';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 
-// Standalone Multi-Page Views
+// Pages
 import { HomePage } from './pages/HomePage';
-import { ProjectsPage } from './pages/ProjectsPage';
-import { ProjectDetailPage } from './pages/ProjectDetailPage';
+import { WorkPage } from './pages/WorkPage';
+import { CaseStudyPage } from './pages/CaseStudyPage';
 import { AboutPage } from './pages/AboutPage';
-import { SkillsPage } from './pages/SkillsPage';
+import { HowIWorkPage } from './pages/HowIWorkPage';
+import { SideQuestsPage } from './pages/SideQuestsPage';
 import { RecognitionPage } from './pages/RecognitionPage';
+import { MetaCaseStudyPage } from './pages/MetaCaseStudyPage';
 import { ContactPage } from './pages/ContactPage';
 
-export const App: React.FC = () => {
+const AppInner: React.FC = () => {
   const [preloaderDone, setPreloaderDone] = useState(false);
+  const { motionEnabled } = useMotion();
 
-  // Smooth scroll via Lenis across multi-page transitions
+  // Lenis smooth scroll
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
+    if (!motionEnabled) return;
 
     const lenis = new Lenis({
       duration: 1.1,
@@ -31,68 +33,82 @@ export const App: React.FC = () => {
       smoothWheel: true,
     });
 
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
-  }, []);
+  }, [motionEnabled]);
 
   return (
-    <BrowserRouter>
-      <div className="relative min-h-screen bg-[#09090B] text-[#EDEAE4] overflow-x-hidden flex flex-col justify-between">
-        {/* Subtle Film Grain Noise */}
-        <div className="film-grain" aria-hidden="true" />
-        {/* Soft Vignette Filter */}
-        <div className="vignette-overlay" aria-hidden="true" />
+    <div className="relative min-h-screen bg-[#0B0B0C] text-[#EDEAE4] overflow-x-hidden flex flex-col justify-between selection:bg-[#FF3B00] selection:text-white">
+      {/* Subtle Noise Texture & Vignette */}
+      <div className="film-grain" aria-hidden="true" />
+      <div className="vignette-overlay" aria-hidden="true" />
 
-        {/* Custom Precision Cursor */}
-        <CustomCursor />
+      {/* Precision Cursor */}
+      <CustomCursor />
 
-        {/* Cinematic First-Session Preloader */}
-        {!preloaderDone && <Preloader onComplete={() => setPreloaderDone(true)} />}
+      {/* Cinematic Title-Card Preloader (once per session) */}
+      {!preloaderDone && <Preloader onComplete={() => setPreloaderDone(true)} />}
 
-        {/* Sticky Editorial Multi-Page Navigation Header */}
-        <Header />
+      {/* Fixed Editorial Header with Motion Toggle */}
+      <Header />
 
-        {/* Dynamic Route View */}
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/projects/:id" element={<ProjectDetailPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/skills" element={<SkillsPage />} />
-            <Route path="/recognition" element={<RecognitionPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            {/* Catch-all 404 Fallback */}
-            <Route
-              path="*"
-              element={
-                <div className="pt-40 pb-24 px-6 max-w-3xl mx-auto text-center space-y-6">
-                  <div className="font-mono-code text-xs text-[#FF3B00] uppercase tracking-widest">
-                    [SYSTEM 404 // NOT FOUND]
-                  </div>
-                  <h1 className="font-display text-4xl md:text-6xl text-[#EDEAE4]">
-                    Page Does Not Exist
-                  </h1>
-                  <p className="font-sans text-sm text-[#949089]">
-                    The requested route is outside the active monograph index.
-                  </p>
+      {/* Main Multi-Page Route Outlet */}
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/work" element={<WorkPage />} />
+          <Route path="/work/:id" element={<CaseStudyPage />} />
+          {/* Legacy route alias */}
+          <Route path="/projects" element={<WorkPage />} />
+          <Route path="/projects/:id" element={<CaseStudyPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/how-i-work" element={<HowIWorkPage />} />
+          <Route path="/side-quests" element={<SideQuestsPage />} />
+          <Route path="/recognition" element={<RecognitionPage />} />
+          <Route path="/how-this-site-was-made" element={<MetaCaseStudyPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* Tasteful 404 Page */}
+          <Route
+            path="*"
+            element={
+              <div className="pt-40 pb-24 px-6 max-w-3xl mx-auto text-center space-y-6">
+                <div className="font-mono-code text-xs text-[#FF3B00] uppercase tracking-widest">
+                  [SYSTEM 404 // SIGNAL LOST]
                 </div>
-              }
-            />
-          </Routes>
-        </main>
+                <h1 className="font-display text-4xl md:text-6xl text-[#EDEAE4]">
+                  Zero Signal on this Frequency
+                </h1>
+                <p className="font-sans text-sm text-[#949089]">
+                  The route you requested does not correspond to an active service or case study.
+                </p>
+              </div>
+            }
+          />
+        </Routes>
+      </main>
 
-        {/* Global Footer */}
-        <Footer />
-      </div>
+      {/* Editorial Footer with "psst" Easter Egg */}
+      <Footer />
+    </div>
+  );
+};
+
+export const App: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <MotionProvider>
+        <AppInner />
+      </MotionProvider>
     </BrowserRouter>
   );
 };
