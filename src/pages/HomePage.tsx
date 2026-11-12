@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { NoiseSignalCanvas } from '../components/NoiseSignalCanvas';
+import { ChromeCoinBadge } from '../components/ChromeCoinBadge';
 import { NoiseSignalStory } from '../components/NoiseSignalStory';
+import { BlueprintLiveReveal } from '../components/BlueprintLiveReveal';
+import { ShowreelModal } from '../components/ShowreelModal';
 import { PROJECTS } from '../data/projects';
 
 export const HomePage: React.FC = () => {
@@ -56,9 +59,9 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="space-y-24 pb-24">
-      {/* 1. HERO SECTION */}
-      <section className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-10 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
-        {/* Dynamic Signature WebGL Noise Canvas */}
+      {/* 1. HERO SECTION WITH 3D CHROME COIN BADGE (Daff Reference) */}
+      <section className="relative min-h-[94vh] flex flex-col justify-between pt-28 pb-10 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
+        {/* Background WebGL Noise Waveform */}
         <NoiseSignalCanvas clarityFactor={0.2} />
 
         {/* Top Info Strip */}
@@ -75,61 +78,71 @@ export const HomePage: React.FC = () => {
           </a>
         </div>
 
-        {/* Monolithic Name & Hero Statement */}
-        <div className="relative z-10 my-auto py-10 md:py-16 flex flex-col items-start">
-          <div className="overflow-hidden mb-3">
-            <p className="font-mono-code text-xs md:text-sm tracking-widest text-[#FF3B00] uppercase">
-              [AI &amp; DATA SCIENCE ENGINEER]
-            </p>
+        {/* Center Grid: Typography on Left + 3D Chrome Badge on Right */}
+        <div className="relative z-10 my-auto py-10 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-8 flex flex-col items-start">
+            <div className="overflow-hidden mb-3">
+              <p className="font-mono-code text-xs md:text-sm tracking-widest text-[#FF3B00] uppercase">
+                [AI &amp; DATA SCIENCE ENGINEER]
+              </p>
+            </div>
+
+            <div className="overflow-hidden w-full">
+              <h1 className="font-display text-[13vw] sm:text-[10vw] lg:text-[8.5vw] font-normal leading-[0.88] tracking-[-0.035em] text-[#EDEAE4] uppercase">
+                UMER KHAN
+              </h1>
+            </div>
+
+            <div className="overflow-hidden w-full flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mt-2">
+              <p className="font-mono-code text-xs md:text-sm text-[#EDEAE4] uppercase tracking-wider">
+                DOCTOR UMERKHAN JUNAIDKHAN
+              </p>
+              <p className="max-w-md font-sans text-sm md:text-base text-[#949089] leading-relaxed">
+                I build voice forensics, clinical RAG architectures, and computer vision systems—and ship them to production.
+              </p>
+            </div>
+
+            {/* Three-Beat Signature Intro Line */}
+            <div className="mt-8 p-4 bg-[#121215] border border-white/10 font-mono-code text-xs text-[#EDEAE4] tracking-wider uppercase">
+              <span className="text-[#FF3B00]">↳ </span>
+              Trained in AI. Tested in internships. Shipped in production.
+            </div>
+
+            {/* CTAs */}
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Link
+                to="/work"
+                className="px-7 py-3.5 bg-[#EDEAE4] hover:bg-[#FF3B00] text-black hover:text-white font-mono-code text-xs uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer shadow-lg"
+                data-cursor="WORK"
+              >
+                See Work [01] →
+              </Link>
+
+              <a
+                href="/Umerkhan_Resume.pdf"
+                download
+                className="px-7 py-3.5 border border-white/15 hover:border-white/40 bg-white/[0.02] text-[#EDEAE4] font-mono-code text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer"
+                data-cursor="PDF"
+              >
+                Resume (PDF) ↗
+              </a>
+
+              <Link
+                to="/contact"
+                className="px-6 py-3.5 text-[#949089] hover:text-[#EDEAE4] font-mono-code text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                data-cursor="MESSAGE"
+              >
+                Direct Transmission →
+              </Link>
+            </div>
           </div>
 
-          <div className="overflow-hidden w-full">
-            <h1 className="font-display text-[14vw] sm:text-[11vw] lg:text-[9.2vw] font-normal leading-[0.88] tracking-[-0.035em] text-[#EDEAE4] uppercase">
-              UMER KHAN
-            </h1>
-          </div>
-
-          <div className="overflow-hidden w-full flex flex-col md:flex-row md:items-baseline md:justify-between gap-4 mt-2">
-            <p className="font-mono-code text-xs md:text-sm text-[#EDEAE4] uppercase tracking-wider">
-              DOCTOR UMERKHAN JUNAIDKHAN
-            </p>
-            <p className="max-w-md font-sans text-sm md:text-base text-[#949089] leading-relaxed">
-              I build voice forensics, clinical RAG architectures, and computer vision systems—and ship them to production.
-            </p>
-          </div>
-
-          {/* Three-Beat Signature Intro Line */}
-          <div className="mt-8 p-4 bg-[#121215] border border-white/10 font-mono-code text-xs text-[#EDEAE4] tracking-wider uppercase">
-            <span className="text-[#FF3B00]">↳ </span>
-            Trained in AI. Tested in internships. Shipped in production.
-          </div>
-
-          {/* CTAs */}
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              to="/work"
-              className="px-7 py-3.5 bg-[#EDEAE4] hover:bg-[#FF3B00] text-black hover:text-white font-mono-code text-xs uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer shadow-lg"
-              data-cursor="WORK"
-            >
-              See Work [01] →
-            </Link>
-
-            <a
-              href="/Umerkhan_Resume.pdf"
-              download
-              className="px-7 py-3.5 border border-white/15 hover:border-white/40 bg-white/[0.02] text-[#EDEAE4] font-mono-code text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer"
-              data-cursor="PDF"
-            >
-              Resume (PDF) ↗
-            </a>
-
-            <Link
-              to="/contact"
-              className="px-6 py-3.5 text-[#949089] hover:text-[#EDEAE4] font-mono-code text-xs uppercase tracking-wider transition-colors cursor-pointer"
-              data-cursor="MESSAGE"
-            >
-              Direct Transmission →
-            </Link>
+          {/* Right Column: 3D Polished Chrome Badge (Click to flip) */}
+          <div className="lg:col-span-4 flex flex-col items-center justify-center relative">
+            <ChromeCoinBadge />
+            <span className="font-mono-code text-[10px] text-[#5C5A55] tracking-widest uppercase mt-3">
+              [CLICK TO FLIP // THREE.JS CHROME]
+            </span>
           </div>
         </div>
 
@@ -154,10 +167,16 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. THE SIGNATURE SCROLL STORY (NOISE → SIGNAL) */}
+      {/* 2. THE SIGNATURE SCROLL STORY (Denny Dive & Live SNR Counter) */}
       <NoiseSignalStory />
 
-      {/* 3. SELECTED WORK PREVIEW (Hover-to-Preview List) */}
+      {/* 3. BLUEPRINT-TO-LIVE REVEAL (Denny "Both Sides of the Line") */}
+      <BlueprintLiveReveal />
+
+      {/* 4. SHOWREEL / PRODUCTION MOMENT (Luka Skhiladze Style) */}
+      <ShowreelModal />
+
+      {/* 5. SELECTED WORK PREVIEW (Hover-to-Preview List) */}
       <section id="work-preview" className="px-6 md:px-12 max-w-7xl mx-auto hairline-t pt-24">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
@@ -219,7 +238,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. "WHAT I MAKE" (Luka-Style 6 Numbered Categories) */}
+      {/* 6. "WHAT I MAKE" (Luka-Style 6 Numbered Categories) */}
       <section className="px-6 md:px-12 max-w-7xl mx-auto hairline-t pt-24">
         <div className="font-mono-code text-xs text-[#FF3B00] uppercase tracking-widest mb-3">
           [CAPABILITY INDEX]
@@ -257,7 +276,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. CONTACT TEASER BLOCK */}
+      {/* 7. CONTACT TEASER BLOCK */}
       <section className="px-6 md:px-12 max-w-7xl mx-auto hairline-t pt-24 text-center">
         <div className="p-12 md:p-16 bg-[#121215] border border-white/10 space-y-6">
           <div className="font-mono-code text-xs text-[#FF3B00] uppercase tracking-widest">
