@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useMotion } from '../context/MotionContext';
 
 interface SkhiladzeMenuProps {
@@ -44,76 +45,86 @@ export const SkhiladzeMenu: React.FC<SkhiladzeMenuProps> = ({
 
       {/* Main Navigation with All Categories */}
       <nav className="my-auto py-8">
-        <ol className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12 list-none p-0 m-0">
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12 list-none p-0 m-0">
           <li>
-            <a
-              href="#work"
+            <Link
+              to="/work"
               onClick={onClose}
-              className="group flex items-baseline gap-4 text-3xl sm:text-4xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
+              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
             >
               <span className="font-mono-code text-sm text-[#FB5E28]">01</span>
-              <span>Work (Featured Systems)</span>
-            </a>
+              <span>Work (16+ Systems)</span>
+            </Link>
           </li>
           <li>
-            <a
-              href="#about"
+            <Link
+              to="/about"
               onClick={onClose}
-              className="group flex items-baseline gap-4 text-3xl sm:text-4xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
+              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
             >
               <span className="font-mono-code text-sm text-[#FB5E28]">02</span>
               <span>About &amp; Trajectory</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="/skills"
+            <Link
+              to="/skills"
               onClick={onClose}
-              className="group flex items-baseline gap-4 text-3xl sm:text-4xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
+              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
             >
               <span className="font-mono-code text-sm text-[#FB5E28]">03</span>
               <span>Technical Skills Index</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="/certificates"
+            <Link
+              to="/certificates"
               onClick={onClose}
-              className="group flex items-baseline gap-4 text-3xl sm:text-4xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
+              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
             >
               <span className="font-mono-code text-sm text-[#FB5E28]">04</span>
-              <span>Certificates &amp; Awards</span>
-            </a>
+              <span>Certificates &amp; Credentials</span>
+            </Link>
           </li>
           <li>
-            <a
-              href="/how-i-work"
+            <Link
+              to="/achievements"
               onClick={onClose}
-              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors"
+              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#F2F2EF] hover:text-[#FB5E28] transition-colors"
             >
-              <span className="font-mono-code text-sm text-[#5C626D]">05</span>
-              <span>How I Work</span>
-            </a>
+              <span className="font-mono-code text-sm text-[#FB5E28]">05</span>
+              <span>Achievements &amp; Honors</span>
+            </Link>
           </li>
           <li>
-            <a
-              href="/side-quests"
+            <Link
+              to="/how-i-work"
               onClick={onClose}
               className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors"
             >
               <span className="font-mono-code text-sm text-[#5C626D]">06</span>
-              <span>Side Quests</span>
-            </a>
+              <span>How I Work</span>
+            </Link>
           </li>
           <li>
-            <a
-              href="/contact"
+            <Link
+              to="/side-quests"
               onClick={onClose}
               className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors"
             >
               <span className="font-mono-code text-sm text-[#5C626D]">07</span>
+              <span>Side Quests</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/contact"
+              onClick={onClose}
+              className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors"
+            >
+              <span className="font-mono-code text-sm text-[#5C626D]">08</span>
               <span>Contact &amp; Transmission</span>
-            </a>
+            </Link>
           </li>
           <li>
             <a
@@ -122,8 +133,8 @@ export const SkhiladzeMenu: React.FC<SkhiladzeMenuProps> = ({
               onClick={onClose}
               className="group flex items-baseline gap-4 text-2xl sm:text-3xl font-display font-bold text-[#9AA0AA] hover:text-[#FB5E28] transition-colors"
             >
-              <span className="font-mono-code text-sm text-[#5C626D]">08</span>
-              <span>Resume (PDF) ↗</span>
+              <span className="font-mono-code text-sm text-[#FB5E28]">↗</span>
+              <span>Resume (PDF)</span>
             </a>
           </li>
         </ol>
@@ -132,8 +143,8 @@ export const SkhiladzeMenu: React.FC<SkhiladzeMenuProps> = ({
       {/* Bottom Controls */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-6 border-t border-white/[0.08] font-mono-code text-xs">
         <div className="flex flex-wrap items-center gap-6 text-[#9AA0AA]">
-          <a href="mailto:umerkhan0976@gmail.com" className="hover:text-[#F2F2EF] transition-colors">
-            umerkhan0976@gmail.com
+          <a href="mailto:umerkhandoctor04@gmail.com" className="hover:text-[#F2F2EF] transition-colors">
+            umerkhandoctor04@gmail.com
           </a>
           <a href="https://www.linkedin.com/in/umer-khan-57a458288/" target="_blank" rel="noopener noreferrer" className="hover:text-[#F2F2EF] transition-colors">
             LinkedIn

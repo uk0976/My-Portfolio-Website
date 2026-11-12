@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useMotion } from '../context/MotionContext';
 
 interface SkhiladzeHeaderProps {
@@ -15,6 +16,8 @@ export const SkhiladzeHeader: React.FC<SkhiladzeHeaderProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const [istTime, setIstTime] = useState('');
   const { motionEnabled, toggleMotion } = useMotion();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const updateTime = () => {
@@ -43,6 +46,20 @@ export const SkhiladzeHeader: React.FC<SkhiladzeHeaderProps> = ({
     };
   }, []);
 
+  const handleNavClick = (anchorId: string, pathFallback: string) => (e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      const el = document.getElementById(anchorId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else {
+      navigate(pathFallback);
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
@@ -53,7 +70,16 @@ export const SkhiladzeHeader: React.FC<SkhiladzeHeaderProps> = ({
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Brand Mark: Umer Khan with Skhiladze glowing dot */}
-        <a href="#top" className="flex items-center gap-3 text-left group cursor-pointer text-decoration-none">
+        <Link
+          to="/"
+          onClick={(e) => {
+            if (location.pathname === '/') {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
+          className="flex items-center gap-3 text-left group cursor-pointer text-decoration-none"
+        >
           <div>
             <div className="flex items-center">
               <span className="font-display font-bold text-lg md:text-xl tracking-tight text-[#F2F2EF] group-hover:text-[#FB5E28] transition-colors">
@@ -65,46 +91,68 @@ export const SkhiladzeHeader: React.FC<SkhiladzeHeaderProps> = ({
               KALYAN, IN · {istTime} IST
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Center Nav: All older site sections + modern routes */}
-        <nav className="hidden lg:flex items-center gap-7 font-mono-code text-xs uppercase tracking-wider">
+        <nav className="hidden lg:flex items-center gap-6 font-mono-code text-xs uppercase tracking-wider">
           <a
-            href="#work"
-            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors flex items-center gap-1"
+            href="/#work"
+            onClick={handleNavClick('work', '/work')}
+            className={`transition-colors flex items-center gap-1 ${
+              location.pathname === '/work' ? 'text-[#FB5E28]' : 'text-[#9AA0AA] hover:text-[#F2F2EF]'
+            }`}
           >
             <span>Work</span>
           </a>
           <a
-            href="#about"
-            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors flex items-center gap-1"
+            href="/#about"
+            onClick={handleNavClick('about', '/about')}
+            className={`transition-colors flex items-center gap-1 ${
+              location.pathname === '/about' ? 'text-[#FB5E28]' : 'text-[#9AA0AA] hover:text-[#F2F2EF]'
+            }`}
           >
             <span>About</span>
           </a>
-          <a
-            href="/skills"
-            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors flex items-center gap-1"
+          <Link
+            to="/skills"
+            className={`transition-colors flex items-center gap-1 ${
+              location.pathname === '/skills' ? 'text-[#FB5E28]' : 'text-[#9AA0AA] hover:text-[#F2F2EF]'
+            }`}
           >
             <span>Skills</span>
-          </a>
-          <a
-            href="/certificates"
-            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors flex items-center gap-1"
+          </Link>
+          <Link
+            to="/certificates"
+            className={`transition-colors flex items-center gap-1 ${
+              location.pathname === '/certificates' ? 'text-[#FB5E28]' : 'text-[#9AA0AA] hover:text-[#F2F2EF]'
+            }`}
           >
             <span>Certificates</span>
-          </a>
-          <a
-            href="/how-i-work"
-            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors flex items-center gap-1"
+          </Link>
+          <Link
+            to="/achievements"
+            className={`transition-colors flex items-center gap-1 ${
+              location.pathname === '/achievements' ? 'text-[#FB5E28]' : 'text-[#9AA0AA] hover:text-[#F2F2EF]'
+            }`}
+          >
+            <span>Achievements</span>
+          </Link>
+          <Link
+            to="/how-i-work"
+            className={`transition-colors flex items-center gap-1 ${
+              location.pathname === '/how-i-work' ? 'text-[#FB5E28]' : 'text-[#9AA0AA] hover:text-[#F2F2EF]'
+            }`}
           >
             <span>How I Work</span>
-          </a>
-          <a
-            href="/contact"
-            className="text-[#9AA0AA] hover:text-[#F2F2EF] transition-colors flex items-center gap-1"
+          </Link>
+          <Link
+            to="/contact"
+            className={`transition-colors flex items-center gap-1 ${
+              location.pathname === '/contact' ? 'text-[#FB5E28]' : 'text-[#9AA0AA] hover:text-[#F2F2EF]'
+            }`}
           >
             <span>Contact</span>
-          </a>
+          </Link>
           <a
             href="/Umerkhan_Resume.pdf"
             download

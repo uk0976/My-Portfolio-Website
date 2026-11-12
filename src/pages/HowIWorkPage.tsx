@@ -43,14 +43,14 @@ export const HowIWorkPage: React.FC = () => {
   return (
     <div className="pt-28 pb-24 px-6 md:px-12 max-w-5xl mx-auto space-y-20">
       {/* Header */}
-      <div className="hairline-b pb-12">
-        <div className="font-mono-code text-xs text-[#FF3B00] uppercase tracking-widest mb-3">
+      <div className="border-b border-white/[0.08] pb-12">
+        <div className="font-mono-code text-xs text-[#FB5E28] uppercase tracking-widest mb-3">
           [ENGINEERING DOCTRINE]
         </div>
-        <h1 className="font-display text-4xl md:text-7xl text-[#EDEAE4] tracking-tight">
+        <h1 className="font-display text-4xl md:text-6xl font-bold text-[#F2F2EF] tracking-tight">
           How I Work
         </h1>
-        <p className="font-sans text-sm md:text-base text-[#949089] mt-4 max-w-2xl leading-relaxed">
+        <p className="font-sans text-sm md:text-base text-[#9AA0AA] mt-4 max-w-2xl leading-relaxed">
           Five principles derived from debugging real latency bottlenecks, deploying async WebSockets, and shipping production systems.
         </p>
       </div>
@@ -58,18 +58,18 @@ export const HowIWorkPage: React.FC = () => {
       {/* Principles List */}
       <div className="space-y-16">
         {principles.map((p) => (
-          <div key={p.num} className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start hairline-b pb-12">
-            <div className="md:col-span-3 font-mono-code text-xs text-[#FF3B00] font-bold">
+          <div key={p.num} className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start border-b border-white/[0.08] pb-12">
+            <div className="md:col-span-3 font-mono-code text-xs text-[#FB5E28] font-bold">
               // PRINCIPLE {p.num}
             </div>
             <div className="md:col-span-9 space-y-4">
-              <h2 className="font-display text-2xl md:text-3xl text-[#EDEAE4] tracking-tight">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-[#F2F2EF] tracking-tight">
                 {p.title}
               </h2>
-              <p className="font-mono-code text-xs md:text-sm text-[#FF3B00]">
+              <p className="font-mono-code text-xs md:text-sm text-[#FB5E28]">
                 "{p.statement}"
               </p>
-              <p className="font-sans text-sm md:text-base text-[#949089] leading-relaxed">
+              <p className="font-sans text-sm md:text-base text-[#9AA0AA] leading-relaxed">
                 {p.detail}
               </p>
             </div>
@@ -78,15 +78,14 @@ export const HowIWorkPage: React.FC = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="p-8 bg-[#121215] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6 font-mono-code text-xs">
+      <div className="p-8 bg-[#11151C] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-6 font-mono-code text-xs rounded-lg">
         <div>
-          <span className="text-[#EDEAE4] font-bold block mb-1">INTERESTED IN DISCUSSING ARCHITECTURE?</span>
-          <span className="text-[#5C5A55]">Open to engineering opportunities and technical conversations.</span>
+          <span className="text-[#F2F2EF] font-bold block mb-1">INTERESTED IN DISCUSSING ARCHITECTURE?</span>
+          <span className="text-[#5C626D]">Open to engineering opportunities and technical conversations.</span>
         </div>
         <Link
           to="/contact"
-          className="px-6 py-3 bg-[#EDEAE4] hover:bg-[#FF3B00] text-black hover:text-white uppercase tracking-wider font-semibold transition-colors"
-          data-cursor="CONTACT"
+          className="px-6 py-3 bg-[#FB5E28] hover:bg-[#FF7A4D] text-white uppercase tracking-wider font-semibold transition-colors rounded shadow-lg shadow-[#FB5E28]/20"
         >
           Get In Touch →
         </Link>

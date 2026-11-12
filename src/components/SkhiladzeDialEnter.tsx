@@ -73,6 +73,16 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
     }, 700);
   };
 
+  // Keyboard navigation support: Space, Enter, or any key triggers entry
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Tab') return;
+      handleEnterClick();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [soundOn, isZooming]);
+
   // Render the radial dial and sectors onto the background canvas
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -190,6 +200,20 @@ export const SkhiladzeDialEnter: React.FC<SkhiladzeDialEnterProps> = ({ onEnter 
     >
       {/* Background Canvas (Radial Compass & Web Lines) */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />
+
+      {/* Top Right: Skip Intro Quick Link */}
+      <div className="absolute top-6 right-6 z-20" onClick={(e) => e.stopPropagation()}>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onEnter();
+          }}
+          className="px-3.5 py-1.5 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-xs font-mono-code text-[#9AA0AA] hover:text-[#F2F2EF] cursor-pointer transition-colors"
+        >
+          Skip intro →
+        </button>
+      </div>
 
       {/* Central Dial Cluster */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">

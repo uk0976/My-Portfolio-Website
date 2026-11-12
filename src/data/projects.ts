@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   number: string;
   title: string;
-  category: 'AI / Audio Forensics' | 'Clinical AI & RAG' | 'Blockchain Protocol' | 'Developer Tools' | 'Computer Vision' | 'Web Systems';
+  category: 'AI / Audio Forensics' | 'Clinical AI & RAG' | 'Blockchain Protocol' | 'Developer Tools' | 'Computer Vision' | 'Web Systems' | 'AI & Cloud Systems' | 'Algorithms & Foundations';
   tagline: string;
   year: string;
   role: string;
@@ -106,35 +106,9 @@ export const PROJECTS: Project[] = [
     featured: true
   },
   {
-    id: 'codemedic-ai',
-    number: '04',
-    title: 'CodeMedic AI',
-    category: 'Developer Tools',
-    tagline: 'Full-stack AI developer platform for automated bug detection and security scanning',
-    year: '2026',
-    role: 'Full-Stack Developer',
-    summary: 'An autonomous code diagnostic engine that parses repository commits to discover security vulnerabilities, runtime race conditions, and performance regressions with AI-generated test scaffolding.',
-    problem: 'Engineering teams waste critical sprint cycles triaging pull request bugs and security leaks that traditional static linters fail to contextualize.',
-    approach: 'Developed a Next.js and FastAPI platform that parses code Abstract Syntax Trees (AST) and pairs them with LLM reasoning to generate targeted fix suggestions and automated test suites.',
-    architecture: 'Next.js App Router → FastAPI REST API → AST tokenization & LLM security scan → PostgreSQL storage → Real-time diff inspector.',
-    features: [
-      'Automated semantic bug analysis and security vulnerability assessment',
-      'Instant test suite generation for edge-case reproduction',
-      'Performance profiling recommendations with code patch diffs'
-    ],
-    metrics: [
-      { label: 'API Architecture', value: 'FastAPI' },
-      { label: 'Frontend', value: 'Next.js 14' },
-      { label: 'Database', value: 'PostgreSQL' }
-    ],
-    stack: ['Next.js', 'FastAPI', 'Python', 'PostgreSQL', 'TypeScript', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/uk0976/CodeMedic-AI',
-    featured: false
-  },
-  {
     id: 'face-attendance',
-    number: '05',
-    title: 'Multiple Face Attendance System',
+    number: '04',
+    title: 'Multiple Face Recognition Attendance System',
     category: 'Computer Vision',
     tagline: 'Peer-reviewed automated multi-person attendance recognition system (IJRAR 2024)',
     year: '2024',
@@ -156,11 +130,162 @@ export const PROJECTS: Project[] = [
     ],
     stack: ['Python', 'OpenCV', 'LBPH Algorithm', 'Haar Cascades', 'MySQL', 'Tkinter'],
     githubUrl: 'https://github.com/uk0976/Multiple-Face-Recognition-Attendance-System',
+    featured: true
+  },
+  {
+    id: 'codemedic-ai',
+    number: '05',
+    title: 'CodeMedic AI',
+    category: 'Developer Tools',
+    tagline: 'Full-stack autonomous AI assistant for real-time bug detection and code analysis',
+    year: '2026',
+    role: 'Full-Stack Developer',
+    summary: 'An autonomous code diagnostic engine that parses repository commits to discover security vulnerabilities, runtime race conditions, and performance regressions with AI-generated test scaffolding.',
+    problem: 'Engineering teams waste critical sprint cycles triaging pull request bugs and security leaks that traditional static linters fail to contextualize.',
+    approach: 'Developed a Next.js and FastAPI platform that parses code Abstract Syntax Trees (AST) and pairs them with LLM reasoning to generate targeted fix suggestions and automated test suites.',
+    architecture: 'Next.js App Router → FastAPI REST API → AST tokenization & LLM security scan → PostgreSQL storage → Real-time diff inspector.',
+    features: [
+      'Automated semantic bug analysis and security vulnerability assessment',
+      'Instant test suite generation for edge-case reproduction',
+      'Performance profiling recommendations with code patch diffs'
+    ],
+    metrics: [
+      { label: 'API Architecture', value: 'FastAPI' },
+      { label: 'Frontend', value: 'Next.js 14' },
+      { label: 'Database', value: 'PostgreSQL' }
+    ],
+    stack: ['Next.js', 'FastAPI', 'Python', 'PostgreSQL', 'TypeScript', 'Tailwind CSS'],
+    githubUrl: 'https://github.com/uk0976/CodeMedic-AI',
+    featured: true
+  },
+  {
+    id: 'nirman',
+    number: '06',
+    title: 'Nirman',
+    category: 'Developer Tools',
+    tagline: 'Autonomous AI software development company powered by collaborative agent swarms',
+    year: '2026',
+    role: 'Lead Architect',
+    summary: 'From vision to production, powered by AI. An autonomous software development company driven by a collaborative swarm of specialized AI agents that plan, design, develop, test, secure, document, and deploy software from a single prompt.',
+    problem: 'Bootstrapping new software products requires synchronizing disparate roles (product management, architecture, frontend, backend, QA, DevOps) leading to lengthy development cycles.',
+    approach: 'Engineered a multi-agent orchestration architecture where role-specialized LLM agents execute coordinated tasks through shared state, automated git pull requests, and verified CI test suites.',
+    architecture: 'Product brief prompt → Orchestration director → Role-specialized agents (Design, Code, Test, SecOps) → Automated verification runner → Packaged deployment.',
+    features: [
+      'Autonomous multi-agent task planning and code generation',
+      'Integrated security audit and unit test validation',
+      'Automated documentation generation and architecture mapping'
+    ],
+    metrics: [
+      { label: 'Agent Pipeline', value: 'Multi-Role Swarm' },
+      { label: 'Execution', value: 'Autonomous CI/CD' }
+    ],
+    stack: ['Python', 'Multi-Agent Swarms', 'LLMs', 'FastAPI', 'Docker', 'Git Automation'],
+    githubUrl: 'https://github.com/uk0976/Nirman',
+    featured: false
+  },
+  {
+    id: 'nsers',
+    number: '07',
+    title: 'NSERS Emergency Response',
+    category: 'AI & Cloud Systems',
+    tagline: 'National Smart Emergency Response System with multimodal AI and Google Cloud',
+    year: '2026',
+    role: 'Cloud & AI Engineer',
+    summary: 'An AI-powered disaster and emergency response platform built with Google Cloud. It enables real-time incident reporting, multimodal AI verification, intelligent dispatch, live tracking, and fraud analytics across India.',
+    problem: 'Emergency response coordination suffers from false alarms, fragmented regional dispatch, and delayed resource allocation during natural disasters and urgent crises.',
+    approach: 'Leveraged Google Cloud infrastructure with multimodal vision and audio verification models to screen emergency alerts, compute optimal dispatch routes, and prevent fraudulent submissions.',
+    architecture: 'Incident mobile client → Google Cloud API Gateway → Multimodal AI verification filter → Geospatial dispatch routing engine → Emergency responder dashboard.',
+    features: [
+      'Multimodal AI verification filtering false alarms and duplicates',
+      'Real-time geospatial dispatch and routing optimization',
+      'Scalable cloud infrastructure designed for nationwide surge tolerance'
+    ],
+    metrics: [
+      { label: 'Cloud Infrastructure', value: 'Google Cloud Platform' },
+      { label: 'Verification', value: 'Multimodal AI' }
+    ],
+    stack: ['Google Cloud', 'Python', 'FastAPI', 'Multimodal AI', 'Geospatial GIS', 'React'],
+    githubUrl: 'https://github.com/uk0976/NSERS---National-Smart-Emergency-Response-System',
+    featured: false
+  },
+  {
+    id: 'safestep',
+    number: '08',
+    title: 'SafeStep AI Check-In',
+    category: 'AI & Cloud Systems',
+    tagline: 'AI-assisted real-time safety check-in & risk alert platform for solo travelers',
+    year: '2025',
+    role: 'Lead Developer',
+    summary: 'An AI-assisted real-time safety check-in platform engineered for HackDevengers 1.0, featuring journey tracking, smart risk alerts, and automated notifications for emergency contacts.',
+    problem: 'Solo travelers and late-night commuters face personal safety hazards with inadequate automated escalation protocols when deviating from scheduled routes.',
+    approach: 'Engineered an automated heartbeat check-in loop with anomaly detection on route coordinates and temporal delays, automatically notifying designated contacts upon missed check-in windows.',
+    architecture: 'Mobile client GPS telemetry → Anomaly detection engine → Automated SMS/Email emergency dispatch → Emergency contacts dashboard.',
+    features: [
+      'Automated recurring check-in protocol with configurable time thresholds',
+      'GPS route deviation and anomaly detection',
+      'Instant SMS/Email alert dispatch to emergency contacts upon trigger'
+    ],
+    metrics: [
+      { label: 'Hackathon', value: 'HackDevengers 1.0' },
+      { label: 'Platform', value: 'Web & Mobile' }
+    ],
+    stack: ['Python', 'FastAPI', 'React', 'Geolocation API', 'Twilio / SMS API'],
+    githubUrl: 'https://github.com/uk0976/SafeStep',
+    featured: false
+  },
+  {
+    id: 'stocksage',
+    number: '09',
+    title: 'StockSage Forecast & Chatbot',
+    category: 'AI / Audio Forensics',
+    tagline: 'Predictive equity analytics engine with conversational market intelligence',
+    year: '2024',
+    role: 'Developer',
+    summary: 'A dual-function analytics application combining machine learning stock price trend forecasting with an interactive natural language assistant for financial telemetry.',
+    problem: 'Retail investors face fragmented workflows between raw technical price charts and conversational answers regarding historical equity movements.',
+    approach: 'Coupled historical price feature engineering (moving averages, momentum indicators) with predictive regressors and an NLP query interpreter.',
+    architecture: 'Yahoo Finance API / CSV ingest → Feature engineering pipeline → Regression model → Chatbot query interface.',
+    features: [
+      'Predictive trend modeling on equity closing prices',
+      'Integrated conversational query bot for historical telemetry',
+      'Automated Matplotlib visual charting'
+    ],
+    metrics: [
+      { label: 'Data Processing', value: 'Pandas & NumPy' },
+      { label: 'Predictive Model', value: 'Scikit-learn Regressors' }
+    ],
+    stack: ['Python', 'Machine Learning', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib'],
+    githubUrl: 'https://github.com/uk0976/StockSage---Stock-Prediction-System-with-Integrated-ChatBot',
+    featured: false
+  },
+  {
+    id: 'smart-task-scheduler',
+    number: '10',
+    title: 'Smart Task Scheduler',
+    category: 'AI / Audio Forensics',
+    tagline: 'NLP-powered intelligent task prioritization and scheduling engine',
+    year: '2024',
+    role: 'Developer',
+    summary: 'An intelligent task management system powered by natural language processing and machine learning that understands natural language inputs to automatically schedule, prioritize, and manage tasks.',
+    problem: 'Users spend excessive manual time formatting calendar blocks and manually assigning urgency levels to free-text to-do lists.',
+    approach: 'Built a text parsing and classification pipeline using Python NLP libraries to extract temporal entities and predict urgency classes.',
+    architecture: 'Text input → NLP entity extraction → Urgency classification model → Automated calendar queue.',
+    features: [
+      'Natural language task parsing (date, time, duration)',
+      'Automated priority categorization based on text semantics',
+      'Clean interactive management interface'
+    ],
+    metrics: [
+      { label: 'Core Language', value: 'Python' },
+      { label: 'Technique', value: 'NLP Entity Extraction' }
+    ],
+    stack: ['Python', 'NLP', 'Scikit-learn', 'Tkinter'],
+    githubUrl: 'https://github.com/uk0976/Smart-Task-Scheduler-with-AI-Integration',
     featured: false
   },
   {
     id: 'coreforge-studio',
-    number: '06',
+    number: '11',
     title: 'CoreForge Studio',
     category: 'Web Systems',
     tagline: 'High-performance digital design agency web architecture',
@@ -184,53 +309,128 @@ export const PROJECTS: Project[] = [
     featured: false
   },
   {
-    id: 'smart-task-scheduler',
-    number: '07',
-    title: 'Smart Task Scheduler',
-    category: 'AI / Audio Forensics',
-    tagline: 'NLP-powered intelligent task prioritization and scheduling engine',
-    year: '2024',
-    role: 'Developer',
-    summary: 'An intelligent task management system powered by natural language processing and machine learning that extracts tasks from conversational English to automatically schedule and prioritize workflows.',
-    problem: 'Users spend excessive manual time formatting calendar blocks and manually assigning urgency levels to free-text to-do lists.',
-    approach: 'Built a text parsing and classification pipeline using Python NLP libraries to extract temporal entities and predict urgency classes.',
-    architecture: 'Text input → NLP entity extraction → Urgency classification model → Automated calendar queue.',
+    id: 'dsa-journey',
+    number: '12',
+    title: 'DSA & Algorithms Journey',
+    category: 'Algorithms & Foundations',
+    tagline: 'Comprehensive problem-solving repository across LeetCode, GFG, and placements',
+    year: '2023–2026',
+    role: 'Engineer',
+    summary: 'A structured algorithmic repository documenting problem-solving progression across LeetCode, GeeksForGeeks, and technical interview benchmarks with clean time-complexity proofs.',
+    problem: 'Algorithmic mastery requires disciplined practice across diverse patterns (dynamic programming, graphs, trees, two pointers) with reproducible solutions.',
+    approach: 'Implemented structured, fully-documented solutions in Python and Java, analyzing worst-case big-O time and space complexity with unit test harnesses.',
+    architecture: 'Categorized problem taxonomy → Clean code implementation → Time/Space complexity analysis → Verification test suite.',
     features: [
-      'Natural language task parsing (date, time, duration)',
-      'Automated priority categorization based on text semantics',
-      'Clean interactive management interface'
+      'Extensive catalog of solutions spanning graph algorithms, DP, and trees',
+      'Rigorous time & space complexity annotations for every pattern',
+      'Optimized space-efficient implementations'
     ],
     metrics: [
-      { label: 'Core Language', value: 'Python' },
-      { label: 'Technique', value: 'NLP Entity Extraction' }
+      { label: 'Languages', value: 'Python & Java' },
+      { label: 'Platforms', value: 'LeetCode / GFG' }
     ],
-    stack: ['Python', 'NLP', 'Scikit-learn', 'Tkinter'],
-    githubUrl: 'https://github.com/uk0976/Smart-Task-Scheduler-with-AI-Integration',
+    stack: ['Python', 'Java', 'Data Structures', 'Algorithms', 'Big-O Analysis'],
+    githubUrl: 'https://github.com/uk0976/Data-Structures-Algorithms-DSA-Journey',
     featured: false
   },
   {
-    id: 'stocksage',
-    number: '08',
-    title: 'StockSage Forecast & Chatbot',
-    category: 'AI / Audio Forensics',
-    tagline: 'Predictive equity analytics engine with conversational market intelligence',
-    year: '2024',
+    id: 'library-management',
+    number: '13',
+    title: 'Library Management System',
+    category: 'Web Systems',
+    tagline: 'Desktop library management platform with book cataloging and member records',
+    year: '2023',
     role: 'Developer',
-    summary: 'A dual-function analytics application combining machine learning stock price trend forecasting with an interactive natural language assistant for financial telemetry.',
-    problem: 'Retail investors face fragmented workflows between raw technical price charts and conversational answers regarding historical equity movements.',
-    approach: 'Coupled historical price feature engineering (moving averages, momentum indicators) with predictive regressors and an NLP query interpreter.',
-    architecture: 'Yahoo Finance API / CSV ingest → Feature engineering pipeline → Regression model → Chatbot query interface.',
+    summary: 'A full-featured desktop library management application with a graphical user interface, enabling book cataloging, member management, borrowing records, and database-backed operations through a clean Tkinter interface.',
+    problem: 'Local institutional libraries often struggle with paper-based registers that lead to misplaced borrowing records and delayed overdue tracking.',
+    approach: 'Constructed an ACID-compliant relational SQL backend paired with an intuitive Python Tkinter desktop interface with real-time book search and member verification.',
+    architecture: 'Tkinter GUI → Python transaction controller → Relational SQL database schema.',
     features: [
-      'Predictive trend modeling on equity closing prices',
-      'Integrated conversational query bot for historical telemetry',
-      'Automated Matplotlib visual charting'
+      'Complete book inventory cataloging with instant title/author search',
+      'Member issuance and return tracking with automatic overdue calculation',
+      'Database transaction safety and persistent record logs'
     ],
     metrics: [
-      { label: 'Data Processing', value: 'Pandas & NumPy' },
-      { label: 'Predictive Model', value: 'Scikit-learn Regressors' }
+      { label: 'UI Framework', value: 'Python Tkinter' },
+      { label: 'Database', value: 'Relational SQL' }
     ],
-    stack: ['Python', 'Machine Learning', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib'],
-    githubUrl: 'https://github.com/uk0976/StockSage---Stock-Prediction-System-with-Integrated-ChatBot',
+    stack: ['Python', 'Tkinter', 'SQL', 'Database Management', 'Desktop GUI'],
+    githubUrl: 'https://github.com/uk0976/Library-Management-System',
+    featured: false
+  },
+  {
+    id: 'sentiment-analysis',
+    number: '14',
+    title: 'Sentiment Analysis Pipeline',
+    category: 'AI / Audio Forensics',
+    tagline: 'NLP machine learning pipeline for text sentiment classification and visual storytelling',
+    year: '2023',
+    role: 'Developer',
+    summary: 'A machine learning pipeline that classifies text sentiment (positive, negative, neutral) from datasets, with rich visual insights using Matplotlib for data storytelling and pattern exploration.',
+    problem: 'Raw customer feedback and textual reviews contain high variance in sentiment polarity that manual inspection cannot scale to summarize.',
+    approach: 'Trained text feature vectorizers (TF-IDF) alongside classification models, producing automated distribution plots and confusion matrices.',
+    architecture: 'Raw corpus ingest → Tokenization & TF-IDF vectorization → Classifier inference → Matplotlib visual report.',
+    features: [
+      'Text preprocessing, stopword removal, and n-gram TF-IDF vectorization',
+      'Multi-class sentiment probability scoring',
+      'Automated visual charts illustrating sentiment distributions'
+    ],
+    metrics: [
+      { label: 'NLP Approach', value: 'TF-IDF + ML' },
+      { label: 'Visualization', value: 'Matplotlib' }
+    ],
+    stack: ['Python', 'Scikit-learn', 'NLP', 'Pandas', 'Matplotlib'],
+    githubUrl: 'https://github.com/uk0976',
+    featured: false
+  },
+  {
+    id: 'snake-ladder-game',
+    number: '15',
+    title: 'Snake and Ladder GUI Game',
+    category: 'Web Systems',
+    tagline: 'Interactive multiplayer board game with graphical physics and desktop UI',
+    year: '2023',
+    role: 'Developer',
+    summary: 'A fully interactive Snake and Ladder game built with Python\'s Tkinter framework, featuring a graphical board, animated gameplay, multi-player support, and a polished desktop UI experience.',
+    problem: 'Demonstrating object-oriented game state management and graphical coordinate mapping in native Python without third-party game engines.',
+    approach: 'Modeled the 100-cell board with exact coordinate translation logic, snake/ladder jump matrices, randomized dice mechanics, and turn-based player state.',
+    architecture: 'Game loop controller → Board coordinate mapper → Tkinter 2D Canvas renderer.',
+    features: [
+      'Multiplayer turn-based gameplay with animated dice roll simulation',
+      'Exact board coordinate mapping for automatic jumps and slide-downs',
+      'Intuitive desktop graphical interface'
+    ],
+    metrics: [
+      { label: 'Language', value: 'Python' },
+      { label: 'GUI Framework', value: 'Tkinter' }
+    ],
+    stack: ['Python', 'Tkinter', 'Game Development', 'Object-Oriented Design'],
+    githubUrl: 'https://github.com/uk0976/Snakes-and-Ladder-Game',
+    featured: false
+  },
+  {
+    id: 'face-biometrics-verification',
+    number: '16',
+    title: 'Secure Face Biometric Verification',
+    category: 'Computer Vision',
+    tagline: 'Biometric identity authentication system with Haar Cascade and SQL management',
+    year: '2024',
+    role: 'Lead Developer',
+    summary: 'A biometric security system that authenticates individuals through facial recognition using LBPH and Haar Cascade algorithms, with SQL-backed identity management for secure and scalable verification.',
+    problem: 'Unauthorized access to secured digital systems requires reliable biometric authentication that can operate locally without external cloud dependencies.',
+    approach: 'Implemented facial feature extraction pipelines with lighting normalization and threshold matching against securely indexed local SQL templates.',
+    architecture: 'Video capture → Haar Cascade crop → Lighting normalization → LBPH distance calculation → Access decision & audit log.',
+    features: [
+      'Local on-device inference without cloud image transmission',
+      'Confidence threshold tuning to minimize false acceptance rates (FAR)',
+      'Comprehensive security access logs stored in SQL database'
+    ],
+    metrics: [
+      { label: 'Security Model', value: 'Local On-Device' },
+      { label: 'Database', value: 'MySQL / SQLite' }
+    ],
+    stack: ['Python', 'OpenCV', 'LBPH Algorithm', 'Haar Cascades', 'SQL', 'Biometrics'],
+    githubUrl: 'https://github.com/uk0976/Multiple-Face-Recognition-Attendance-System',
     featured: false
   }
 ];

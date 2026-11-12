@@ -206,43 +206,74 @@ export interface SkillCategory {
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: 'AI, ML & Forensics',
-    tagline: 'Deep representations, audio DSP, and retrieval-augmented systems',
+    title: 'AI, Machine Learning & Deep Learning',
+    tagline: 'Deep representations, audio signal processing, and statistical machine learning',
     items: [
       { name: 'PyTorch & TorchAudio', context: 'Acoustic tensors & Wav2Vec2 fine-tuning' },
-      { name: 'Wav2Vec 2.0', context: 'Self-supervised speech representations in VoiceGuard' },
-      { name: 'Librosa DSP', context: 'Spectral flatness, micro-jitter, phase extraction' },
-      { name: 'LangChain & RAG', context: 'Document retrieval & context engineering in MedInsight' },
-      { name: 'FAISS Vector Index', context: 'Sub-millisecond semantic medical embeddings' },
-      { name: 'BioBERT Transformers', context: 'Clinical Named Entity Recognition' },
-      { name: 'OpenCV & Computer Vision', context: 'Haar Cascade & LBPH attendance models (IJRAR paper)' },
-      { name: 'Prompt Engineering', context: 'Context-calibrated zero-shot & few-shot LLM schemas' }
+      { name: 'Scikit-learn', context: 'Supervised classification, regression, and cross-validation pipelines' },
+      { name: 'Pandas & NumPy', context: 'High-throughput numerical matrix manipulation & exploratory analysis' },
+      { name: 'Librosa DSP', context: 'Spectral flatness, micro-jitter, phase extraction heuristics' },
+      { name: 'Deepfake & Audio Forensics', context: 'Biometric voice clone detection in VoiceGuard' },
+      { name: 'Feature Engineering', context: 'Domain-specific acoustic and text feature extraction' }
     ]
   },
   {
-    title: 'Languages & Core Systems',
-    tagline: 'Strong algorithmic foundations, object-oriented architecture, and protocols',
+    title: 'Generative AI, LLMs & Clinical RAG',
+    tagline: 'Retrieval-augmented generation, embeddings, and context-engineered pipelines',
     items: [
-      { name: 'Python', context: 'Primary system & ML pipeline language (FastAPI, PyTorch, Librosa)' },
-      { name: 'Solidity (^0.8.20)', context: 'Non-custodial lending smart contracts & Hardhat tests in BlockLoan' },
-      { name: 'Java', context: 'Object-oriented data structures and algorithmic foundations' },
-      { name: 'TypeScript & JavaScript', context: 'Type-safe React architectures, WebSockets, Ethers.js' },
-      { name: 'SQL', context: 'Relational data modeling with MySQL & PostgreSQL' },
-      { name: 'HTML5 & Modern CSS', context: 'Fluid typography, custom CSS grid, responsive viewports' }
+      { name: 'LangChain & LlamaIndex', context: 'Multi-stage retrieval chains & context orchestration' },
+      { name: 'FAISS Vector Index', context: 'Sub-millisecond semantic medical embeddings in MedInsight' },
+      { name: 'BioBERT Transformers', context: 'Clinical Named Entity Recognition & medical entity extraction' },
+      { name: 'Groq Llama-3 & OpenAI', context: 'Calibrated dual-view clinical report summarization' },
+      { name: 'Prompt Engineering', context: 'System prompts, few-shot schemas, and zero-shot reasoning' },
+      { name: 'Multi-Agent Swarms', context: 'Autonomous cooperative agent workflows in Nirman' }
     ]
   },
   {
-    title: 'Full-Stack, WebGL & Cloud Tools',
-    tagline: 'Production-ready runtime environments, state management, and real-time streams',
+    title: 'Computer Vision & Biometrics',
+    tagline: 'Illumination-invariant facial recognition, ROI tracking, and multimodal feeds',
+    items: [
+      { name: 'OpenCV', context: 'Real-time multi-face attendance system (IJRAR 2024 paper)' },
+      { name: 'Haar Cascade Classifiers', context: 'Rapid region-of-interest detection in crowded frames' },
+      { name: 'LBPH Face Recognition', context: 'Lighting-invariant Local Binary Pattern Histograms' },
+      { name: 'Multimodal AI Verification', context: 'Automated emergency alert verification in NSERS' },
+      { name: 'Matplotlib & Seaborn', context: 'Automated statistical data storytelling & visual charts' }
+    ]
+  },
+  {
+    title: 'DSA & Core Programming Languages',
+    tagline: 'Strong algorithmic foundations, object-oriented design, and verifiable logic',
+    items: [
+      { name: 'Python', context: 'Primary system language for ML, FastAPI, and data engineering' },
+      { name: 'Java', context: 'Object-oriented data structures and placement problem solving' },
+      { name: 'Data Structures & Algorithms', context: 'Graph theory, dynamic programming, trees, two pointers' },
+      { name: 'Solidity (^0.8.20)', context: 'Non-custodial lending smart contracts & Hardhat tests in BlockLoan' },
+      { name: 'TypeScript & JavaScript', context: 'Type-safe React architectures, WebSockets, Ethers.js' },
+      { name: 'SQL', context: 'Relational database schema modeling with MySQL & PostgreSQL' }
+    ]
+  },
+  {
+    title: 'Full-Stack Web Development & Frameworks',
+    tagline: 'High-performance reactive frontends, asynchronous backends, and streaming APIs',
     items: [
       { name: 'FastAPI', context: 'High-concurrency async inference microservices & WebSockets' },
-      { name: 'React 18 & Vite', context: 'Component-driven frontend architectures & HUDs' },
-      { name: 'WebSockets', context: 'Chunk-level duplex audio telemetry in VoiceGuard' },
-      { name: 'Web3.py & Ethers.js', context: 'On-chain event listeners and smart contract interfaces' },
+      { name: 'React 18 & Vite', context: 'Modern component-driven architectures & real-time telemetry HUDs' },
+      { name: 'Next.js 14', context: 'Full-stack SSR developer tools and REST APIs in CodeMedic AI' },
+      { name: 'Node.js & Express.js', context: 'Full-stack assessment platform modules in ExamSetu' },
+      { name: 'WebSockets', context: 'Duplex 16 kHz PCM audio streaming in VoiceGuard' },
+      { name: 'Tailwind CSS', context: 'Fluid typography, responsive grids, and zero layout shift design' }
+    ]
+  },
+  {
+    title: 'Cloud, Databases & Engineering Tools',
+    tagline: 'Cloud infrastructure, resilient relational data stores, and CI/CD version control',
+    items: [
+      { name: 'Google Cloud Platform (GCP)', context: 'Compute Engine, Cloud Storage, and BigQuery analytics' },
       { name: 'PostgreSQL & Supabase', context: 'Persistent relational stores & event log caching' },
+      { name: 'MySQL Database', context: 'ACID-compliant storage for face attendance & library systems' },
       { name: 'Git & GitHub', context: 'Collaborative code reviews, branch governance, CI/CD' },
-      { name: 'Docker / Linux', context: 'Containerized deployment & POSIX environment automation' },
-      { name: 'GSAP & Three.js', context: 'Physics-based animation timelines and WebGL shaders' }
+      { name: 'Docker / Linux POSIX', context: 'Containerized microservices & automated deployments' },
+      { name: 'Ethers.js & Web3.py', context: 'Ethereum blockchain event listeners & contract interactions' }
     ]
   }
 ];
